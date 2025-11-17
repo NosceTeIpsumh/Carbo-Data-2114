@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :items
   has_many :chats
+  has_one_attached :photo
 end
