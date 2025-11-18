@@ -106,3 +106,39 @@ Item.create!([
 ])
 
 puts "Created #{Item.count} items."
+
+puts "Création des posts..."
+
+Post.create!(
+  content: "Ceci est un post de test standard!",
+  up: 45,
+  down: 5,
+  user: user_one,
+  created_at: 1.day.ago
+)
+
+Post.create!(
+  content: "J'ai découvert une recette géniale, je la partage avec vous!",
+  up: 120,
+  down: 3,
+  user: user_one,
+  created_at: 12.hours.ago
+)
+
+Post.create!(
+  content: "Le sucre caché dans les aliments. Discutons-en.",
+  up: 15,
+  down: 25,
+  user: user_two,
+  created_at: 5.hours.ago
+)
+
+Post.create!(
+  content: "Nouveau produit Carrefour disponible, qui l'a déjà testé ?",
+  up: 8,
+  down: 0,
+  user: user_two,
+  created_at: Time.now
+)
+
+puts "Created #{Post.count} posts au total."
