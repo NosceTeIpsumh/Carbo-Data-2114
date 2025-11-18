@@ -1,2 +1,58 @@
-<h1>ChatsItems#new</h1>
-<p>Find me in app/views/chats_items/new.html.erb</p>
+<div class="container py-5">
+  <div class="card shadow-sm rounded-5 mt-4 p-4">
+    <h1 class="text-center display-5 fw-bold text-primary mb-5">
+      Sélectionnez vos Carboduct
+    </h1>
+
+    <h4 class = "text-center fw-bold text-info mb-5">
+      Avant de parler à notre super BOT, choississez quels CarboDucts vous voulez intégrer dans vos recettes! <br> Si vous en choississez aucun, notre super BOT s'en occupera! 🤖
+    </h4>
+
+    <% if @items.any? %>
+      <%= simple_form_for @chat_item do |f| %>
+
+        <div class="row g-4">
+          <%= f.association :item,
+            as: :check_boxes,
+            label: "",
+            label_method: :show_name_and_brand,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_tag: 'div',
+            item_wrapper_class: 'category-item',
+            input_html: { class: 'category-selector' },
+            collection: current_user.items
+          %>
+        </div>
+
+        <div class="text-center w-90 d-grid">
+          <%= f.button :submit, "Démarrer le Chat", class: 'btn btn-primary btn-lg mt-2 rounded-5' %>
+        </div>
+      <% end %>
+    <% else %>
+
+      <h1 class = "text-center">Please add some Carboducts first if you want specific recipes from our SuperCarbo BOT! 🤖 </h1>
+        <%= simple_form_for @chat_item do |f| %>
+
+        <div class="row g-4">
+          <%= f.association :item,
+            as: :check_boxes,
+            label: "",
+            label_method: :show_name_and_brand,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_tag: 'div',
+            item_wrapper_class: 'category-item',
+            input_html: { class: 'category-selector' },
+            collection: current_user.items
+          %>
+
+        </div>
+
+        <div class="text-center mt-2">
+          <%= f.button :submit, "Démarrer le Chat", class: 'btn btn-primary btn-lg rounded-5' %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
