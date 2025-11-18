@@ -28,11 +28,16 @@ gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
-
-#device
-
+#markdown handling
+gem "kramdown"
+gem "rouge"
+gem "kramdown-parser-gfm"
+# rubyLLM
+gem "ruby_llm", "~> 1.6.4"
+#devise
 gem "devise"
-
+#cloudinary
+gem "cloudinary"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

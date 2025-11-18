@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MaApp</title>
+    <title>CarboData2114</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,6 +16,13 @@
   </head>
 
   <body>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+    <p class="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
 
     <footer class="bg-light text-center text-muted py-3 mt-5">

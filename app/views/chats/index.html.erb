@@ -1,2 +1,39 @@
-<h1>Chats#index</h1>
-<p>Find me in app/views/chats/index.html.erb</p>
+<div class="container">
+  <div class="card shadow-sm rounded-5 mt-4 p-4">
+    <div class="text-center pt-1 pb-3">
+      <h1 class="display-5 fw-bold text-primary mb-4 mt-4">
+        Historique des chats
+      </h1>
+    </div>
+
+    <div class="d-flex chats-container">
+      <% if @chats.any? %>
+        <% @chats.each do |chat| %>
+          <div class="card-product-bis p-3">
+
+            <h6 class="mb-3">
+              <%= chat.title %>
+            </h6>
+
+            <%= link_to chat_path(chat), class: "d-block text-decoration-none" do %>
+              <div class="div-button access-button rounded-5">
+                <p>Accéder à l'historique du chat!</p>
+              </div>
+            <% end %>
+
+            <%= link_to chat_path(chat),
+                data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce chat ?" },
+                class: "d-block text-decoration-none" do %>
+              <div class="div-button delete-button rounded-5">
+                <p>Supprimer</p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <h1 class = "text-center">Please chat with our SuperCarbo BOT first! 🤖</h1>
+      <% end %>
+    </div>
+    <%= link_to "Démarrer un nouveau chat", new_chat_item_path, class: "btn btn-primary btn-lg px-4 py-2 mt-4 rounded-5" %>
+  </div>
+</div>
