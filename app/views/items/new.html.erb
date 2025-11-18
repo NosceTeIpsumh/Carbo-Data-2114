@@ -1,2 +1,11 @@
-<h1>Items#new</h1>
-<p>Find me in app/views/items/new.html.erb</p>
+<div class="container-fluid">
+  <div class="text-center">
+    <h1 class="header-margin display-5 fw-bold text-primary">Nouveau CarboDuct</h1>
+
+    <%= render "form" %>
+
+    <div class="mt-2 d-flex justify-content-center gap-3 flex-wrap">
+      <%= link_to "Voir mes CarboDucts", items_path, class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+</div>
