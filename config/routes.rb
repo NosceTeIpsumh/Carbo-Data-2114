@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   resources :recipes
   resources :items
-  resources :chats, only: [:show, :destroy, :index]
+  resources :chats, only: [:index, :show, :destroy] do
     resources :messages, only: [:create]
+  end
   resources :recipe_items, only: [:new, :create]
   resources :chat_items, only: [:new, :create]
 end
