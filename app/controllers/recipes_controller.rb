@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
   end
 
   def show
@@ -20,6 +20,7 @@ class RecipesController < ApplicationController
       redirect_to recipes_path
     else
       render :new, unprocessable_entity
+    end
   end
 
   def edit
@@ -32,14 +33,13 @@ class RecipesController < ApplicationController
       redirect_to recipes_path
     else
       render :new, unprocessable_entity
-
+    end
   end
 
   def destroy
   end
-end
 
-private
+  private
 
   def recipe_params
     params.require(:recipe).permit(:name, :description, :steps, :difficulty, :indice_gly, :ratio_glucide, :user_id)
