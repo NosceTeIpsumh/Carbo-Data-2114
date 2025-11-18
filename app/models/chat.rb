@@ -1,7 +1,7 @@
 class Chat < ApplicationRecord
   belongs_to :user
-  has_many :messages
-  has_many :chat_items
+  has_many :messages, dependent: :destroy
+  has_many :chat_items, dependent: :destroy
 
   DEFAULT_TITLE = "Untitled"
   TITLE_PROMPT = <<~PROMPT
