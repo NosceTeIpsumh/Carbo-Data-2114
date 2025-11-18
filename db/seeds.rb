@@ -22,8 +22,6 @@ end
 
 puts "Created #{User.count} Users."
 
----
-
 puts "Creating Recipes..."
 
 Recipe.create!([
@@ -57,8 +55,6 @@ Recipe.create!([
 ])
 
 puts "Created #{Recipe.count} Recipes."
-
----
 
 puts "Creating Items"
 
@@ -105,4 +101,4 @@ Item.create!([
   }
 ])
 
-puts "Created #{Items.count} items."
+puts "Created #{Item.count} items."
