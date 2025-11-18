@@ -14,7 +14,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.new(item_params)
+    @item = Item.new(item_params)
+    @item.user = current_user
     if @item.save
       redirect_to items_path, flash, notice: "L'article a été créé avec succès."
     else
