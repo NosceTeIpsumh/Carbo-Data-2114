@@ -8,6 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+puts "Destroying Users..."
+
+User.destroy_all
+
 puts "Creating Users..."
 
 user_one = User.find_or_create_by!(email: "test@test.com") do |user|
