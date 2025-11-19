@@ -1,7 +1,9 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
-    <a class="navbar-brand" href="#">Carbodata</a>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      Carbodata
+    <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -9,106 +11,107 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-
         <li class="nav-item">
-          <%= link_to root_path, class: "nav-link d-flex align-items-center gap-2", title: "Home" do %>
+          <%= link_to root_path, class: "nav-link d-flex align-items-center gap-2" do %>
             <span class="gradient-text">Home</span>
           <% end %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2", title: "About us" do %>
+          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2" do %>
             <span class="gradient-text">About us</span>
           <% end %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2", title: "SuperCarbo" do %>
+          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2" do %>
             <span class="gradient-text">SuperCarbo</span>
           <% end %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2", title: "Contact" do %>
+          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2" do %>
             <span class="gradient-text">Contact</span>
           <% end %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2", title: "Log in" do %>
+          <%= link_to new_user_session_path, class: "nav-link d-flex align-items-center gap-2" do %>
             <span class="gradient-text">Log in</span>
           <% end %>
         </li>
-
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Hero Carousel -->
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://plus.unsplash.com/premium_photo-1673108852141-e8c3c22a4a22?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D" class="d-block w-100" alt="Slide 1">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Welcome to Carbodata</h5>
-        <p>Discover our features</p>
-        <a href="#features" class="btn btn-primary">Discover</a>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D" class="d-block w-100" alt="Slide 2">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Responsive & Moderne</h5>
-        <p>Votre application adaptée à tous les écrans</p>
-        <a href="#features" class="btn btn-light">Check our features</a>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-<!-- Features / Cards -->
-<div id="features" class="container my-5">
-  <div class="row text-center">
-    <% ["Fonctionnalité 1", "Fonctionnalité 2", "Fonctionnalité 3"].each_with_index do |title, i| %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title"><%= title %></h5>
-            <p class="card-text">Une description rapide de <%= title.downcase %>.</p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<%= i %>">
-              More
-            </button>
-          </div>
+<div class="container">
+  <!-- Hero Carousel -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=2000&q=80" class="d-block w-100 rounded-5" alt="Slide 1 background image">
+        <div class="carousel-caption d-block">
+          <h5>Welcome to Carbodata</h5>
+          <p>Discover what Carbodata can do for you</p>
+          <a href="#features" class="btn btn-primary">Discover</a>
         </div>
       </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZvb2R8ZW58MHx8MHx8fDA%3D" class="d-block w-100 rounded-5" alt="Slide 2 background image">
+        <div class="carousel-caption d-block">
+          <h5>Responsive & Moderne</h5>
+          <p>Votre application adaptée à tous les écrans</p>
+          <a href="#features" class="btn btn-light">Check our features</a>
+        </div>
+      </div>
+    </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="modal<%= i %>" tabindex="-1" aria-labelledby="modalLabel<%= i %>" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel<%= i %>"><%= title %></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-              Voici plus de détails sur <%= title.downcase %>. Vous pouvez ajouter tout contenu ici : texte, images, liens, etc.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Features Section -->
+  <div id="features" class="container my-5">
+    <div class="row text-center">
+      <% ["Fonctionnalité 1", "Fonctionnalité 2", "Fonctionnalité 3"].each_with_index do |title, i| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><%= title %></h5>
+              <p class="card-text">Une description rapide de la <%= title %>.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<%= i %>">
+                More
+              </button>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal<%= i %>" tabindex="-1" aria-labelledby="modalLabel<%= i %>" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel<%= i %>"><%= title %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                Voici plus de détails sur <%= title %>. Ajoutez ici du texte, images, liens, etc.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "Se déconnecter",
+          destroy_user_session_path,
+          data: { turbo_method: :delete, turbo_confirm: "Se déconnecter ?" },
+          class: "btn btn-outline-danger mt-4" %>
   </div>
-  <%= link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Do you want to logout?"} %>
 </div>
