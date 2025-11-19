@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: "pages#home"
+  get "feed", to: "pages#feed"
+  get "profile", to: "pages#profile"
+
   resources :posts do
     resources :comments, except: [:show, :index]
   end
