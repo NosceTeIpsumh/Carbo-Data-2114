@@ -1,1 +1,13 @@
-<%= @posts.all %>
+<% content_for :first_button_label, "Profile" %>
+<% content_for :first_button_path, profile_path %>
+
+<% content_for :second_button_label, "SuperCarbo" %>
+<% content_for :second_button_path, new_chat_item_path %>
+
+<% content_for :third_button_label, "My posts" %>
+<% content_for :third_button_path, posts_path %>
+
+<% content_for :fourth_button_label, "Browse" %>
+<% content_for :fourth_button_path, "#" %>
+
+<h1> This is my FEED </h1>
