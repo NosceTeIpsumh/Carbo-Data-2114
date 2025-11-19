@@ -1,12 +1,43 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+/* --- NAVBAR LOGO --- */
+.navbar-brand {
+  font-family: $navbar-font;
+  font-size: 2.2rem;
+  font-weight: 500;
+  background: $navbartext-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: $navbartext-shadow;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+/* --- NAV LINKS GRADIENT --- */
+.nav-link {
+  &:hover .gradient-text {
+    transform: translateY(-2px);
+  }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+  .gradient-text {
+    font-family: $navbar-font;
+    font-size: 1rem;
+    font-weight: 200;
+    background: $navbartext-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: $navbartext-shadow;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
 }
