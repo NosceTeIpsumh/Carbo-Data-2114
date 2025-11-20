@@ -1,62 +1,67 @@
 #heroCarousel {
-  margin-top: 50px;
+  margin-top: 30px;
+  max-height: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
 
-  @media (max-width: 768px) {
-    margin-top: 30px;
-  }
-}
-
-.carousel-caption {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 15px;
-  padding: 1.5rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  max-width: 70%;
-  margin: 0 auto;
-  transition: all 0.3s ease;
-
-  h5,
-  p {
-    font-family: "Story Script", sans-serif;
-    color: #fff;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    margin-bottom: 0.75rem;
-  }
-
-  h5 {
-    font-size: clamp(1.2rem, 3vw, 2.2rem);
-    font-weight: 600;
-  }
-
-  p {
-    font-size: clamp(0.9rem, 2.2vw, 1.3rem);
+  .carousel-item {
+    img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
   }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem;
-    padding: 1rem 1.2rem;
+    max-height: 300px;
+
+    .carousel-item img {
+      max-height: 300px;
+    }
   }
 
-  @media (max-width: 576px) {
-    max-width: 90%;
-    padding: 1rem 1.2rem;
-    border-radius: 10px;
-  }
+  .carousel-caption {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    max-width: 70%;
+    margin: 0 auto;
+    transition: all 0.3s ease;
 
-  // Hover effect desktop only
-  @media (hover: hover) {
-    &:hover {
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(15px);
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    h5, p {
+      font-family: $body-font;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+      margin-bottom: 0.75rem;
+    }
 
-      h5,
-      p {
-        transform: translateY(-2px);
+    h5 { font-size: clamp(1.2rem, 3vw, 2.2rem); font-weight: 600; }
+    p { font-size: clamp(0.9rem, 2.2vw, 1.3rem); }
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      padding: 1rem 1.2rem;
+    }
+
+    @media (max-width: 576px) {
+      max-width: 90%;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(15px);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+        h5, p { transform: translateY(-2px); }
       }
     }
   }
