@@ -1,16 +1,7 @@
-<% content_for :first_button_label, "Profile" %>
-<% content_for :first_button_path, profile_path %>
-
-<% content_for :second_button_label, "Feed" %>
-<% content_for :second_button_path, feed_path %>
-
-<% content_for :third_button_label, "SuperCarbo" %>
-<% content_for :third_button_path, new_chat_item_path %>
-
-<% content_for :fourth_button_label, "Browse" %>
-<% content_for :fourth_button_path, "#" %>
-
-
+<% unless user_signed_in? %>
+  <% content_for :first_button_label, "Sign up" %>
+  <% content_for :first_button_path, new_user_registration_path %>
+<% end %>
 <!-- Text above hero -->
 <section class="intro-top text-center py-5" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1662982693758-f69fcb81e7d2?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
                                 background-size: cover">
@@ -38,9 +29,7 @@
         delicious, thoughtful recipes, empowering everyday choices that feel
         satisfying, supportive, and sustainable.
       </p>
-      <a href="#" class="btn button-default px-4 py-2 rounded-3">
-        Discover Recipes
-      </a>
+      <%= link_to "Discover our User Recipes", feed_path, class: "btn button-default px-4 py-2 rounded-3" %>
     </div>
 
     <!-- Carousel right -->
@@ -99,16 +88,11 @@
               Voici plus de détails sur <%= title %>. Ajoutez ici du texte, images, liens, etc.
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <button type="button" class="btn button-default" data-bs-dismiss="modal">Fermer</button>
             </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-
-  <%= link_to "Se déconnecter",
-        destroy_user_session_path,
-        data: { turbo_method: :delete, turbo_confirm: "Se déconnecter ?" },
-        class: "btn btn-outline-danger mt-4" %>
 </div>

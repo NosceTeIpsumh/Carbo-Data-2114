@@ -1,0 +1,36 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  min-height: 8vh;
+  min-width: 100%;
+  z-index: 20;
+  background-color: #ffffff;
+}
+
+.footer .foot-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.footer .foot-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -23px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background-color: rgba(0, 0, 0, 0.15);
+
+
+}
+
+.footer .btn {
+  color: $button-color;
+  border: none;
+}
+
+.footer .btn:hover {
+  color: #d30606;
+}

@@ -1,0 +1,30 @@
+<nav class=" footer navbar-light shadow-sm fixed-bottom border-top">
+  <div class="container justify-content-center">
+    <ul class="navbar-nav d-flex flex-row justify-content-center align-items-center gap-4 mb-0">
+      <li class="foot-item">
+        <%= link_to root_path, class: "nav-link", title: "Home" do %>
+          <i class="bi bi-house-door fs-4 btn rounded-5"></i>
+        <% end %>
+      </li>
+      <li class="foot-item">
+        <%= link_to browse_path, class: "nav-link", title: "Mes CarboChats" do %>
+          <i class="bi bi-search fs-4 btn"></i>
+        <% end %>
+      </li>
+      <li class="foot-item">
+        <%= link_to new_chat_item_path, class: "nav-link", title: "Mon CarboProfil" do %>
+          <i class="bi bi-robot fs-4 btn"></i>
+        <% end %>
+      </li>
+      <li class="foot-item">
+        <%= link_to feed_path, class: "nav-link", title: "Parler à SuperCarbo" do %>
+          <i class="bi bi-book fs-4 btn"></i>
+        <% end %>
+      </li>
+      <li class="foot-item">
+        <%= link_to profile_path, class: "nav-link", title: "Mon CarboProfil" do %>
+          <i class="bi bi-person fs-4 btn"></i>
+        <% end %>
+    </ul>
+  </div>
+</nav>
