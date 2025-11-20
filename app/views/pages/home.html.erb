@@ -1,45 +1,15 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      Carbodata
-    <% end %>
+<% content_for :first_button_label, "Profile" %>
+<% content_for :first_button_path, profile_path %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<% content_for :second_button_label, "Feed" %>
+<% content_for :second_button_path, feed_path %>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <%= link_to root_path, class: "nav-link d-flex align-items-center gap-2" do %>
-            <span class="gradient-text">Home</span>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2" do %>
-            <span class="gradient-text">About us</span>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2" do %>
-            <span class="gradient-text">SuperCarbo</span>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "#", class: "nav-link d-flex align-items-center gap-2" do %>
-            <span class="gradient-text">Contact</span>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to new_user_session_path, class: "nav-link d-flex align-items-center gap-2" do %>
-            <span class="gradient-text">Log in</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<% content_for :third_button_label, "SuperCarbo" %>
+<% content_for :third_button_path, new_chat_item_path %>
+
+<% content_for :fourth_button_label, "Browse" %>
+<% content_for :fourth_button_path, "#" %>
+
 
 <!-- Text above hero -->
 <section class="intro-top text-center py-5">
@@ -134,7 +104,6 @@
         </div>
       </div>
     <% end %>
-
   </div>
 
   <%= link_to "Se déconnecter",
@@ -142,4 +111,3 @@
         data: { turbo_method: :delete, turbo_confirm: "Se déconnecter ?" },
         class: "btn btn-outline-danger mt-4" %>
 </div>
- 

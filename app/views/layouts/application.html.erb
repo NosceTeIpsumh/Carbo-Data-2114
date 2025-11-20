@@ -17,14 +17,15 @@
   </head>
 
   <body>
+    <%= render "shared/navbar"%>
+    <%= yield %>
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
     <% if alert %>
-    <p class="alert"><%= alert %></p>
+      <p class="alert"><%= alert %></p>
     <% end %>
 
-    <%= yield %>
 
     <footer class="bg-light text-center text-muted py-3 mt-5">
       &copy; <%= Time.current.year %> Carbodata. Tous droits réservés.
