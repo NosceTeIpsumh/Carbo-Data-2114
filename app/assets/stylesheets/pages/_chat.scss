@@ -1,0 +1,153 @@
+// Chat message bubbles
+
+.message-bubble {
+  border-radius: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  // Mobile-first: larger bubbles on mobile
+  max-width: 85%;
+
+  p {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Ensure lists and code blocks are readable
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  code {
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+
+  pre {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// User message (left side) - light grey
+.user-message {
+  background-color: #FAF8F1;
+  color: $text-color-paragraph;
+  margin-right: auto;
+
+  code {
+    background-color: darken($text-light-grey, 5%);
+  }
+
+  pre {
+    background-color: darken($text-light-grey, 8%);
+  }
+}
+
+// Assistant message (right side) - red/coral gradient
+.assistant-message {
+  background: linear-gradient(135deg, #d34e4e 0%, #ce7e5a 100%);
+  color: white;
+  margin-left: auto;
+
+  // Larger on mobile for better readability
+  max-width: 90%;
+
+  a {
+    color: white;
+    text-decoration: underline;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  code {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+
+  pre {
+    background-color: rgba(0, 0, 0, 0.3);
+
+    code {
+      background-color: transparent;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+// Tablet and up (768px+) - reduce max-width
+@media (min-width: 768px) {
+  .message-bubble {
+    max-width: 75%;
+  }
+
+  .assistant-message {
+    max-width: 75%;
+  }
+}
+
+// Desktop (992px+) - further reduce max-width
+@media (min-width: 992px) {
+  .message-bubble {
+    max-width: 70%;
+  }
+
+  .assistant-message {
+    max-width: 70%;
+  }
+}
+
+// Messages container scrolling
+#messages {
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+
+  // Smooth scrolling
+  scroll-behavior: smooth;
+
+  // Custom scrollbar (webkit browsers)
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ce7e5a;
+    border-radius: 10px;
+
+    &:hover {
+      background: #d34e4e;
+    }
+  }
+}
+
+// Mobile optimizations
+@media (max-width: 767px) {
+  .message-bubble {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  #messages {
+    max-height: 55vh;
+  }
+}
