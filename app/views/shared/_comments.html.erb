@@ -1,0 +1,11 @@
+<% comments.each do |comment| %>
+  <div class="comment-item">
+    <span class="comment-author">
+      <%= comment.user.profile_name || comment.user.email.split('@').first %>
+    </span>
+    <span class="comment-text"><%= comment.content %></span>
+    <span class="comment-time">
+      <%= time_ago_in_words(comment.created_at) %> ago
+    </span>
+  </div>
+<% end %>

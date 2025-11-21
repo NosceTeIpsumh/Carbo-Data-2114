@@ -1,0 +1,704 @@
+// Feed Page Styles - Instagram-inspired community feed
+
+.feed-page {
+  background-color: $body-background-color;
+  min-height: 100vh;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  @media (max-width: 991px) {
+    padding-top: 0;
+    padding-bottom: 5rem;
+    margin-top: 58px; // Add margin to prevent overlap with navbar
+  }
+}
+
+// Feed Posts Container
+.feed-posts {
+  padding: 0;
+
+  @media (min-width: 992px) {
+    padding-right: 2rem;
+  }
+}
+
+// Feed Card (Instagram-style post)
+.feed-card {
+  background: white;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  @media (min-width: 992px) {
+    border-radius: 8px;
+    border: 1px solid $text-light-grey;
+    margin-bottom: 2rem;
+  }
+
+  &:hover {
+    @media (min-width: 992px) {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+// Post Header
+.feed-card-header {
+  padding: 0.875rem 1rem;
+}
+
+.feed-author-avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $headers-color;
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $button-color, #ce7e5a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: $headers-font;
+    font-weight: bold;
+    font-size: 0.95rem;
+    border: 2px solid $headers-color;
+  }
+}
+
+.feed-author-name {
+  font-family: $headers-font;
+  font-weight: bold;
+  color: $headers-color;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.125rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.feed-author-name-inline {
+  font-family: $headers-font;
+  font-weight: bold;
+  color: $headers-color;
+  text-decoration: none;
+  margin-right: 0.35rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.feed-post-time {
+  font-family: $paragraph-font;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+// Post Image
+.feed-card-image {
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+  background: $text-light-grey;
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// Post Actions (Like, Comment, Share)
+.feed-card-actions {
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Reddit-style vote buttons
+.vote-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba($text-light-grey, 0.3);
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+}
+
+.btn-vote {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  font-size: 1.125rem;
+  color: $text-color-paragraph;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &.upvote-btn {
+    &:hover {
+      color: #ff4500;
+    }
+
+    &.active {
+      color: #ff4500;
+    }
+  }
+
+  &.downvote-btn {
+    &:hover {
+      color: #7193ff;
+    }
+
+    &.active {
+      color: #7193ff;
+    }
+  }
+
+  i {
+    transition: all 0.2s ease;
+  }
+}
+
+.vote-count {
+  font-family: $headers-font;
+  font-weight: bold;
+  font-size: 0.9375rem;
+  color: $text-color-paragraph;
+  min-width: 24px;
+  text-align: center;
+
+  &.positive {
+    color: #ff4500;
+  }
+
+  &.negative {
+    color: #7193ff;
+  }
+}
+
+.btn-action {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1.5rem;
+  color: $text-color-paragraph;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $button-color;
+    transform: scale(1.15);
+  }
+
+  &.active {
+    color: $button-color;
+
+    i {
+      font-weight: 900;
+    }
+  }
+
+  i.far {
+    transition: all 0.2s ease;
+  }
+
+  &.bookmark-btn.active {
+    i::before {
+      content: "\f02e";
+      font-weight: 900;
+    }
+  }
+}
+
+
+// Post Content
+.feed-card-content {
+  padding: 0 1rem 0.5rem 1rem;
+  font-family: $paragraph-font;
+  color: $text-color-paragraph;
+  line-height: 1.5;
+  font-size: 0.9375rem;
+
+  .post-title-inline {
+    color: $headers-color;
+    font-weight: 600;
+  }
+
+  .post-content-text {
+    color: $text-color-paragraph;
+  }
+}
+
+// Comments Section
+.feed-card-comments {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.view-all-comments {
+  font-family: $paragraph-font;
+  font-size: 0.875rem;
+  color: #999;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $headers-color;
+  }
+}
+
+.comment-item {
+  margin-bottom: 0.75rem;
+  font-family: $paragraph-font;
+  font-size: 0.875rem;
+  line-height: 1.5;
+
+  .comment-author {
+    font-family: $headers-font;
+    font-weight: bold;
+    color: $headers-color;
+    margin-right: 0.5rem;
+  }
+
+  .comment-text {
+    color: $text-color-paragraph;
+  }
+
+  .comment-time {
+    font-size: 0.75rem;
+    color: #999;
+    margin-left: 0.5rem;
+  }
+}
+
+// Comment Form
+.comment-form {
+  border-top: 1px solid $text-light-grey;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.comment-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comment-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-family: $paragraph-font;
+  font-size: 0.875rem;
+  color: $text-color-paragraph;
+  padding: 0.5rem 0;
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.btn-submit-comment {
+  background: none;
+  border: none;
+  color: $button-color;
+  font-family: $button-font;
+  font-weight: bold;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $hover-color;
+  }
+
+  &:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+// Empty State
+.feed-empty-state {
+  background: white;
+  text-align: center;
+  padding: 4rem 2rem;
+
+  @media (min-width: 992px) {
+    border-radius: 8px;
+    border: 1px solid $text-light-grey;
+  }
+
+  i {
+    font-size: 4rem;
+    color: $headers-color;
+    opacity: 0.3;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-family: $headers-font;
+    color: $headers-color;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font-family: $paragraph-font;
+    color: #999;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Floating Add Button
+.button-floating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(211, 78, 78, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(211, 78, 78, 0.4);
+  }
+
+  i {
+    margin: 0;
+  }
+}
+
+// Pagination
+.feed-pagination {
+  padding: 1rem 0 2rem 0;
+  text-align: center;
+
+  .pagination {
+    justify-content: center;
+    gap: 0.5rem;
+
+    .page-item {
+      .page-link {
+        font-family: $button-font;
+        color: $button-color;
+        border: 1px solid $text-light-grey;
+        border-radius: 6px;
+        padding: 0.5rem 0.875rem;
+        transition: all 0.3s ease;
+        font-size: 0.875rem;
+
+        &:hover {
+          background-color: $button-color;
+          border-color: $button-color;
+          color: white;
+        }
+      }
+
+      &.active .page-link {
+        background-color: $button-color;
+        border-color: $button-color;
+        color: white;
+      }
+
+      &.disabled .page-link {
+        color: #ccc;
+        border-color: $text-light-grey;
+      }
+    }
+  }
+}
+
+// Sidebar (Desktop only)
+.feed-sidebar {
+  position: sticky;
+  top: 2rem;
+  padding: 1rem 0;
+}
+
+.sidebar-user-card {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid $text-light-grey;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-avatar {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $headers-color;
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $button-color, #ce7e5a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: $headers-font;
+    font-weight: bold;
+    font-size: 1.375rem;
+    border: 2px solid $headers-color;
+  }
+}
+
+.sidebar-username {
+  font-family: $headers-font;
+  font-weight: bold;
+  color: $headers-color;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  display: block;
+  margin-bottom: 0.125rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.sidebar-user-email {
+  font-family: $paragraph-font;
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+// Suggestions
+.sidebar-suggestions {
+  margin-bottom: 2rem;
+}
+
+.suggestions-title {
+  font-family: $headers-font;
+  color: #999;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.suggestion-item {
+  padding: 0.625rem 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba($text-light-grey, 0.5);
+  }
+}
+
+.suggestion-avatar {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $button-color, #ce7e5a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: $headers-font;
+    font-weight: bold;
+    font-size: 0.75rem;
+
+    &.small {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.suggestion-name {
+  font-family: $headers-font;
+  font-weight: 600;
+  color: $headers-color;
+  text-decoration: none;
+  font-size: 0.875rem;
+  display: block;
+  margin-bottom: 0.125rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.suggestion-info {
+  font-family: $paragraph-font;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.btn-follow {
+  background: none;
+  border: none;
+  color: $button-color;
+  font-family: $button-font;
+  font-weight: bold;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+
+  &.following {
+    color: #999;
+  }
+}
+
+// Sidebar Footer
+.sidebar-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid $text-light-grey;
+}
+
+.footer-links {
+  font-family: $paragraph-font;
+  font-size: 0.75rem;
+  color: #999;
+  margin-bottom: 0.75rem;
+
+  a {
+    color: #999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $headers-color;
+    }
+  }
+}
+
+.footer-copyright {
+  font-family: $paragraph-font;
+  font-size: 0.6875rem;
+  color: #ccc;
+}
+
+// Responsive Design
+@media (max-width: 991px) {
+  .feed-card-header {
+    padding: 0.875rem 1rem;
+  }
+
+  .feed-author-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .btn-action {
+    font-size: 1.4rem;
+  }
+
+  .vote-buttons {
+    padding: 0.25rem 0.625rem;
+  }
+
+  .btn-vote {
+    font-size: 1rem;
+  }
+
+  .vote-count {
+    font-size: 0.875rem;
+    min-width: 20px;
+  }
+
+  .button-floating {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feed-card {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+// Vote button animation
+@keyframes voteClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-vote.active {
+  animation: voteClick 0.3s ease;
+}
