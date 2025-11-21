@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :recipes
-  resources :items
+  resources :items, except:[:new]
   resources :chats, only: [:index, :show, :destroy] do
     resources :messages, only: [:create]
   end

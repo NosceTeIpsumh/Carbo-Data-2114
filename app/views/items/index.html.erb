@@ -12,6 +12,47 @@
                 class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
 
   </div>
+
+  <div class="card shadow-sm rounded-5 mt-4 p-4">
+    <div class="text-center pt-1 pb-3">
+      <h1 class="display-5 fw-bold h-default mb-2 mt-2">
+        My CarboDucts
+      </h1>
+    </div>
+    <div class="row row-cols-lg-4 align-items-stretch">
+      <% if @items.any? %>
+        <% @items.each do |item| %>
+          <div class="col-lg-4 mb-1">
+            <div class="card-recipe-bis p-3 rounded-5">
+
+            <h5 class="mb-3 h-default">
+              <%= item.name %>
+            </h5>
+
+              <p class="flex-grow- p-default">- <%= item.brand %></p>
+              <p class="flex-grow- p-default">- <%= item.category %></p>
+              <p class="flex-grow- p-default">- <%= item.indice_gly %> IG</p>
+              <p class="flex-grow- p-default">- <%= item.ratio_glucide %> C/100gr</p>
+
+              <%= link_to edit_item_path(item), class: "d-block text-decoration-none" do %>
+                <div class="div-button-recipe access-button-recipe rounded-5">
+                  <p>Modify this Carboduct</p>
+                </div>
+              <% end %>
+
+              <%= link_to items_path,
+                  data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer cette recette ?" },
+                  class: "d-block text-decoration-none" do %>
+                <div class="div-button-recipe delete-button-recipe rounded-5">
+                  <p>Supprimer</p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 

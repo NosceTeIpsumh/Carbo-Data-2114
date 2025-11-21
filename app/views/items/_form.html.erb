@@ -4,5 +4,5 @@
   <%= f.input :category, collection: ["Légumes et fruits", "Féculents et légumes secs", "Lait et substituts", "Viandes et substituts", "Matières grasses", "Produits sucrées", "Eaux", "Alcools", "Boissons sucrées", "Vitamines et Minéraux"], prompt: false, input_html: { class: "form-select custom-font" } %>
   <%= f.input :indice_gly, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
   <%= f.input :ratio_glucide, placeholder: "Pour 100g. Exemple: 27", input_html: { class: "placeholder-custom" } %>
-  <%= f.submit "Enregistrer le CarboDuct", class: "btn btn-primary w-100" %>
+  <%= f.submit "Enregistrer le CarboDuct", class: "btn button-default w-100" %>
 <% end %>
