@@ -1,4 +1,17 @@
+<% content_for :navabr_text_label, "My CarboMeals" %>
+<% content_for :navbar_text_path, root_path %>
+
 <div class="container">
+
+  <div class="segment-control-bar">
+
+    <%= link_to 'CarboMeals', recipes_path,
+                class: "segment-button p-default #{'active' if current_page?(recipes_path)}" %>
+
+    <%= link_to 'CarboDucts', items_path,
+                class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
+
+</div>
   <div class="card shadow-sm rounded-5 mt-4 p-4">
     <div class="text-center pt-1 pb-3">
       <h1 class="display-5 fw-bold text-primary mb-4 mt-4">
@@ -23,6 +36,12 @@
                 </div>
               <% end %>
 
+              <%= link_to edit_recipe_path(recipe), class: "d-block text-decoration-none" do %>
+                <div class="div-button-recipe access-button-recipe rounded-5">
+                  <p>Modify this recipe</p>
+                </div>
+              <% end %>
+
               <%= link_to recipe_path(recipe),
                   data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer cette recette ?" },
                   class: "d-block text-decoration-none" do %>
@@ -35,6 +54,24 @@
         <% end %>
       <% end %>
     </div>
-    <%= link_to "Ajoute une recette", new_recipe_path, class: "btn btn-primary btn-lg px-4 py-2 mt-4 rounded-5" %>
+  </div>
+</div>
+
+<button type="button" class="btn button-default rounded-circle button-modal"
+      data-bs-toggle="modal" data-bs-target="#newPostModal">
+<i class="bi bi-plus-lg fs-3"></i>
+</button>
+
+<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newPostModalLabel">Add a New CarboMeal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "form", recipe: @recipe %>
+      </div>
+    </div>
   </div>
 </div>
