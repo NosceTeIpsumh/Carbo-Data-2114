@@ -1,0 +1,10 @@
+<%= form_with(model: [post, Comment.new], local: true, class: "comment-form") do |f| %>
+  <div class="comment-input-wrapper">
+    <%= f.text_field :content,
+        class: "comment-input",
+        placeholder: "Add a comment...",
+        required: true,
+        autocomplete: "off" %>
+    <%= f.submit "Post", class: "btn-submit-comment" %>
+  </div>
+<% end %>

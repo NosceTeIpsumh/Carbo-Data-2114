@@ -1,23 +1,223 @@
 <% content_for :navabr_text_label, "For you" %>
 <% content_for :navbar_text_path, root_path %>
 
-<h1> This is my FEED </h1>
+<div class="feed-page">
+  <div class="container-fluid px-0 px-lg-3">
+    <div class="row g-0 g-lg-4 justify-content-center">
 
-<button type="button" class="btn button-default rounded-circle button-modal"
-        data-bs-toggle="modal" data-bs-target="#newPostModal">
-  <i class="bi bi-plus-lg fs-3"></i>
-</button>
+      <!-- Main Feed Column -->
+      <div class="col-12 col-lg-7 col-xl-6">
 
-<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newPostModalLabel">Add a New Post</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p class="text-center">This is the add a new post page</p>
+        <!-- Posts Feed -->
+        <div class="feed-posts">
+          <% if @posts && @posts.any? %>
+            <% @posts.each do |post| %>
+              <article class="feed-card">
+
+                <!-- Post Header -->
+                <div class="feed-card-header">
+                  <div class="d-flex align-items-center">
+                    <%= link_to profile_path, class: "text-decoration-none" do %>
+                      <div class="feed-author-avatar">
+                        <% if post.user.photo.attached? %>
+                          <%= image_tag post.user.photo, alt: post.user.profile_name, class: "avatar-img" %>
+                        <% else %>
+                          <div class="avatar-placeholder">
+                            <%= (post.user.profile_name || post.user.email.split('@').first).first.upcase %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <div class="flex-grow-1 ms-3">
+                      <%= link_to profile_path, class: "feed-author-name" do %>
+                        <%= post.user.profile_name || post.user.email.split('@').first %>
+                      <% end %>
+                      <div class="feed-post-time">
+                        <%= time_ago_in_words(post.created_at) %> ago
+                      </div>
+                    </div>
+                    <% if user_signed_in? && current_user == post.user %>
+                      <div class="dropdown">
+                        <button class="btn btn-link text-dark p-1" type="button" data-bs-toggle="dropdown">
+                          <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><%= link_to "Edit", edit_post_path(post), class: "dropdown-item" %></li>
+                          <li><%= link_to "Delete", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %></li>
+                        </ul>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+
+                <!-- Post Image (if available) -->
+                <% if post.respond_to?(:photo) && post.photo.attached? %>
+                  <div class="feed-card-image">
+                    <%= image_tag post.photo, alt: post.title, class: "post-image" %>
+                  </div>
+                <% end %>
+
+                <!-- Post Actions -->
+                <div class="feed-card-actions">
+                  <div class="d-flex gap-3 align-items-center">
+                    <!-- Reddit-style voting -->
+                    <div class="vote-buttons">
+                      <button class="btn-vote upvote-btn" data-post-id="<%= post.id %>">
+                        <i class="fas fa-arrow-up"></i>
+                      </button>
+                      <span class="vote-count" data-post-id="<%= post.id %>">
+                        <%= (post.up || 0) - (post.down || 0) %>
+                      </span>
+                      <button class="btn-vote downvote-btn" data-post-id="<%= post.id %>">
+                        <i class="fas fa-arrow-down"></i>
+                      </button>
+                    </div>
+                    <%= link_to post_path(post), class: "btn-action" do %>
+                      <i class="far fa-comment"></i>
+                    <% end %>
+                    <button class="btn-action share-btn">
+                      <i class="far fa-paper-plane"></i>
+                    </button>
+                  </div>
+                  <button class="btn-action bookmark-btn">
+                    <i class="far fa-bookmark"></i>
+                  </button>
+                </div>
+
+                <!-- Post Content -->
+                <div class="feed-card-content">
+                  <p class="mb-1">
+                    <%= link_to profile_path, class: "feed-author-name-inline" do %>
+                      <%= post.user.profile_name || post.user.email.split('@').first %>
+                    <% end %>
+                    <% if post.title.present? %>
+                      <strong class="post-title-inline"><%= post.title %></strong>
+                    <% end %>
+                    <% if post.content.present? %>
+                      <span class="post-content-text"><%= post.content %></span>
+                    <% end %>
+                  </p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="feed-card-comments">
+                  <% if post.comments.any? %>
+                    <% if post.comments.count > 2 %>
+                      <%= link_to "View all #{post.comments.count} comments", post_path(post), class: "view-all-comments" %>
+                    <% end %>
+                    <%= render 'shared/comments', comments: post.comments.order(created_at: :desc).limit(2), post: post %>
+                  <% end %>
+
+                  <%= render 'shared/comment_form', post: post %>
+                </div>
+
+              </article>
+            <% end %>
+
+            <% if @posts.respond_to?(:total_pages) %>
+              <div class="feed-pagination">
+                <%= paginate @posts %>
+              </div>
+            <% end %>
+
+          <% else %>
+            <!-- Empty State -->
+            <div class="feed-empty-state">
+              <i class="fas fa-users"></i>
+              <h3>No posts yet</h3>
+              <p>Be the first to share something with the community!</p>
+              <%= link_to "Create a post", new_post_path, class: "btn button-default" %>
+            </div>
+          <% end %>
         </div>
+      </div>
+
+      <!-- Sidebar (Desktop only) -->
+      <div class="col-lg-4 col-xl-3 d-none d-lg-block">
+        <div class="feed-sidebar">
+
+          <!-- Current User Card -->
+          <% if user_signed_in? %>
+            <div class="sidebar-user-card">
+              <div class="d-flex align-items-center">
+                <div class="sidebar-avatar">
+                  <% if current_user.photo.attached? %>
+                    <%= image_tag current_user.photo, alt: current_user.profile_name, class: "avatar-img" %>
+                  <% else %>
+                    <div class="avatar-placeholder">
+                      <%= (current_user.profile_name || current_user.email.split('@').first).first.upcase %>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <%= link_to profile_path, class: "sidebar-username" do %>
+                    <%= current_user.profile_name || current_user.email.split('@').first %>
+                  <% end %>
+                  <div class="sidebar-user-email"><%= current_user.email %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Suggestions -->
+          <div class="sidebar-suggestions">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="suggestions-title mb-0">Suggestions For You</h6>
+            </div>
+
+            <% if defined?(@suggested_users) && @suggested_users.any? %>
+              <% @suggested_users.each do |user| %>
+                <div class="suggestion-item">
+                  <div class="d-flex align-items-center">
+                    <div class="suggestion-avatar">
+                      <% if user.photo.attached? %>
+                        <%= image_tag user.photo, alt: user.profile_name, class: "avatar-img" %>
+                      <% else %>
+                        <div class="avatar-placeholder small">
+                          <%= (user.profile_name || user.email.split('@').first).first.upcase %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="flex-grow-1 ms-2">
+                      <%= link_to profile_path, class: "suggestion-name" do %>
+                        <%= user.profile_name || user.email.split('@').first %>
+                      <% end %>
+                      <div class="suggestion-info">
+                        <%= pluralize(user.recipes.count + user.items.count, 'post') %>
+                      </div>
+                    </div>
+                    <button class="btn-follow">Follow</button>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="text-muted small mb-0">No suggestions available</p>
+            <% end %>
+          </div>
+
+          <!-- Footer Links -->
+          <div class="sidebar-footer">
+            <div class="footer-links">
+              <%= link_to "About", "#" %> ·
+              <%= link_to "Help", "#" %> ·
+              <%= link_to "Terms", "#" %> ·
+              <%= link_to "Privacy", "#" %>
+            </div>
+            <div class="footer-copyright">
+              © 2025 Carbodata
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
+<!-- Floating Add Post Button (Mobile) -->
+<% if user_signed_in? %>
+  <%= link_to new_post_path, class: "btn button-default rounded-circle button-floating d-lg-none button-modal" do %>
+    <i class="fas fa-plus"></i>
+  <% end %>
+<% end %>
