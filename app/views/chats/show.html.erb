@@ -1,14 +1,5 @@
-<% content_for :first_button_label, "Chats' history" %>
-<% content_for :first_button_path, chats_path %>
-
-<% content_for :second_button_label, "" %>
-<% content_for :second_button_path,  %>
-
-<% content_for :third_button_label, "" %>
-<% content_for :third_button_path, %>
-
-<% content_for :fourth_button_label, "" %>
-<% content_for :fourth_button_path,  %>
+<% content_for :navabr_text_label, @chat.title %>
+<% content_for :navbar_text_path, chat_path(@chat) %>
 
 <div class="container">
   <div class="card shadow-sm rounded-5 my-4 p-4">

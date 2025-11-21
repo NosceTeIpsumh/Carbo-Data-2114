@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "feed", to: "pages#feed"
   get "profile", to: "pages#profile"
-  get "browse", to: "pages#browse"
+  get 'search', to: 'search#index', as: 'browse'
 
   resources :posts do
     resources :comments, except: [:show, :index]

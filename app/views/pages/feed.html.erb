@@ -1,13 +1,23 @@
-<% content_for :first_button_label, "My CarboPosts" %>
-<% content_for :first_button_path, profile_path %>
-
-<% content_for :second_button_label, "Add a CarboPost" %>
-<% content_for :second_button_path, new_post_path %>
-
-<% content_for :third_button_label, "" %>
-<% content_for :third_button_path, %>
-
-<% content_for :fourth_button_label, "" %>
-<% content_for :fourth_button_path, "#" %>
+<% content_for :navabr_text_label, "For you" %>
+<% content_for :navbar_text_path, root_path %>
 
 <h1> This is my FEED </h1>
+
+<button type="button" class="btn button-default rounded-circle button-modal"
+        data-bs-toggle="modal" data-bs-target="#newPostModal">
+  <i class="bi bi-plus-lg fs-3"></i>
+</button>
+
+<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newPostModalLabel">Add a New Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">This is the add a new post page</p>
+        </div>
+    </div>
+  </div>
+</div>

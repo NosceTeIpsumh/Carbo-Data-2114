@@ -1,0 +1,117 @@
+// Search page styles
+
+// Mobile-first approach
+.search-form-wrapper {
+  .search-input-group {
+    display: flex;
+    gap: 0.5rem;
+
+    .search-input-container {
+      flex: 0 0 75%;
+    }
+
+    .search-button-container {
+      flex: 0 0 25%;
+    }
+
+    .btn {
+      font-size: 0.875rem;
+      padding: 0.5rem 0.25rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+// iPhone 14/15 Pro and similar devices (390px - 430px width)
+@media (min-width: 390px) and (max-width: 430px) {
+  .search-form-wrapper {
+    .search-input-group {
+      .search-input-container {
+        flex: 0 0 70%;
+      }
+
+      .search-button-container {
+        flex: 0 0 30%;
+      }
+    }
+  }
+}
+
+// Larger phones (430px+)
+@media (min-width: 431px) and (max-width: 767px) {
+  .search-form-wrapper {
+    .search-input-group {
+      .search-input-container {
+        flex: 0 0 75%;
+      }
+
+      .search-button-container {
+        flex: 0 0 25%;
+      }
+    }
+  }
+}
+
+// Tablets and up (768px+)
+@media (min-width: 768px) {
+  .search-form-wrapper {
+    .search-input-group {
+      .search-input-container {
+        flex: 0 0 80%;
+      }
+
+      .search-button-container {
+        flex: 0 0 20%;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+}
+
+// Search results responsive styling
+.results-section {
+  .card {
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .card-body {
+      padding: 0.75rem !important;
+    }
+  }
+}
+
+// Mobile optimizations for result cards
+@media (max-width: 767px) {
+  .results-section {
+    .card {
+      .card-body {
+        h6 {
+          font-size: 0.95rem;
+        }
+
+        .badge {
+          font-size: 0.7rem;
+          padding: 0.25rem 0.5rem;
+        }
+
+        small, .small {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  // Adjust container padding on mobile
+  .container-fluid {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}

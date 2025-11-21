@@ -7,10 +7,8 @@ class PagesController < ApplicationController
   def profile
   end
 
-  def browse
-  end
-
   def feed
     @posts = Post.all
+    @post = Post.new
   end
 end

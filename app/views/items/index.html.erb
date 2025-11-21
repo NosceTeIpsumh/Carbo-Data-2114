@@ -1,3 +1,35 @@
-<% @items.each do |item| %>
-<%= item %>
-<% end %>
+<% content_for :navabr_text_label, "My CarboDucts" %>
+<% content_for :navbar_text_path, root_path %>
+
+<div class="container">
+
+  <div class="segment-control-bar">
+
+    <%= link_to 'CarboMeals', recipes_path,
+                class: "segment-button p-default #{'active' if current_page?(recipes_path)}" %>
+
+    <%= link_to 'CarboDucts', items_path,
+                class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
+
+  </div>
+</div>
+
+
+<button type="button" class="btn button-default rounded-circle button-modal"
+      data-bs-toggle="modal" data-bs-target="#newPostModal">
+<i class="bi bi-plus-lg fs-3"></i>
+</button>
+
+<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newPostModalLabel">Add a New CarboDuct</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "form", item: @item %>
+      </div>
+    </div>
+  </div>
+</div>

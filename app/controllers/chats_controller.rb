@@ -1,9 +1,12 @@
 class ChatsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_chat, only: [:show]
+  before_action :find_chat, only: [:show, :destroy]
+  before_action :authorize_destroy, only: [:destroy]
 
   def index
     @chats = current_user.chats
+    @items = current_user.items
+    @chat_item = ChatItem.new
   end
 
   def show

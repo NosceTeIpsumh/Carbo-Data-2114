@@ -4,13 +4,10 @@ class ItemsController < ApplicationController
 
   def index
     @items = current_user.items
+    @item = Item.new
   end
 
   def show
-  end
-
-  def new
-    @item = Item.new
   end
 
   def create

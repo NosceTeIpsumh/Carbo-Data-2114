@@ -1,0 +1,58 @@
+.category-wrapper {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 10px 0 !important;
+  margin: 0 !important;
+}
+
+.category-wrapper .form-check {
+  display: inline-flex !important;
+  align-items: center;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.category-wrapper .form-check-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.category-wrapper .form-check-label {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 8px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 50px;
+  background-color: #f8f9fa;
+  color: #495057;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.category-wrapper .form-check-label:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+
+/* --- STYLE QUAND CHECKÉ --- */
+.category-wrapper .form-check-input:checked + .form-check-label {
+  background-color: $button-color !important;
+  color: white !important;
+  border-color: $button-color !important;
+  box-shadow: 0 2px 5px rgba(13, 110, 253, 0.3);
+}
+
+
+/* --- RÉDUCTION DU PADDING POUR IPHONE (mobile modal) --- */
+.modal-carbo-card {
+  @media (max-width: 576px) {
+    padding: 8px !important;
+  }
+}
