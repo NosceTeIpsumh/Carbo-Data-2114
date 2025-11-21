@@ -1,0 +1,371 @@
+// Profile Page Styles - Instagram-inspired design
+
+.profile-page {
+  background-color: $body-background-color;
+  min-height: 100vh;
+}
+
+// Profile Header Section
+.profile-header {
+  padding: 2rem 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+// Avatar Styles
+.profile-avatar-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid $headers-color;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $button-color, #ce7e5a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  font-family: $headers-font;
+  font-weight: bold;
+  border: 3px solid $headers-color;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+// Profile Info
+.profile-info {
+  padding-left: 0;
+
+  @media (min-width: 768px) {
+    padding-left: 2rem;
+  }
+}
+
+.profile-username {
+  font-family: $headers-font;
+  font-size: 2rem;
+  color: $headers-color;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+// Edit Profile Button
+.btn-edit-profile {
+  background-color: white;
+  border: 2px solid $button-color;
+  color: $button-color;
+  font-family: $button-font;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $button-color;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(211, 78, 78, 0.2);
+  }
+}
+
+// Stats Section
+.profile-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+}
+
+.stat-number {
+  font-family: $headers-font;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $headers-color;
+}
+
+.stat-label {
+  font-family: $paragraph-font;
+  font-size: 1rem;
+  color: $text-color-paragraph;
+}
+
+// Bio Section
+.profile-bio {
+  p {
+    font-family: $paragraph-font;
+    color: $text-color-paragraph;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+}
+
+// Tabs Navigation
+.profile-tabs-wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.profile-tabs {
+  border-bottom: 2px solid $text-light-grey;
+  padding: 0 2rem;
+
+  .nav-item {
+    margin-bottom: 0;
+  }
+
+  .nav-link {
+    font-family: $button-font;
+    font-size: 0.875rem;
+    color: $text-color-paragraph;
+    border: none;
+    padding: 1.25rem 2rem;
+    background: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+
+    i {
+      color: $text-color-paragraph;
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      color: $headers-color;
+      background: rgba(211, 78, 78, 0.05);
+
+      i {
+        color: $headers-color;
+      }
+    }
+
+    &.active {
+      color: $headers-color;
+      font-weight: bold;
+      background: transparent;
+      border-bottom: 3px solid $headers-color;
+
+      i {
+        color: $headers-color;
+      }
+    }
+  }
+}
+
+.profile-tab-content {
+  padding: 2rem;
+  min-height: 400px;
+}
+
+// Card Grid
+.profile-card-link {
+  text-decoration: none;
+  display: block;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+
+    .profile-card {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-card-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.profile-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  aspect-ratio: 1;
+}
+
+.profile-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(211, 78, 78, 0.1), rgba(206, 126, 90, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    font-size: 3rem;
+    color: $headers-color;
+    opacity: 0.5;
+  }
+}
+
+.profile-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-card-stats {
+  display: flex;
+  gap: 1.5rem;
+  color: white;
+  font-family: $headers-font;
+  font-weight: bold;
+  font-size: 0.95rem;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  i {
+    font-size: 1.1rem;
+  }
+}
+
+.profile-card-title {
+  padding: 0.75rem;
+  background: white;
+  font-family: $paragraph-font;
+  color: $text-color-paragraph;
+  font-size: 0.875rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top: 1px solid $text-light-grey;
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: $text-color-paragraph;
+
+  i {
+    font-size: 4rem;
+    color: $headers-color;
+    opacity: 0.3;
+    display: block;
+  }
+
+  p {
+    font-family: $paragraph-font;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .profile-header {
+    padding: 1.5rem;
+  }
+
+  .profile-avatar,
+  .profile-avatar-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-avatar-placeholder {
+    font-size: 2rem;
+  }
+
+  .profile-username {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .profile-stats {
+    justify-content: center;
+  }
+
+  .profile-bio {
+    text-align: center;
+  }
+
+  .profile-tabs {
+    padding: 0 1rem;
+  }
+
+  .profile-tabs .nav-link {
+    padding: 1rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .profile-tab-content {
+    padding: 1rem;
+  }
+
+  .btn-edit-profile {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+// Smooth animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-card {
+  animation: fadeIn 0.4s ease forwards;
+}
