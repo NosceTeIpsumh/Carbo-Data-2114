@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  get 'search', to: 'search#index', as: 'browse'
   devise_for :users
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: "pages#home"
   get "feed", to: "pages#feed"
   get "profile", to: "pages#profile"
-  get "browse", to: "pages#browse"
+  get 'search', to: 'search#index', as: 'browse'
 
   resources :posts do
     resources :comments, except: [:show, :index]
