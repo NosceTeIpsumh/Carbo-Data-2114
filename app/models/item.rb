@@ -8,6 +8,6 @@ class Item < ApplicationRecord
   multisearchable against: [:name, :brand, :category, :ratio_glucide, :indice_gly]
 
   def show_name_and_brand
-    "#{name} - #{brand} : #{indice_gly} IG"
+    "#{name} - #{brand}"
   end
 end

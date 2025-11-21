@@ -10,10 +10,6 @@ class PostsController < ApplicationController
     @comments= @post.comments
   end
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = Post.new(post_params)
     @post.user = current_user

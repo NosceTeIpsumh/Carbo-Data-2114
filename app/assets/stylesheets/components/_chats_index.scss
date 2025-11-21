@@ -1,0 +1,94 @@
+$card-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+$border-color: #dee2e6;
+
+.card-product-bis {
+  margin-top: 40px;
+  width:30%;
+  overflow: hidden;
+  background: white;
+  box-shadow: $card-shadow;
+  position: relative;
+  border-radius: 0.25rem;
+  h6 {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.4;
+    min-height: 45px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 575.98px) {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.div-button {
+  text-align: center;
+  padding: 8px 12px;
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.4s ease !important;
+  p {
+    margin-bottom: 0;
+  }
+
+   &:hover {
+    cursor: pointer;
+    transition: all;
+  }
+}
+
+.access-button {
+  background-color: #f8f9fa;
+  margin-bottom: 8px;
+
+  &:hover {
+      background-color: #e9ecef;
+  }
+}
+
+.delete-button {
+  background-color: $button-color;
+  color: $text-color-paragraph;
+  font-family: $paragraph-font;
+  margin-bottom: 8px;
+
+  &:hover {
+      background-color: $hover-color;
+  }
+}
+
+.card-product-bis {
+  a.d-block {
+    display: block;
+    text-decoration: none;
+  }
+}
+
+.card-product-bis h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product-bis p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+}
+
+.card-product-bis .card-product-infos {
+  padding: 16px;
+}
+
+.chats-container {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

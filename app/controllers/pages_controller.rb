@@ -12,5 +12,6 @@ class PagesController < ApplicationController
 
   def feed
     @posts = Post.all
+    @post = Post.new
   end
 end

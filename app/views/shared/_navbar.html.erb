@@ -1,69 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      Carbodata
+
+    <% if content_for?(:navabr_text_label)%>
+      <%= link_to content_for(:navbar_text_path), class: "navbar-brand" do %>
+        <%=content_for(:navabr_text_label) %>
+      <% end %>
     <% end %>
 
-  <% if current_page?(root_path) %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  <% else %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="bi-grid"></span>
-    </button>
-  <% end %>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-
-        <% if content_for?(:first_button_label) %>
-          <li class="nav-item">
-            <%= link_to content_for(:first_button_path), class: "nav-link d-flex align-items-center gap-2" do %>
-              <span class="gradient-text"><%= content_for(:first_button_label) %></span>
-            <% end %>
-          </li>
-        <% end %>
-
-        <% if content_for?(:second_button_label) %>
-          <li class="nav-item">
-            <%= link_to content_for(:second_button_path), class: "nav-link d-flex align-items-center gap-2" do %>
-              <span class="gradient-text"><%= content_for(:second_button_label) %></span>
-            <% end %>
-          </li>
-        <% end %>
-
-        <% if content_for?(:third_button_label) %>
-          <li class="nav-item">
-            <%= link_to content_for(:third_button_path), class: "nav-link d-flex align-items-center gap-2" do %>
-              <span class="gradient-text"><%= content_for(:third_button_label) %></span>
-            <% end %>
-          </li>
-        <% end %>
-
-        <% if content_for?(:fourth_button_label) %>
-          <li class="nav-item">
-            <%= link_to content_for(:fourth_button_path), class: "nav-link d-flex align-items-center gap-2" do %>
-              <span class="gradient-text"><%= content_for(:fourth_button_label) %></span>
-            <% end %>
-          </li>
-        <% end %>
-
-        <% unless user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to new_user_session_path, class: "nav-link d-flex align-items-center gap-2" do %>
-              <span class="gradient-text">Log in</span>
-            <% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to destroy_user_session_path,
-                        data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter?" },
-                        class: "nav-link d-flex align-items-center gap-2" do %>
-              <span class="gradient-text">Log out</span>
-            <% end %>
-          </li>
-        <% end %>
+    <% if current_page?(profile_path) %>
+      <%= link_to destroy_user_session_path,
+              data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter?" },
+              class: "navbar-brand" do %>
+        <span class="bi bi-house-door"></span>
+      <% end %>
+    <% end %>
 
       </ul>
     </div>

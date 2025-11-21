@@ -1,20 +1,10 @@
-<% content_for :first_button_label, "Speak to SuperCarbo" %>
-<% content_for :first_button_path, new_chat_item_path %>
-
-<% content_for :second_button_label, "" %>
-<% content_for :second_button_path,  %>
-
-<% content_for :third_button_label, "" %>
-<% content_for :third_button_path, %>
-
-<% content_for :fourth_button_label, "" %>
-<% content_for :fourth_button_path,  %>
-
+<% content_for :navabr_text_label, "SuperCarbo IA" %>
+<% content_for :navbar_text_path, chats_path %>
 
 <div class="container">
-  <div class="card shadow-sm rounded-5 mt-4 p-4">
-    <div class="text-center pt-1 pb-3">
-      <h1 class="display-5 fw-bold text-primary mb-4 mt-4">
+  <div class="card shadow-sm rounded-5 my-3 p-3">
+    <div class="text-center pt-1 pb-1">
+      <h1 class="display-5 fw-bold h-default mb-2 mt-2">
         Historique des chats
       </h1>
     </div>
@@ -22,21 +12,21 @@
     <div class="d-flex chats-container">
       <% if @chats.any? %>
         <% @chats.each do |chat| %>
-          <div class="card-product-bis p-3">
+          <div class="card-product-bis p-1">
 
-            <h6 class="mb-3">
-              <%= chat.title %>
+            <h6 class="h-default pt-1">
+              <%= "Untitled" %>
             </h6>
 
             <%= link_to chat_path(chat), class: "d-block text-decoration-none" do %>
-              <div class="div-button access-button rounded-5">
+              <div class="p-default div-button access-button rounded-5">
                 <p>Accéder à l'historique du chat!</p>
               </div>
             <% end %>
 
             <%= link_to chat_path(chat),
-                data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce chat ?" },
-                class: "d-block text-decoration-none" do %>
+              data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce chat ?" },
+              class: "d-block text-decoration-none" do %>
               <div class="div-button delete-button rounded-5">
                 <p>Supprimer</p>
               </div>
@@ -44,9 +34,72 @@
           </div>
         <% end %>
       <% else %>
-        <h1 class = "text-center">Please chat with our SuperCarbo BOT first! 🤖</h1>
+        <h1 class="text-center">Please chat with our SuperCarbo BOT first! 🤖</h1>
       <% end %>
     </div>
-    <%= link_to "Démarrer un nouveau chat", new_chat_item_path, class: "btn btn-primary btn-lg px-4 py-2 mt-4 rounded-5" %>
+  </div>
+</div>
+
+<button type="button" class="btn button-default rounded-circle button-modal"
+        data-bs-toggle="modal" data-bs-target="#superCarboModal">
+  <i class="bi bi-robot fs-3"></i>
+</button>
+
+<div class="modal fade" id="superCarboModal" tabindex="-1" aria-labelledby="superCarboModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="superCarboModalLabel">Select your Carboducts</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container py-1">
+          <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
+            <h6 class="h-default text-center fw-bold mb-4">
+              Choississez quels CarboDucts vous voulez intégrer dans vos recettes! Si vous en choississez aucun, notre super BOT s'en occupera! 🤖
+            </h6>
+
+            <% if @items.any? %>
+              <%= simple_form_for @chat_item do |f| %>
+                  <%= f.association :item,
+                      as: :check_boxes,
+                      label: "",
+                      label_method: :show_name_and_brand,
+                      collection_wrapper_tag: 'div',
+                      collection_wrapper_class: 'category-wrapper',
+                      item_wrapper_tag: 'div',
+                      item_wrapper_class: 'category-item',
+                      input_html: { class: 'category-selector' },
+                      collection: current_user.items
+                  %>
+
+                <div class="text-center w-90 d-grid">
+                  <%= f.button :submit, "Démarrer le Chat", class: 'btn button-default btn-lg mt-4 rounded-5' %>
+                </div>
+              <% end %>
+            <% else %>
+              <h1 class="text-center mb-4">Please add some Carboducts first if you want specific recipes from our SuperCarbo BOT! 🤖 </h1>
+              <%= simple_form_for @chat_item do |f| %>
+                  <%= f.association :item,
+                      as: :check_boxes,
+                      label: "",
+                      label_method: :show_name_and_brand,
+                      collection_wrapper_tag: 'div',
+                      collection_wrapper_class: 'category-wrapper',
+                      item_wrapper_tag: 'div',
+                      item_wrapper_class: 'category-item',
+                      input_html: { class: 'category-selector' },
+                      collection: current_user.items
+                  %>
+
+                <div class="text-center mt-4">
+                  <%= f.button :submit, "Démarrer le Chat", class: 'btn button-default btn-lg rounded-5' %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

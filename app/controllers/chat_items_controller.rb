@@ -1,9 +1,5 @@
 class ChatItemsController < ApplicationController
   before_action :authenticate_user!
-  def new
-    @chat_item = ChatItem.new
-    @items = current_user.items
-  end
 
   def create
     @chat = Chat.create!(user_id: current_user.id)
