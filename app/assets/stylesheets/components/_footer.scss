@@ -13,17 +13,8 @@
   align-items: center;
 }
 
-.footer .foot-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: -23px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 16px;
-  background-color: rgba(0, 0, 0, 0.15);
-
-
+.footer i {
+ font-size: 2rem !important;
 }
 
 .footer .btn {
