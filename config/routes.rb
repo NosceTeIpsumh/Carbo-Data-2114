@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: 'search#index', as: 'browse'
   devise_for :users
   get "up" => "rails/health#show", as: :rails_health_check
 
