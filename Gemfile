@@ -38,6 +38,8 @@ gem "ruby_llm", "~> 1.6.4"
 gem "devise"
 #cloudinary
 gem "cloudinary"
+# pg_search for full-text search
+gem "pg_search"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
