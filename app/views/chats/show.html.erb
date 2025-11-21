@@ -1,5 +1,5 @@
-<% content_for :navabr_text_label, @chat.title %>
-<% content_for :navbar_text_path, chat_path(@chat) %>
+<% content_for :navabr_text_label, "Back" %>
+<% content_for :navbar_text_path, chats_path %>
 
 <div class="container">
   <div class="card shadow-sm rounded-5 my-4 p-4">
@@ -11,13 +11,13 @@
       <% @chat.messages.each do |message| %>
         <% if message.role == "user" %>
           <div class="d-flex justify-content-start mb-3">
-            <div class="bg-light border rounded-3 shadow-sm p-3 me-auto rounded-5" style="max-width: 70%;">
+            <div class="message-bubble user-message">
               <%= markdown(message.content) %>
             </div>
           </div>
         <% elsif message.role == "assistant" %>
-          <div class="d-flex justify-content-end mb-3">
-            <div class="bg-success-subtle border border-success-subtle rounded-3 shadow-sm p-3 ms-auto rounded-5" style="max-width: 70%;">
+          <div class="d-flex justify-content-end mb-3 pe-2">
+            <div class="message-bubble assistant-message">
               <%= markdown(message.content) %>
             </div>
           </div>
