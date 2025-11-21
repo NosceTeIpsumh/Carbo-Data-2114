@@ -4,6 +4,6 @@ class Item < ApplicationRecord
   has_many :chat_items, dependent: :destroy
 
   def show_name_and_brand
-    "#{name} - #{brand} : #{indice_gly} IG"
+    "#{name} - #{brand}"
   end
 end

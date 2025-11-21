@@ -4,6 +4,8 @@ class ChatsController < ApplicationController
 
   def index
     @chats = current_user.chats
+    @items = current_user.items
+    @chat_item = ChatItem.new
   end
 
   def show
