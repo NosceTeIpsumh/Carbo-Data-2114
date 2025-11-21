@@ -10,25 +10,25 @@
 
     <%= link_to 'CarboDucts', items_path,
                 class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
+  </div>
 
-</div>
   <div class="card shadow-sm rounded-5 mt-4 p-4">
     <div class="text-center pt-1 pb-3">
-      <h1 class="display-5 fw-bold text-primary mb-4 mt-4">
-        Mes recettes
+      <h1 class="display-5 fw-bold h-default mb-2 mt-2">
+        Mes Carbomeals
       </h1>
     </div>
     <div class="row row-cols-lg-4 align-items-stretch">
       <% if @recipes.any? %>
         <% @recipes.each do |recipe| %>
-          <div class="col-lg-4 mb-4">
+          <div class="col-lg-4 mb-1">
             <div class="card-recipe-bis p-3 rounded-5">
 
-              <h5 class="mb-3">
-                <%= recipe.name %>
-              </h5>
+            <h5 class="mb-3 h-default">
+              <%= recipe.name %>
+            </h5>
 
-              <p class="flex-grow-1"><%= recipe.description %></p>
+              <p class="flex-grow- p-default"><%= recipe.description %></p>
 
               <%= link_to recipe_path(recipe), class: "d-block text-decoration-none" do %>
                 <div class="div-button-recipe access-button-recipe rounded-5">
@@ -66,7 +66,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newPostModalLabel">Add a New CarboMeal</h5>
+        <h5 class="modal- p-default" id="newPostModalLabel">Add a New CarboMeal</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
