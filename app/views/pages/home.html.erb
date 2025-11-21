@@ -63,12 +63,19 @@
 <!-- Features Section -->
 <div id="features" class="container my-5">
   <div class="row text-center">
-    <% ["Fonctionnalité 1", "Fonctionnalité 2", "Fonctionnalité 3"].each_with_index do |title, i| %>
+    <% ["SUPERCARBO", "Feed Community", "Recipes"].each_with_index do |title, i| %>
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
             <h5 class="h-default"><%= title %></h5>
-            <p class="p-default">Une description rapide de la <%= title %>.</p>
+            <p class="p-default">
+              <% if title == "SUPERCARBO" %>
+              A chatbot to help you create balanced recipes.
+              <% elsif title == "Feed Community" %>
+              Share and enhance your recipes with the community.
+              <% else %>
+              Add, check your recipes.
+              <% end %></p>
             <button type="button" class="btn button-default" data-bs-toggle="modal" data-bs-target="#modal<%= i %>">
               More
             </button>
@@ -79,13 +86,28 @@
       <!-- Modal -->
       <div class="modal fade" id="modal<%= i %>" tabindex="-1" aria-labelledby="modalLabel<%= i %>" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content h-70">
             <div class="modal-header">
               <h5 class="modal-title" id="modalLabel<%= i %>"><%= title %></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-              Voici plus de détails sur <%= title %>. Ajoutez ici du texte, images, liens, etc.
+            <div class="modal-body intro-top" style="
+              <% if title == "SUPERCARBO" %>
+                   background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://plus.unsplash.com/premium_photo-1741669281773-7ffdefea68be?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym90JTIwY3Vpc2luaWVyfGVufDB8fDB8fHww);
+              <% elsif title == "Feed Community" %>
+                  background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+              <% else %>
+                  background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1761319114933-38b381ae431c?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+                <% end %>
+                background-size: cover"
+              >
+              <% if title == "SUPERCARBO" %>
+              SUPERCARBO is an AI-powered chatbot that gives you access to original and personalized recipes
+              <% elsif title == "Feed Community" %>
+              A whole community to share and exchange ideas about delicious and balanced recipes.
+              <% else %>
+              Create, save, view and share your own recipes.
+              <% end %></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn button-default" data-bs-dismiss="modal">Fermer</button>
