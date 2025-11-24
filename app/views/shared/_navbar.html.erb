@@ -1,33 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container">
+<% unless current_page?(root_path) %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
 
-    <% if content_for?(:navabr_text_label)%>
-      <%= link_to content_for(:navbar_text_path), class: "navbar-brand" do %>
-        <%=content_for(:navabr_text_label) %>
-      <% end %>
-    <% end %>
-
-
-    <div class="ms-auto d-flex gap-2">
-      <% if current_page?(profile_path) %>
-        <%= link_to destroy_user_session_path,
-                data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter?" },
-                class: "navbar-brand" do %>
-          <span class="bi bi-box-arrow-right"></span>
-        <% end %>
-      <% end %>
-      
-      <% if current_page?(root_path) %>
-        <%= link_to new_user_session_path, class: "navbar-brand" do %>
-          <span class="bi bi-box-arrow-in-right"></span>
+      <% if content_for?(:navabr_text_label)%>
+        <%= link_to content_for(:navbar_text_path), class: "navbar-brand" do %>
+          <%=content_for(:navabr_text_label) %>
         <% end %>
       <% end %>
 
-      <% if current_page?(root_path) %>
-        <%= link_to new_user_registration_path, class: "navbar-brand" do %>
-          <span class="bi bi-person-plus-fill"></span>
+
+      <div class="ms-auto d-flex gap-2">
+        <% if current_page?(profile_path) %>
+          <%= link_to destroy_user_session_path,
+                  data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter?" },
+                  class: "navbar-brand" do %>
+            <span class="bi bi-box-arrow-right"></span>
+          <% end %>
         <% end %>
-      <% end %>
+
+        <% if current_page?(root_path) %>
+          <%= link_to new_user_session_path, class: "navbar-brand" do %>
+            <span class="bi bi-box-arrow-in-right"></span>
+          <% end %>
+        <% end %>
+
+        <% if current_page?(root_path) %>
+          <%= link_to new_user_registration_path, class: "navbar-brand" do %>
+            <span class="bi bi-person-plus-fill"></span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+<% end %>

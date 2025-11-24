@@ -40,19 +40,14 @@
   </div>
 </div>
 
-<button type="button" class="btn button-default rounded-circle button-modal"
-        data-bs-toggle="modal" data-bs-target="#superCarboModal">
-  <i class="bi bi-robot fs-3"></i>
-</button>
-
-<div class="modal fade" id="superCarboModal" tabindex="-1" aria-labelledby="superCarboModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="superCarboModalLabel">Select your Carboducts</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="offcanvas offcanvas-end", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
+  <div class="offcanvas-dialog offcanvas-dialog-centered">
+    <div class="offcanvas-content">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Chat with out SuperCarbo!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="offcanvas-body">
         <div class="container py-1">
           <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
             <h6 class="h-default text-center fw-bold mb-4">

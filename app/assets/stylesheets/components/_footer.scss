@@ -1,3 +1,6 @@
+$fab-size: 60px;
+$fab-elevation: 5px;
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -5,16 +8,22 @@
   min-width: 100%;
   z-index: 20;
   background-color: #ffffff;
+  /* Added to ensure FAB can use position: absolute relative to the footer area */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer .foot-item {
   position: relative;
   display: flex;
   align-items: center;
+
+  margin: 0 5px;
 }
 
 .footer i {
- font-size: 2rem !important;
+  font-size: 2rem !important;
 }
 
 .footer .btn {
@@ -24,4 +33,36 @@
 
 .footer .btn:hover {
   color: #d30606;
+}
+
+.fab-container {
+  margin: 0 25px;
+  min-height: 100%;
+}
+
+.fab-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: $fab-size;
+  height: $fab-size;
+  border-radius: 50%;
+  background-color: $button-color;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  bottom: $fab-elevation;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background-color: darken(#d30606, 5%);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.fab-button .bi {
+  font-size: 1.75rem !important;
 }
