@@ -1,59 +1,89 @@
-<% content_for :navabr_text_label, "#{current_user.profile_name}" %>
-<% content_for :navbar_text_path, root_path %>
+<% content_for :navabr_text_label, "My Hub" %>
+<% content_for :navbar_text_path, profile_path %>
 
-<div class="profile-page">
-  <div class="container py-5">
+<div class="user-hub-page">
+  <div class="container py-4 py-md-5">
+
+    <!-- Welcome Banner -->
+    <div class="hub-welcome-banner">
+      <div class="welcome-content">
+        <h1 class="welcome-title">Welcome back, <%= current_user.profile_name || current_user.email.split('@').first %>!</h1>
+        <p class="welcome-subtitle">Your central hub for all things Carbodata</p>
+      </div>
+    </div>
 
     <!-- Profile Header Section -->
-    <div class="profile-header">
-      <div class="row align-items-center">
+    <div class="hub-profile-header">
+      <div class="row align-items-center g-4">
 
         <!-- Avatar -->
-        <div class="col-12 col-md-4 text-center text-md-start mb-4 mb-md-0">
-          <div class="profile-avatar-wrapper">
+        <div class="col-12 col-md-3 text-center">
+          <div class="hub-avatar-wrapper">
             <% if current_user.respond_to?(:photo) && current_user.photo.attached? %>
-              <%= image_tag current_user.photo, alt: current_user.profile_name, class: "profile-avatar" %>
+              <%= image_tag current_user.photo, alt: current_user.profile_name, class: "hub-avatar" %>
             <% elsif current_user.respond_to?(:avatar) && current_user.avatar.present? %>
-              <%= image_tag current_user.avatar, alt: current_user.profile_name, class: "profile-avatar" %>
+              <%= image_tag current_user.avatar, alt: current_user.profile_name, class: "hub-avatar" %>
             <% else %>
-              <div class="profile-avatar-placeholder">
+              <div class="hub-avatar-placeholder">
                 <%= (current_user.profile_name || current_user.email.split('@').first).first.upcase %>
               </div>
             <% end %>
+            <div class="hub-avatar-badge">
+              <i class="fas fa-crown"></i>
+            </div>
           </div>
         </div>
 
-        <!-- Profile Info & Stats -->
-        <div class="col-12 col-md-8">
-          <div class="profile-info">
+        <!-- Profile Info & Quick Stats -->
+        <div class="col-12 col-md-9">
+          <div class="hub-profile-info">
 
             <!-- Username & Edit Button -->
-            <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-3">
-              <h1 class="profile-username mb-0"><%= current_user.profile_name || current_user.email.split('@').first %></h1>
-
-              <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-edit-profile" %>
+            <div class="hub-profile-header-wrapper">
+              <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-3">
+                <div>
+                  <h2 class="hub-username mb-1"><%= current_user.profile_name || current_user.email.split('@').first %></h2>
+                  <p class="hub-member-since mb-0">Member since <%= current_user.created_at.strftime("%B %Y") %></p>
+                </div>
+                <%= link_to edit_user_registration_path, class: "btn btn-hub-edit" do %>
+                  <i class="fas fa-user-edit me-2"></i>Edit Profile
+                <% end %>
+              </div>
+              <%= link_to edit_user_registration_path, class: "btn-hub-edit-icon" do %>
+                <i class="fas fa-pen"></i>
+              <% end %>
             </div>
 
-            <!-- Stats -->
-            <div class="profile-stats mb-4">
-              <div class="stat-item">
-                <span class="stat-number"><%= current_user.recipes.count %></span>
-                <span class="stat-label">Recipes</span>
+            <!-- Quick Stats Grid -->
+            <div class="hub-stats-grid">
+              <div class="hub-stat-card">
+                <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+                <div class="stat-content">
+                  <span class="stat-number"><%= current_user.recipes.count %></span>
+                  <span class="stat-label">Recipes</span>
+                </div>
               </div>
-              <div class="stat-item">
-                <span class="stat-number"><%= current_user.items.count %></span>
-                <span class="stat-label">Products</span>
+              <div class="hub-stat-card">
+                <div class="stat-icon"><i class="fas fa-box"></i></div>
+                <div class="stat-content">
+                  <span class="stat-number"><%= current_user.items.count %></span>
+                  <span class="stat-label">Products</span>
+                </div>
               </div>
-              <div class="stat-item">
-                <span class="stat-number">28</span>
-                <span class="stat-label">Followers</span>
+              <div class="hub-stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-content">
+                  <span class="stat-number">28</span>
+                  <span class="stat-label">Followers</span>
+                </div>
               </div>
             </div>
 
             <!-- Bio -->
             <% if current_user.respond_to?(:bio) && current_user.bio.present? %>
-              <div class="profile-bio">
+              <div class="hub-bio">
                 <p class="mb-0">
+                  <i class="fas fa-quote-left me-2"></i>
                   <%= current_user.bio %>
                 </p>
               </div>
@@ -65,42 +95,150 @@
       </div>
     </div>
 
-    <!-- Tabs Navigation -->
-    <div class="profile-tabs-wrapper mt-5">
-      <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+    <!-- Latest Items Carousel -->
+    <div class="hub-carousel-section">
+      <div class="carousel-header">
+        <h3 class="carousel-title">
+          <i class="fas fa-star me-2"></i>Latest Activity
+        </h3>
+      </div>
+
+      <div id="hubCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+          <!-- Slide 1: Latest Recipes -->
+          <div class="carousel-item active">
+            <div class="carousel-slide-content">
+              <div class="carousel-slide-header">
+                <h4 class="slide-title">
+                  <i class="fas fa-fire me-2"></i>Latest Recipes
+                </h4>
+                <%= link_to "View All", "#recipes", class: "slide-link", data: { bs_toggle: "tab" } %>
+              </div>
+
+              <% if current_user.recipes.any? %>
+                <div class="carousel-cards-wrapper">
+                  <% current_user.recipes.limit(3).each do |recipe| %>
+                    <%= link_to recipe_path(recipe), class: "hub-carousel-card" do %>
+                      <div class="carousel-card-placeholder">
+                        <i class="fas fa-utensils"></i>
+                      </div>
+                      <div class="carousel-card-content">
+                        <h5 class="carousel-card-title"><%= recipe.name %></h5>
+                        <p class="carousel-card-meta">
+                          <i class="fas fa-clock me-1"></i>
+                          <%= time_ago_in_words(recipe.created_at) %> ago
+                        </p>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="empty-state-mini">
+                  <i class="fas fa-utensils mb-2"></i>
+                  <p>No recipes yet</p>
+                  <%= link_to "Create your first recipe", new_recipe_path, class: "btn btn-sm btn-hub-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Slide 2: Latest Products -->
+          <div class="carousel-item">
+            <div class="carousel-slide-content">
+              <div class="carousel-slide-header">
+                <h4 class="slide-title">
+                  <i class="fas fa-box-open me-2"></i>Latest Products
+                </h4>
+                <%= link_to "View All", "#products", class: "slide-link", data: { bs_toggle: "tab" } %>
+              </div>
+
+              <% if current_user.items.any? %>
+                <div class="carousel-cards-wrapper">
+                  <% current_user.items.limit(3).each do |item| %>
+                    <%= link_to item_path(item), class: "hub-carousel-card" do %>
+                      <div class="carousel-card-placeholder">
+                        <i class="fas fa-box"></i>
+                      </div>
+                      <div class="carousel-card-content">
+                        <h5 class="carousel-card-title"><%= item.name %></h5>
+                        <p class="carousel-card-meta">
+                          <i class="fas fa-clock me-1"></i>
+                          <%= time_ago_in_words(item.created_at) %> ago
+                        </p>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="empty-state-mini">
+                  <i class="fas fa-box mb-2"></i>
+                  <p>No products yet</p>
+                  <%= link_to "Add your first product", new_item_path, class: "btn btn-sm btn-hub-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#hubCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hubCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators hub-carousel-indicators">
+          <button type="button" data-bs-target="#hubCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Latest Recipes"></button>
+          <button type="button" data-bs-target="#hubCarousel" data-bs-slide-to="1" aria-label="Latest Products"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Collection Tabs -->
+    <div class="hub-tabs-wrapper mt-5">
+      <ul class="nav nav-tabs hub-tabs" id="hubTabs" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="recipes-tab" data-bs-toggle="tab" data-bs-target="#recipes" type="button" role="tab" aria-controls="recipes" aria-selected="true">
-            <i class="fas fa-utensils me-2"></i>Carboposts
+            <i class="fas fa-utensils me-2"></i>All Recipes
           </button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab" aria-controls="products" aria-selected="false">
-            <i class="fas fa-box me-2"></i>Favourites
+            <i class="fas fa-box me-2"></i>All Products
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="favourites-tab" data-bs-toggle="tab" data-bs-target="#favourites" type="button" role="tab" aria-controls="favourites" aria-selected="false">
+            <i class="fas fa-star me-2"></i>Favourites
           </button>
         </li>
       </ul>
 
       <!-- Tab Content -->
-      <div class="tab-content profile-tab-content" id="profileTabsContent">
+      <div class="tab-content hub-tab-content" id="hubTabsContent">
 
-        <!-- Recipes Tab -->
+        <!-- All Recipes Tab -->
         <div class="tab-pane fade show active" id="recipes" role="tabpanel" aria-labelledby="recipes-tab">
           <div class="row g-4 mt-2">
             <% if current_user.recipes.any? %>
               <% current_user.recipes.each do |recipe| %>
-                <div class="col-6 col-lg-3">
-                  <%= link_to recipe_path(recipe), class: "profile-card-link" do %>
-                    <div class="profile-card">
-                      <div class="profile-card-placeholder">
+                <div class="col-6 col-md-4 col-lg-3">
+                  <%= link_to recipe_path(recipe), class: "hub-card-link" do %>
+                    <div class="hub-card">
+                      <div class="hub-card-placeholder">
                         <i class="fas fa-utensils"></i>
                       </div>
-                      <div class="profile-card-overlay">
-                        <div class="profile-card-stats">
+                      <div class="hub-card-overlay">
+                        <div class="hub-card-stats">
                           <span><i class="fas fa-heart"></i> 30</span>
-                          <span><i class="fas fa-comment"></i> 100</span>
+                          <span><i class="fas fa-comment"></i> 12</span>
                         </div>
                       </div>
-                      <div class="profile-card-title">
+                      <div class="hub-card-title">
                         <%= recipe.name %>
                       </div>
                     </div>
@@ -111,32 +249,32 @@
               <div class="col-12">
                 <div class="empty-state">
                   <i class="fas fa-utensils mb-3"></i>
-                  <p>No recipes yet</p>
-                  <%= link_to "Create your first recipe", new_recipe_path, class: "btn button-default" %>
+                  <p>No recipes in your collection</p>
+                  <%= link_to "Create your first recipe", new_recipe_path, class: "btn btn-hub-primary" %>
                 </div>
               </div>
             <% end %>
           </div>
         </div>
 
-        <!-- Products Tab -->
+        <!-- All Products Tab -->
         <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="products-tab">
           <div class="row g-4 mt-2">
             <% if current_user.items.any? %>
               <% current_user.items.each do |item| %>
-                <div class="col-6 col-lg-3">
-                  <%= link_to item_path(item), class: "profile-card-link" do %>
-                    <div class="profile-card">
-                      <div class="profile-card-placeholder">
+                <div class="col-6 col-md-4 col-lg-3">
+                  <%= link_to item_path(item), class: "hub-card-link" do %>
+                    <div class="hub-card">
+                      <div class="hub-card-placeholder">
                         <i class="fas fa-box"></i>
                       </div>
-                      <div class="profile-card-overlay">
-                        <div class="profile-card-stats">
-                          <span><i class="fas fa-heart"></i> 30</span>
-                          <span><i class="fas fa-comment"></i> 100</span>
+                      <div class="hub-card-overlay">
+                        <div class="hub-card-stats">
+                          <span><i class="fas fa-heart"></i> 18</span>
+                          <span><i class="fas fa-eye"></i> 45</span>
                         </div>
                       </div>
-                      <div class="profile-card-title">
+                      <div class="hub-card-title">
                         <%= item.name %>
                       </div>
                     </div>
@@ -147,11 +285,24 @@
               <div class="col-12">
                 <div class="empty-state">
                   <i class="fas fa-box mb-3"></i>
-                  <p>No products yet</p>
-                  <%= link_to "Add your first product", new_item_path, class: "btn button-default" %>
+                  <p>No products in your collection</p>
+                  <%= link_to "Add your first product", new_item_path, class: "btn btn-hub-primary" %>
                 </div>
               </div>
             <% end %>
+          </div>
+        </div>
+
+        <!-- Favourites Tab -->
+        <div class="tab-pane fade" id="favourites" role="tabpanel" aria-labelledby="favourites-tab">
+          <div class="row g-4 mt-2">
+            <div class="col-12">
+              <div class="empty-state">
+                <i class="fas fa-star mb-3"></i>
+                <p>No favourites yet</p>
+                <small class="text-muted">Start liking recipes and products to see them here</small>
+              </div>
+            </div>
           </div>
         </div>
 
