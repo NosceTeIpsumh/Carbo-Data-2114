@@ -1,119 +1,39 @@
-<% content_for :navabr_text_label, "Carbodata" %>
-<% content_for :navbar_text_path, root_path %>
+<!-- Fullscreen Hero Section -->
+<section class="homepage-hero">
+  <!-- Floating food icons with Font Awesome -->
+  <div class="floating-icon"><i class="fas fa-apple-alt"></i></div>
+  <div class="floating-icon"><i class="fas fa-carrot"></i></div>
+  <div class="floating-icon"><i class="fas fa-leaf"></i></div>
+  <div class="floating-icon"><i class="fas fa-heartbeat"></i></div>
+  <div class="floating-icon"><i class="fas fa-lemon"></i></div>
+  <div class="floating-icon"><i class="fas fa-seedling"></i></div>
+  <div class="floating-icon"><i class="fas fa-egg"></i></div>
+  <div class="floating-icon"><i class="fas fa-fish"></i></div>
+  <div class="floating-icon"><i class="fas fa-cheese"></i></div>
+  <div class="floating-icon"><i class="fas fa-bread-slice"></i></div>
+  <div class="floating-icon"><i class="fas fa-drumstick-bite"></i></div>
+  <div class="floating-icon"><i class="fas fa-pepper-hot"></i></div>
+  <div class="floating-icon"><i class="fas fa-cookie"></i></div>
+  <div class="floating-icon"><i class="fas fa-pizza-slice"></i></div>
+  <div class="floating-icon"><i class="fas fa-bacon"></i></div>
+  <div class="floating-icon"><i class="fas fa-ice-cream"></i></div>
+  <div class="floating-icon"><i class="fas fa-hamburger"></i></div>
+  <div class="floating-icon"><i class="fas fa-hotdog"></i></div>
+  <div class="floating-icon"><i class="fas fa-candy-cane"></i></div>
+  <div class="floating-icon"><i class="fas fa-coffee"></i></div>
+  <div class="floating-icon"><i class="fas fa-mug-hot"></i></div>
+  <div class="floating-icon"><i class="fas fa-wine-glass"></i></div>
+  <div class="floating-icon"><i class="fas fa-beer"></i></div>
+  <div class="floating-icon"><i class="fas fa-glass-whiskey"></i></div>
 
-<!-- Text above hero -->
-<section class="intro-top text-center py-5" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1662982693758-f69fcb81e7d2?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-                                background-size: cover">
-  <div class="container" >
-    <h1>Welcome to Carbodata</h1>
-    <p>
-      We help people living with diabetes build a healthier lifestyle through
-      delicious, thoughtful recipes, empowering everyday choices that feel
-      satisfying, supportive, and sustainable.
-    </p>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-logo">Carbodata</h1>
+      <p class="hero-slogan">Smart eating for healthier living</p>
+    </div>
+    <div class="hero-buttons">
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-hero btn-signup" %>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-hero btn-login" %>
+    </div>
   </div>
 </section>
-
-<!-- Hero Section -->
-<section id="heroSection" class="container py-5">
-  <div class="row align-items-center">
-
-    <!-- Text left -->
-    <div class="col-md-6 text-section">
-      <h2 class="hero-title">
-        Why should you choose Carbodata?
-      </h2>
-      <p class="hero-desc">
-        We help people living with diabetes build a healthier lifestyle through
-        delicious, thoughtful recipes, empowering everyday choices that feel
-        satisfying, supportive, and sustainable.
-      </p>
-      <%= link_to "Discover our Carbo Community", feed_path, class: "btn button-default px-4 py-2 rounded-3" %>
-    </div>
-
-    <!-- Carousel right -->
-    <div class="col-md-6">
-      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-        <div class="carousel-inner rounded-4 smooth-shadow">
-          <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D" class="d-block w-100" alt="Healthy Food">
-          </div>
-          <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZvb2R8ZW58MHx8MHx8fDA%3D" class="d-block w-100" alt="Glycemic Friendly Meal">
-          </div>
-          <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZvb2R8ZW58MHx8MHx8fDA%3D" class="d-block w-100" alt="Well Balanced Recipe">
-          </div>
-        </div>
-
-        <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-          <span class="carousel-control-icon">&larr;</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-          <span class="carousel-control-icon">&rarr;</span>
-        </button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Features Section -->
-<div id="features" class="container my-5">
-  <div class="row text-center">
-    <% ["SUPERCARBO", "Feed Community", "Recipes"].each_with_index do |title, i| %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="h-default"><%= title %></h5>
-            <p class="p-default">
-              <% if title == "SUPERCARBO" %>
-              A chatbot to help you create balanced recipes.
-              <% elsif title == "Feed Community" %>
-              Share and enhance your recipes with the community.
-              <% else %>
-              Add, check your recipes.
-              <% end %></p>
-            <button type="button" class="btn button-default" data-bs-toggle="modal" data-bs-target="#modal<%= i %>">
-              More
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="modal<%= i %>" tabindex="-1" aria-labelledby="modalLabel<%= i %>" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content h-70">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel<%= i %>"><%= title %></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body intro-top" style="
-              <% if title == "SUPERCARBO" %>
-                   background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://plus.unsplash.com/premium_photo-1741669281773-7ffdefea68be?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym90JTIwY3Vpc2luaWVyfGVufDB8fDB8fHww);
-              <% elsif title == "Feed Community" %>
-                  background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-              <% else %>
-                  background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1761319114933-38b381ae431c?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-                <% end %>
-                background-size: cover"
-              >
-              <% if title == "SUPERCARBO" %>
-              SUPERCARBO is an AI-powered chatbot that gives you access to original and personalized recipes
-              <% elsif title == "Feed Community" %>
-              A whole community to share and exchange ideas about delicious and balanced recipes.
-              <% else %>
-              Create, save, view and share your own recipes.
-              <% end %></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn button-default" data-bs-dismiss="modal">Fermer</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
