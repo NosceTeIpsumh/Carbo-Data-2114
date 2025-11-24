@@ -14,8 +14,13 @@ Rails.application.routes.draw do
   resources :recipes
   resources :items, except:[:new]
   resources :chats, only: [:index, :show, :destroy] do
-    resources :messages, only: [:create]
+    resources :messages, only: [:create] do
+      member do
+        post :save_recipe
+      end
+    end
   end
   resources :recipe_items, only: [:new, :create]
   resources :chat_items, only: [:new, :create]
 end
+
