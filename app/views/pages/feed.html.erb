@@ -215,9 +215,16 @@
   </div>
 </div>
 
-<!-- Floating Add Post Button (Mobile) -->
-<% if user_signed_in? %>
-  <%= link_to new_post_path, class: "btn button-default rounded-circle button-floating d-lg-none button-modal" do %>
-    <i class="fas fa-plus"></i>
-  <% end %>
-<% end %>
+<div class="offcanvas offcanvas-end", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
+  <div class="offcanvas-dialog offcanvas-dialog-centered">
+    <div class="offcanvas-content">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Add a New CarboMeal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        New post!
+      </div>
+    </div>
+  </div>
+</div>
