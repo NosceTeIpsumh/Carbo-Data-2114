@@ -20,7 +20,7 @@
 
             <%= link_to chat_path(chat), class: "d-block text-decoration-none" do %>
               <div class="p-default div-button access-button rounded-5">
-                <p>Accéder à l'historique du chat!</p>
+                <p>Previous discussions</p>
               </div>
             <% end %>
 
@@ -28,7 +28,7 @@
               data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce chat ?" },
               class: "d-block text-decoration-none" do %>
               <div class="div-button delete-button rounded-5">
-                <p>Supprimer</p>
+                <p>Delete</p>
               </div>
             <% end %>
           </div>

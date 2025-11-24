@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     @recipes = current_user.recipes
@@ -34,6 +34,11 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    if @recipe.destroy
+      redirect_to recipes_path, status: :see_other, alert: "Recipe has been deleted"
+    else
+      redirect_to recipe_path(@recipe), alert: "Impossible to delete the recipe"
+    end
   end
 
   private
