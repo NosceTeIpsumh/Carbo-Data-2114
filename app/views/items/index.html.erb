@@ -1,5 +1,5 @@
 <% content_for :navabr_text_label, "My CarboDucts" %>
-<% content_for :navbar_text_path, root_path %>
+<% content_for :navbar_text_path, feed_path %>
 
 <div class="container">
 
@@ -69,15 +69,92 @@
 </div>
 
 
-<div class="offcanvas offcanvas-end", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel" data-bs-backdrop="true" data-controller="wizard">
   <div class="offcanvas-dialog offcanvas-dialog-centered">
     <div class="offcanvas-content">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Add a New CarboDuct</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-action="wizard#reset"></button>
       </div>
       <div class="offcanvas-body">
-        <%= render "form", item: @item %>
+
+        <%= simple_form_for @item do |f| %>
+          <div data-wizard-target="step" class="wizard-step">
+            <div class="container py-1">
+              <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
+                <h6 class="h-default text-center fw-bold mb-4">
+                  Étape 1: Informations Générales
+                </h6>
+                <%= f.input :name, placeholder: "Exemple: patate douce, entrecôte, banane...", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :brand, placeholder: "Exemple: Panzani, Charal, Cassegrain...", input_html: { class: "placeholder-custom" } %>
+                <div class="d-flex justify-content-end mt-3">
+                  <button type="button" class="btn button-default rounded-5" data-action="wizard#goToNext" data-current-step="0" data-next-step="1">
+                    Suivant<i class="fa-solid fa-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-wizard-target="step" class="wizard-step d-none">
+            <div class="container py-1">
+              <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
+                <h6 class="h-default text-center fw-bold mb-4">
+                  Étape 2: Catégorie
+                </h6>
+                <%= f.input :category,
+                    as: :radio_buttons,
+                    label: false,
+                    collection: [
+                      "Légumes et fruits",
+                      "Féculents et légumes secs",
+                      "Lait et substituts",
+                      "Viandes et substituts",
+                      "Matières grasses",
+                      "Produits sucrées",
+                      "Eaux",
+                      "Alcools",
+                      "Boissons sucrées",
+                      "Vitamines et Minéraux"
+                    ],
+                    collection_wrapper_tag: 'div',
+                    collection_wrapper_class: 'category-wrapper',
+                    item_wrapper_tag: 'div',
+                    item_wrapper_class: 'form-check',
+                    input_html: { class: 'form-check-input' },
+                    label_html: { class: 'form-check-label' }
+                %>
+                <div class="d-flex justify-content-between mt-3">
+                  <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="1" data-previous-step="0">
+                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                  </button>
+                  <button type="button" class="btn button-default rounded-5" data-action="wizard#goToNext" data-current-step="1" data-next-step="2">
+                    Suivant<i class="fa-solid fa-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-wizard-target="step" class="wizard-step d-none">
+            <div class="container py-1">
+              <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
+                <h6 class="h-default text-center fw-bold mb-4">
+                  Étape 3: Données Nutritionnelles
+                </h6>
+                <%= f.input :indice_gly, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :ratio_glucide, placeholder: "Pour 100g. Exemple: 27", input_html: { class: "placeholder-custom" } %>
+                <div class="d-flex justify-content-between mt-3">
+                  <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="2" data-previous-step="1">
+                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                  </button>
+                  <%= f.submit "Enregistrer", class: "btn button-default rounded-5" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
