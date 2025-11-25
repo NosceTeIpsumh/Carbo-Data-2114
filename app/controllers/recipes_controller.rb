@@ -9,6 +9,10 @@ class RecipesController < ApplicationController
       @recipes = current_user.recipes
     end
     @recipe = Recipe.new
+    # Group recipes by GI level
+    @low_gi_recipes = current_user.recipes.where('indice_gly < ?', 55).order(created_at: :desc)
+    @medium_gi_recipes = current_user.recipes.where('indice_gly >= ? AND indice_gly <= ?', 55, 70).order(created_at: :desc)
+    @high_gi_recipes = current_user.recipes.where('indice_gly > ?', 70).order(created_at: :desc)
     # For the SuperCarbo chat option
     @chat_item = ChatItem.new
     @items = current_user.items
