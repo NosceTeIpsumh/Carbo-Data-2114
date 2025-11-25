@@ -2,6 +2,7 @@
   background-color: $button-color;
   font-family: $button-font;
   color: white;
+  font-weight: bold;
   &:hover {
     background-color: #d30606;
     transition: all ease 0.3;
