@@ -8,35 +8,8 @@
   <div class="card shadow-sm rounded-5 my-4 p-4">
     <h1 class="title-chat display-3 text-center mt-4 mb-5">SuperCarbo</h1>
 
-    <h2 class="title-recipe display-6 mb-4"><%= @chat.title %></h2>
-
-    <div id="messages">
-      <% @chat.messages.each do |message| %>
-        <% if message.role == "user" %>
-          <div class="d-flex justify-content-start mb-3">
-            <div class="message-bubble user-message">
-              <%= markdown(message.content) %>
-            </div>
-          </div>
-        <% elsif message.role == "assistant" %>
-          <div class="d-flex flex-column align-items-end mb-3 pe-2">
-            <div class="message-bubble assistant-message">
-              <%= markdown(message.content) %>
-              <div style="text-align: center;">
-                <%= button_to save_recipe_chat_message_path(@chat, message),
-                               method: :post,
-                               class: "btn btn-sm mt-2 rounded-5 btn-save",
-                               style: "background-color: #d34e4e; color: white; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: bold; border: 1px solid #840101ff;",
-                               data: { turbo_confirm: "Save this recipe to your CarboMeals?" } do %>
-                                  <i class="fa-regular fa-floppy-disk btn-icon"></i>
-                                  Save recipe
-                                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-    <h2 id="chat_title" class="display-6 mb-4"><%= @chat.title %></h2>
-
+    <h2 id="chat_title" class="title-recipe display-6 mb-4"><%= @chat.title %></h2>
+    
     <div id="messages">
       <% @chat.messages.each do |message| %>
         <%= render "messages/message", message: message, chat: @chat %>
