@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   - Add a 1–2 sentence *italicized* creative description below.
   - Insert a blank line for spacing.
   - ALWAYS provide this EXACT stats line (use these exact labels):
-    - `**IG:** [number][smiley]    **Carbs:** [number]g/100g    **Difficulty:** [1-5]`
+    - `**IG:** [number][smiley]    **Carbs:** [number]/100g    **Difficulty:** [1-5]`
       - For smileys: 🙂 if GI < 55; 😐 if 55–70; 🙁 if >70.
       - Calculate carbs (carbohydrates) per 100g for the recipe
       - IMPORTANT: Use EXACTLY these labels: **IG:**, **Carbs:**, **Difficulty:** (no variations)
@@ -100,12 +100,17 @@ class MessagesController < ApplicationController
     @message.role = "user"
 
     if @message.save!
-      @ruby_llm_chat = RubyLLM.chat
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create!(role: "assistant", content: response.content, chat: @chat)
-      @chat.generate_title_from_first_message
-      redirect_to chat_path(@chat)
+      # Launch async job for streaming LLM response
+      GenerateLlmResponseJob.perform_later(
+        chat_id: @chat.id,
+        user_message_content: @message.content,
+        generate_title: false
+      )
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
       render "chats/show", status: :unprocessable_entity
     end
@@ -117,10 +122,10 @@ class MessagesController < ApplicationController
 
     # Only save if the message is from the assistant
     if @message.role == "assistant"
-      recipe = Recipe.create_from_markdown(@message.content, current_user)
+      @recipe = Recipe.create_from_markdown(@message.content, current_user)
 
-      if recipe
-        redirect_to recipes_path, notice: "Recipe '#{recipe.name}' has been saved successfully!"
+      if @recipe
+        redirect_to recipes_path, alert: "Recipe '#{@recipe.name}' has been saved successfully!"
       else
         redirect_to chat_path(@chat), alert: "Unable to parse recipe from this message."
       end
@@ -138,6 +143,8 @@ class MessagesController < ApplicationController
 
   def my_items
     items = @chat.chat_items.map(&:item)
+    return nil if items.empty?
+
     names = items.map(&:name)
     ratio_glucide = items.map(&:ratio_glucide)
     indice_gly = items.map(&:indice_gly)

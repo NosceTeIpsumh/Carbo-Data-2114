@@ -1,6 +1,7 @@
 class ChatItemsController < ApplicationController
   before_action :authenticate_user!
 
+
   def create
     @chat = Chat.create!(user_id: current_user.id, title: Chat::DEFAULT_TITLE)
     @retrieved_items = params[:chat_item][:item_id] # ["", 1, 2, 3]
@@ -17,6 +18,14 @@ class ChatItemsController < ApplicationController
         item_id: original_item.id,
       )
     end
+
+    # Launch async job for streaming LLM response (immediate redirect, no waiting)
+    GenerateLlmResponseJob.perform_later(
+      chat_id: @chat.id,
+      user_message_content: nil,
+      generate_title: true
+    )
+
     redirect_to chat_path(@chat)
   end
 end
