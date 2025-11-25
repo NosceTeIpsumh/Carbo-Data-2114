@@ -1,10 +1,19 @@
+require 'open-uri'
+
 class Recipe < ApplicationRecord
   include PgSearch::Model
   belongs_to :user
   has_many :recipe_items
 
+  has_one_attached :photo
+  pg_search_scope :search_by_name_description_difficulty_indice_gly, {
+    against: {name: 'A', description: 'B', difficulty: 'B', indice_gly: 'B'},
+    using: {
+      tsearch: { prefix: true }
+    }
+  }
   multisearchable against: [:name, :description, :ratio_glucide, :indice_gly, :difficulty]
-
+  after_create :set_default_photo
   # Class method to parse markdown response from LLM and create a recipe
   def self.create_from_markdown(markdown_text, user)
     parsed_data = parse_markdown(markdown_text)
@@ -14,6 +23,24 @@ class Recipe < ApplicationRecord
   end
 
   private
+
+  def set_default_photo
+    unless photo.attached?
+      # Replace with your Cloudinary URL for the default recipe image
+      default_image_url = ENV['DEFAULT_RECIPE_IMAGE_URL']
+
+      begin
+        downloaded_image = URI.open(default_image_url)
+        photo.attach(
+          io: downloaded_image,
+          filename: 'default-recipe.jpg',
+          content_type: 'image/jpeg'
+        )
+      rescue => e
+        Rails.logger.error "Failed to attach default photo: #{e.message}"
+      end
+    end
+  end
 
   # Parse the markdown text from LLM response
   def self.parse_markdown(text)

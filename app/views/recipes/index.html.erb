@@ -7,6 +7,18 @@
     <%= link_to 'Carboducts', items_path, class: "segment-button #{'active' if current_page?(items_path)}" %>
   </div>
 
+  <div class="card shadow-sm rounded-5 mt-4 p-4">
+    <%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
+      <%= label_tag :query, "Search in your CarboMeals", class: "visually-hidden" %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control me-2",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "button-default" %>
+    <% end %>
+  </div>
+  
   <%
     # Define carousel data
     carousels = [
