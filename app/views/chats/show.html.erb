@@ -1,6 +1,9 @@
 <% content_for :navabr_text_label, "Back" %>
 <% content_for :navbar_text_path, chats_path %>
 
+<%# Subscribe to Turbo Stream channel for real-time updates %>
+<%= turbo_stream_from "chat_#{@chat.id}" %>
+
 <div class="container">
   <div class="card shadow-sm rounded-5 my-4 p-4">
     <h1 class="title-chat display-3 text-center mt-4 mb-5">SuperCarbo</h1>
@@ -32,6 +35,11 @@
             </div>
           </div>
         <% end %>
+    <h2 id="chat_title" class="display-6 mb-4"><%= @chat.title %></h2>
+
+    <div id="messages">
+      <% @chat.messages.each do |message| %>
+        <%= render "messages/message", message: message, chat: @chat %>
       <% end %>
     </div>
     <div id="new_message_container">

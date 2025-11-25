@@ -2,59 +2,110 @@
 <% content_for :navbar_text_path, root_path %>
 
 <div class="container">
-
   <div class="shadow-sm rounded-5 mt-4 p-4 segment-control-bar">
-
-    <%= link_to 'CarboMeals', recipes_path,
-                class: "segment-button p-default #{'active' if current_page?(recipes_path)}" %>
-
-    <%= link_to 'CarboDucts', items_path,
-                class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
+    <%= link_to 'Carbomeals', recipes_path, class: "segment-button #{'active' if current_page?(recipes_path)}" %>
+    <%= link_to 'Carboducts', items_path, class: "segment-button #{'active' if current_page?(items_path)}" %>
   </div>
 
   <div class="card shadow-sm rounded-5 mt-4 p-4">
-    <div class="text-center pt-1 pb-3">
-      <h1 class="display-5 fw-bold h-default mb-2 mt-2">
-        Mes Carbomeals
-      </h1>
-    </div>
-    <div class="row row-cols-lg-4 align-items-stretch">
-      <% if @recipes.any? %>
-        <% @recipes.each do |recipe| %>
-          <div class="col-lg-4 mb-1">
-            <div class="card-recipe-bis p-3 rounded-5">
-
-            <h5 class="mb-3 h-default">
-              <%= recipe.name %>
-            </h5>
-
-              <p class="flex-grow- p-default"><%= recipe.description %></p>
-
-              <%= link_to recipe_path(recipe), class: "d-block text-decoration-none" do %>
-                <div class="div-button-recipe access-button-recipe rounded-5">
-                  <p>Voir cette recette</p>
-                </div>
-              <% end %>
-
-              <%= link_to edit_recipe_path(recipe), class: "d-block text-decoration-none" do %>
-                <div class="div-button-recipe access-button-recipe rounded-5">
-                  <p>Modify this recipe</p>
-                </div>
-              <% end %>
-
-              <%= link_to recipe_path(recipe),
-                  data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer cette recette ?" },
-                  class: "d-block text-decoration-none" do %>
-                <div class="div-button-recipe delete-button-recipe rounded-5">
-                  <p>Supprimer</p>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    <%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
+      <%= label_tag :query, "Search in your CarboMeals", class: "visually-hidden" %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control me-2",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "button-default" %>
+    <% end %>
   </div>
+
+  <%
+    # Define carousel data
+    carousels = [
+      {
+        id: 'carousel1',
+        title: 'Low GI recipes',
+        recipes: [
+          { name: 'Quinoa Salad Bowl', image: 'photo-1512621776951-a57141f2eefd', gi: 35, carbs: '20g', gi_stars: 2, carbs_stars: 2, level: 'low' },
+          { name: 'Fresh Veggie Salad', image: 'photo-1546069901-ba9599a7e63c', gi: 40, carbs: '25g', gi_stars: 2, carbs_stars: 2, level: 'low' },
+          { name: 'Healthy Soup Bowl', image: 'photo-1540189549336-e6e99c3679fe', gi: 30, carbs: '18g', gi_stars: 2, carbs_stars: 1, level: 'low' }
+        ]
+      },
+      {
+        id: 'carousel2',
+        title: 'Med GI recipes',
+        recipes: [
+          { name: 'Balanced Bowl', image: 'photo-1482049016688-2d3e1b311543', gi: 65, carbs: '45g', gi_stars: 3, carbs_stars: 3, level: 'medium' },
+          { name: 'Mixed Food Plate', image: 'photo-1504674900247-0877df9cc836', gi: 60, carbs: '40g', gi_stars: 3, carbs_stars: 3, level: 'medium' },
+          { name: 'Fresh Salad Mix', image: 'photo-1498837167922-ddd27525d352', gi: 58, carbs: '38g', gi_stars: 3, carbs_stars: 3, level: 'medium' }
+        ]
+      },
+      {
+        id: 'carousel3',
+        title: 'High GI recipes',
+        recipes: [
+          { name: 'Burger & Fries', image: 'photo-1555939594-58d7cb561ad1', gi: 85, carbs: '70g', gi_stars: 5, carbs_stars: 5, level: 'high' },
+          { name: 'Sweet Pancakes', image: 'photo-1567620905732-2d1ec7ab7445', gi: 90, carbs: '75g', gi_stars: 5, carbs_stars: 5, level: 'high' },
+          { name: 'Burrito Bowl', image: 'photo-1529042410759-befb1204b468', gi: 80, carbs: '68g', gi_stars: 4, carbs_stars: 4, level: 'high' }
+        ]
+      }
+    ]
+  %>
+
+  <% carousels.each do |carousel| %>
+    <div class="carousel-section mt-4">
+      <h2 class="h-default mb-3"><%= carousel[:title] %></h2>
+      <div id="<%= carousel[:id] %>" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% carousel[:recipes].each_with_index do |recipe, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <div class="recipe-card">
+                <div class="recipe-card-image" style="background-image: url('https://images.unsplash.com/<%= recipe[:image] %>?w=500&h=750&fit=crop');">
+                  <div class="recipe-card-badges">
+                    <div class="gi-badge gi-<%= recipe[:level] %>">
+                      <i class="bi bi-droplet-fill"></i>
+                      <span><%= recipe[:gi] %></span>
+                    </div>
+                    <div class="carb-badge carb-<%= recipe[:level] %>">
+                      <i class="bi bi-lightning-charge-fill"></i>
+                      <span><%= recipe[:carbs] %></span>
+                    </div>
+                  </div>
+                  <div class="recipe-card-content">
+                    <h3><%= recipe[:name] %></h3>
+                    <div class="recipe-ratings">
+                      <div class="rating-item">
+                        <span class="rating-label">GI:</span>
+                        <div class="rating-stars"><%= '★' * recipe[:gi_stars] + '☆' * (5 - recipe[:gi_stars]) %></div>
+                      </div>
+                      <div class="rating-item">
+                        <span class="rating-label">Glucides:</span>
+                        <div class="rating-stars"><%= '★' * recipe[:carbs_stars] + '☆' * (5 - recipe[:carbs_stars]) %></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#<%= carousel[:id] %>" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#<%= carousel[:id] %>" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="carousel-indicators hub-carousel-indicators">
+          <% carousel[:recipes].each_with_index do |_, index| %>
+            <button type="button" data-bs-target="#<%= carousel[:id] %>" data-bs-slide-to="<%= index %>"
+                    class="<%= 'active' if index == 0 %>" <%= 'aria-current="true"' if index == 0 %>></button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div class="offcanvas offcanvas-end", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">

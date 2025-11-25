@@ -3,7 +3,11 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = current_user.recipes
+    if params[:query].present?
+      @recipes = current_user.recipes.search_by_name_description_difficulty_indice_gly(params[:query])
+    else
+      @recipes = current_user.recipes
+    end
     @recipe = Recipe.new
   end
 
@@ -11,12 +15,12 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
-    @user = current_user
+    @recipe = current_user.recipes.new(recipe_params)
+    
     if @recipe.save!
-      redirect_to recipes_path
+      redirect_to recipes_path, notice: "The recipe has been created"
     else
-      render :new, unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -44,7 +48,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :steps, :difficulty, :indice_gly, :ratio_glucide, :user_id)
+    params.require(:recipe).permit(:name, :description, :steps, :difficulty, :indice_gly, :ratio_glucide, :photo)
   end
 
   def set_recipe

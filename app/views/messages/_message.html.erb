@@ -1,0 +1,34 @@
+<%# Partial UN MESSAGE du chat pour mettre en place le turbo %>
+<%# dom_id(message) = "message_123" pour le conteneur complet %>
+<%# "message_123_content" pour le texte (mis à jour pendant le streaming) %>
+
+<div id="<%= dom_id(message) %>">
+  <% if message.role == "user" %>
+    <div class="d-flex justify-content-start mb-3">
+      <div class="message-bubble user-message">
+        <%= markdown(message.content) %>
+      </div>
+    </div>
+  <% elsif message.role == "assistant" %>
+    <div class="d-flex flex-column align-items-end mb-3 pe-2">
+      <div class="message-bubble assistant-message">
+        <div id="message_<%= message.id %>_content">
+          <% if message.content.present? %>
+            <%= markdown(message.content) %>
+          <% else %>
+            <div class="typing-indicator">
+              <span></span><span></span><span></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% if message.content.present? %>
+        <%= button_to "Save Recipe", save_recipe_chat_message_path(chat, message),
+            method: :post,
+            class: "btn btn-sm mt-2 rounded-5",
+            style: "background-color: #FAF8F1; color: #433; font-family: 'Open Sans', sans-serif; border: 1px solid #dee2e6;",
+            data: { turbo_confirm: "Save this recipe to your CarboMeals?" } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

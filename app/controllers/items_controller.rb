@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
   before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = current_user.items
+    if params[:query].present?
+      @items = current_user.items.search_by_name_description_difficulty_indice_gly(params[:query])
+    else
+      @items = current_user.items
+    end
     @item = Item.new
   end
 
@@ -11,10 +15,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.user = current_user
+    @item = current_user.items.new(item_params)
+    
     if @item.save
-      redirect_to items_path, flash, notice: "L'article a été créé avec succès."
+      redirect_to items_path, notice: "The CarboDuct has been created"
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +29,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to item_path(@item), notice: "L'article a été mis à jour."
+      redirect_to item_path(@item), notice: "Your CarboDuct has been updated"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,9 +37,9 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to items_path, status: :see_other, alert: "L'article a été supprimé."
+      redirect_to items_path, status: :see_other, alert: "The CarboDuct has been deleted"
     else
-      redirect_to item_path(@item), alert: "Impossible de supprimer l'article."
+      redirect_to item_path(@item), alert: "Impossible to delete the CarboDuct"
     end
   end
 
@@ -46,6 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :brand, :category, :indice_gly, :ratio_glucide)
+    params.require(:item).permit(:name, :brand, :category, :indice_gly, :ratio_glucide, :photo)
   end
 end
