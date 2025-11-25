@@ -1,17 +1,11 @@
-<% if user_signed_in? %>
-  <nav class=" footer navbar-light shadow-sm fixed-bottom border-top">
+<% unless current_page?(root_path) %>
+  <nav class="footer navbar-light shadow-sm fixed-bottom border-top">
     <div class="container justify-content-center">
       <ul class="navbar-nav d-flex flex-row justify-content-center align-items-center gap-4 mb-0">
 
         <li class="foot-item">
-            <%= link_to feed_path do %>
-              <i class="bi bi-activity fs-1 btn rounded-5"></i>
-            <% end %>
-        </li>
-
-        <li class="foot-item">
-          <%= link_to browse_path do %>
-            <i class="bi bi-search fs-1 btn"></i>
+          <%= link_to feed_path do %>
+            <i class="bi bi-activity fs-1 btn rounded-5"></i>
           <% end %>
         </li>
         <li class="foot-item">
@@ -19,6 +13,21 @@
             <i class="bi bi-robot fs-1 btn"></i>
           <% end %>
         </li>
+
+        <li class="foot-item fab-container">
+          <a class="fab-button"
+             data-bs-toggle="offcanvas"
+             href="#offcanvasAction"
+             role="button"
+             aria-controls="offcanvasAction">
+            <% if current_page?(profile_path) %>
+              <i class="bi bi-search fs-1"></i>
+            <% else %>
+              <i class="bi bi-plus-lg fs-1"></i>
+            <% end %>
+          </a>
+        </li>
+
         <li class="foot-item">
           <%= link_to recipes_path do %>
             <i class="bi bi-book fs-1 btn"></i>
@@ -32,5 +41,4 @@
       </ul>
     </div>
   </nav>
-<% else %>
 <% end %>

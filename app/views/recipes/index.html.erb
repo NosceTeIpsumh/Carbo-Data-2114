@@ -96,19 +96,14 @@
   <% end %>
 </div>
 
-<button type="button" class="btn button-default rounded-circle button-modal"
-        data-bs-toggle="modal" data-bs-target="#newPostModal">
-  <i class="bi bi-plus-lg fs-3"></i>
-</button>
-
-<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal- p-default" id="newPostModalLabel">Add a New CarboMeal</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="offcanvas offcanvas-end", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
+  <div class="offcanvas-dialog offcanvas-dialog-centered">
+    <div class="offcanvas-content">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Add a New CarboMeal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="offcanvas-body">
         <%= render "form", recipe: @recipe %>
       </div>
     </div>
