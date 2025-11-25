@@ -12,8 +12,21 @@
                 class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
 
   </div>
+  <%# form pour la search bar de recipes#index %>
+  <div class="card shadow-sm rounded-5 mt-4 p-4">
+    <%= form_with url: items_path, method: :get, class: "d-flex" do %>
+      <%= label_tag :query, "Search in your CarboMeals", class: "visually-hidden" %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control me-2",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "button-default" %>
+    <% end %>
+  </div>
 
   <div class="card shadow-sm rounded-5 mt-4 p-4">
+
     <div class="text-center pt-1 pb-3">
       <h1 class="display-5 fw-bold h-default mb-2 mt-2">
         My CarboDucts
