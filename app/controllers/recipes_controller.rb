@@ -5,6 +5,9 @@ class RecipesController < ApplicationController
   def index
     @recipes = current_user.recipes
     @recipe = Recipe.new
+    # For the SuperCarbo chat option
+    @chat_item = ChatItem.new
+    @items = current_user.items
   end
 
   def show
