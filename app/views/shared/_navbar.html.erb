@@ -1,4 +1,4 @@
-<% unless current_page?(root_path) %>
+<% unless current_page?(home_path) %>
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
 
@@ -15,18 +15,6 @@
                   data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter?" },
                   class: "navbar-brand" do %>
             <span class="bi bi-box-arrow-right"></span>
-          <% end %>
-        <% end %>
-
-        <% if current_page?(root_path) %>
-          <%= link_to new_user_session_path, class: "navbar-brand" do %>
-            <span class="bi bi-box-arrow-in-right"></span>
-          <% end %>
-        <% end %>
-
-        <% if current_page?(root_path) %>
-          <%= link_to new_user_registration_path, class: "navbar-brand" do %>
-            <span class="bi bi-person-plus-fill"></span>
           <% end %>
         <% end %>
       </div>

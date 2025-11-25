@@ -1,0 +1,17 @@
+// Custom offcanvas styling
+.offcanvas {
+  // Half screen height from bottom
+  &.offcanvas-end {
+    top: auto;
+    bottom: 0;
+    height: 85vh;
+    border-radius: 2rem 2rem 0 0;
+    border: none;
+  }
+}
+
+
+.offcanvas-backdrop.show {
+  opacity: 0.6;
+  background-color: #000;
+}

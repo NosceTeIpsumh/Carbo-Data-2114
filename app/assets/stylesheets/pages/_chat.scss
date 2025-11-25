@@ -1,3 +1,14 @@
+.title-chat {
+  font-family: "Bruno Ace SC", sans-serif;
+  background: $navbartext-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-recipe {
+  font-family: "Playfair Display", serif;
+}
 // Chat message bubbles
 
 .message-bubble {
@@ -40,9 +51,12 @@
 
 // User message (left side) - light grey
 .user-message {
-  background-color: #FAF8F1;
+  background-color: #f4e3dc;
   color: $text-color-paragraph;
   margin-right: auto;
+  font-style: italic;
+  font-weight: 600;
+  border: 1.5px solid #d34e4e;
 
   code {
     background-color: darken($text-light-grey, 5%);
@@ -53,11 +67,48 @@
   }
 }
 
+.placeholder-italic::placeholder {
+font-style: italic;
+opacity: 0.8;
+}
+
+.btn-save {
+  background-color: #d34e4e;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  border: 1px solid #840101ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;            // espace entre icône et texte
+  padding: 0.4rem 0.8rem;
+  transition: background-color 0.3s, transform 0.2s, color 0.3s;
+
+  &:hover {
+    background-color: #ce3d3d;  // rouge plus foncé
+    transform: scale(1.05);      // léger agrandissement
+    cursor: pointer;
+    color: #fff;                 // assure que le texte reste blanc
+  }
+
+  .btn-icon {
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  &:hover .btn-icon {
+    transform: rotate(-20deg);   // petite rotation de l’icône au hover
+    color: #edad94;              // icône dorée au hover pour effet fun
+  }
+}
+
 // Assistant message (right side) - red/coral gradient
 .assistant-message {
   background: linear-gradient(135deg, #d34e4e 0%, #ce7e5a 100%);
   color: white;
   margin-left: auto;
+  font-style: italic;
+  border: 1.5px solid #d34e4e;
+
+
 
   // Larger on mobile for better readability
   max-width: 90%;
@@ -149,5 +200,44 @@
 
   #messages {
     max-height: 55vh;
+  }
+}
+
+// Typing indicator animation for streaming
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: typing-bounce 1.4s infinite ease-in-out both;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
+}
+
+@keyframes typing-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

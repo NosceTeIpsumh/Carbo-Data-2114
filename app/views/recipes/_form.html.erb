@@ -8,6 +8,7 @@
         <%= f.input :difficulty, collection: [1,2,3,4,5], prompt: "1 pour très facile, 5 pour très difficile", input_html: { class: "form-select custom-font" } %>
         <%= f.input :indice_gly, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
         <%= f.input :ratio_glucide, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
+        <%= f.input :photo, as: :file %>
         <%= f.submit "Enregistre la recette", class: "btn button-default w-100 rounded-5 mb-2" %>
       <% end %>
       <div class="d-grid gap-3">

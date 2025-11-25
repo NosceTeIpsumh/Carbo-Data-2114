@@ -1,0 +1,4 @@
+<%= simple_form_for [@chat, @message] do |f| %>
+  <%= f.input :content, label: false, required: true, placeholder: "How can I help you?", innerHTML: { class: "muted-text"} %>
+  <%= f.button :submit, 'Send', class: 'button-default mb-2 rounded-5' %>
+<% end %>

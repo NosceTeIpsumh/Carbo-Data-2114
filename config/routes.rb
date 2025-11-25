@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root to: "pages#home"
-  get "feed", to: "pages#feed"
+  root to: "pages#feed", as: "feed"
+  get "home", to: "pages#home"
   get "profile", to: "pages#profile"
   get 'search', to: 'search#index', as: 'browse'
 
@@ -23,4 +23,3 @@ Rails.application.routes.draw do
   resources :recipe_items, only: [:new, :create]
   resources :chat_items, only: [:new, :create]
 end
-
