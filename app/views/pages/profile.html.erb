@@ -112,12 +112,12 @@
                 <h4 class="slide-title">
                   <i class="fas fa-fire me-2"></i>Latest Recipes
                 </h4>
-                <%= link_to "View All", "#recipes", class: "slide-link", data: { bs_toggle: "tab" } %>
+                <%= link_to "View All", recipes_path, class: "slide-link", data: { bs_toggle: "tab" } %>
               </div>
 
               <% if current_user.recipes.any? %>
                 <div class="carousel-cards-wrapper">
-                  <% current_user.recipes.limit(3).each do |recipe| %>
+                  <% @last_recipes.limit(3).each do |recipe| %>
                     <%= link_to recipe_path(recipe), class: "hub-carousel-card text-decoration-none" do %>
                       <div class="recipe-card-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=750&fit=crop');">
                         <div class="recipe-card-content">
@@ -153,7 +153,7 @@
 
               <% if current_user.items.any? %>
                 <div class="carousel-cards-wrapper">
-                  <% current_user.items.limit(3).each do |item| %>
+                  <% @last_items.limit(3).each do |item| %>
                     <%= link_to item_path(item), class: "hub-carousel-card" do %>
                       <div class="carousel-card-placeholder">
                         <i class="fas fa-box"></i>
@@ -172,7 +172,7 @@
                 <div class="empty-state-mini">
                   <i class="fas fa-box mb-2"></i>
                   <p>No products yet</p>
-                  <%= link_to "Add your first product", new_item_path, class: "btn btn-sm btn-hub-primary" %>
+                  <%= link_to "Add your first product", items_path, class: "btn btn-sm btn-hub-primary" %>
                 </div>
               <% end %>
             </div>
@@ -202,12 +202,7 @@
       <ul class="nav nav-tabs hub-tabs" id="hubTabs" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="recipes-tab" data-bs-toggle="tab" data-bs-target="#recipes" type="button" role="tab" aria-controls="recipes" aria-selected="true">
-            <i class="fas fa-utensils me-2"></i>All Recipes
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab" aria-controls="products" aria-selected="false">
-            <i class="fas fa-box me-2"></i>All Products
+            <i class="fas fa-utensils me-2"></i>My posts
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -223,10 +218,10 @@
         <!-- All Recipes Tab -->
         <div class="tab-pane fade show active" id="recipes" role="tabpanel" aria-labelledby="recipes-tab">
           <div class="row g-4 mt-2">
-            <% if current_user.recipes.any? %>
-              <% current_user.recipes.each do |recipe| %>
+            <% if current_user.posts.any? %>
+              <% current_user.posts.each do |post| %>
                 <div class="col-6 col-md-4 col-lg-3">
-                  <%= link_to recipe_path(recipe), class: "hub-card-link" do %>
+                  <%= link_to post_path(post), class: "hub-card-link" do %>
                     <div class="hub-card">
                       <div class="hub-card-placeholder">
                         <i class="fas fa-utensils"></i>
@@ -238,7 +233,7 @@
                         </div>
                       </div>
                       <div class="hub-card-title">
-                        <%= recipe.name %>
+                        <%= post.title %>
                       </div>
                     </div>
                   <% end %>
@@ -248,44 +243,8 @@
               <div class="col-12">
                 <div class="empty-state">
                   <i class="fas fa-utensils mb-3"></i>
-                  <p>No recipes in your collection</p>
-                  <%= link_to "Create your first recipe", new_recipe_path, class: "btn btn-hub-primary" %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
-        <!-- All Products Tab -->
-        <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="products-tab">
-          <div class="row g-4 mt-2">
-            <% if current_user.items.any? %>
-              <% current_user.items.each do |item| %>
-                <div class="col-6 col-md-4 col-lg-3">
-                  <%= link_to item_path(item), class: "hub-card-link" do %>
-                    <div class="hub-card">
-                      <div class="hub-card-placeholder">
-                        <i class="fas fa-box"></i>
-                      </div>
-                      <div class="hub-card-overlay">
-                        <div class="hub-card-stats">
-                          <span><i class="fas fa-heart"></i> 18</span>
-                          <span><i class="fas fa-eye"></i> 45</span>
-                        </div>
-                      </div>
-                      <div class="hub-card-title">
-                        <%= item.name %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-            <% else %>
-              <div class="col-12">
-                <div class="empty-state">
-                  <i class="fas fa-box mb-3"></i>
-                  <p>No products in your collection</p>
-                  <%= link_to "Add your first product", new_item_path, class: "btn btn-hub-primary" %>
+                  <p>No posts in your collection</p>
+                  <%= link_to "Share your first post", posts_path, class: "btn btn-hub-primary" %>
                 </div>
               </div>
             <% end %>

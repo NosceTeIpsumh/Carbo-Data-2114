@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
     else
       @items = current_user.items
     end
+    @items_by_category = @items.group_by(&:category)
     @item = Item.new
   end
 

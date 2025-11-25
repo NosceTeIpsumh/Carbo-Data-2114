@@ -2,20 +2,14 @@
 <% content_for :navbar_text_path, feed_path %>
 
 <div class="container">
-
-  <div class="shadow-sm rounded-5 mt-4 p-4 segment-control-bar segment-control-bar">
-
-    <%= link_to 'CarboMeals', recipes_path,
-                class: "segment-button p-default #{'active' if current_page?(recipes_path)}" %>
-
-    <%= link_to 'CarboDucts', items_path,
-                class: "segment-button p-default #{'active' if current_page?(items_path)}" %>
-
+  <div class="shadow-sm rounded-5 mt-4 p-4 segment-control-bar">
+    <%= link_to 'Carbomeals', recipes_path, class: "segment-button #{'active' if current_page?(recipes_path)}" %>
+    <%= link_to 'Carboducts', items_path, class: "segment-button #{'active' if current_page?(items_path)}" %>
   </div>
-  <%# form pour la search bar de recipes#index %>
+
   <div class="card shadow-sm rounded-5 mt-4 p-4">
     <%= form_with url: items_path, method: :get, class: "d-flex" do %>
-      <%= label_tag :query, "Search in your CarboMeals", class: "visually-hidden" %>
+      <%= label_tag :query, "Search in your CarboDucts", class: "visually-hidden" %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control me-2",
@@ -25,47 +19,83 @@
     <% end %>
   </div>
 
-  <div class="card shadow-sm rounded-5 mt-4 p-4">
-
-    <div class="text-center pt-1 pb-3">
-      <h1 class="display-5 fw-bold h-default mb-2 mt-2">
-        My CarboDucts
-      </h1>
-    </div>
-    <div class="row row-cols-lg-4 align-items-stretch">
-      <% if @items.any? %>
-        <% @items.each do |item| %>
-          <div class="col-lg-4 mb-1">
-            <div class="card-recipe-bis p-3 rounded-5">
-
-            <h5 class="mb-3 h-default">
-              <%= item.name %>
-            </h5>
-
-              <p class="flex-grow- p-default">- <%= item.brand %></p>
-              <p class="flex-grow- p-default">- <%= item.category %></p>
-              <p class="flex-grow- p-default">- <%= item.indice_gly %> IG</p>
-              <p class="flex-grow- p-default">- <%= item.ratio_glucide %> C/100gr</p>
-
-              <%= link_to edit_item_path(item), class: "d-block text-decoration-none" do %>
-                <div class="div-button-recipe access-button-recipe rounded-5">
-                  <p>Modify this Carboduct</p>
+  <% if @items_by_category.any? %>
+    <% @items_by_category.each_with_index do |(category, items), cat_index| %>
+      <div class="carousel-section mt-4">
+        <h2 class="h-default mb-3">
+          <span class="recipe-count recipe-count-medium">
+            <i class="bi bi-box-seam-fill"></i>
+            <span class="count-number"><%= items.count %></span>
+          </span>
+          <%= category || "Sans catégorie" %>
+        </h2>
+        <div id="items-carousel-<%= cat_index %>" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% items.each_with_index do |item, index| %>
+              <div class="carousel-item <%= 'active' if index == 0 %>">
+                <div class="recipe-card">
+                  <div class="recipe-card-image item-card-gradient gi-gradient-<%= item.gi_level %>">
+                    <div class="recipe-card-badges">
+                      <div class="gi-badge gi-<%= item.gi_level %>">
+                        <i class="bi bi-droplet-fill"></i>
+                        <span><%= item.indice_gly %></span>
+                      </div>
+                      <div class="carb-badge carb-<%= item.gi_level %>">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <span><%= item.ratio_glucide %>g</span>
+                      </div>
+                    </div>
+                    <div class="recipe-card-content">
+                      <h3><%= item.name %></h3>
+                      <p class="item-brand"><%= item.brand %></p>
+                      <div class="recipe-ratings">
+                        <div class="rating-item">
+                          <span class="rating-label">GI:</span>
+                          <div class="rating-stars"><%= '★' * item.gi_stars + '☆' * (5 - item.gi_stars) %></div>
+                        </div>
+                        <div class="rating-item">
+                          <span class="rating-label">Glucides:</span>
+                          <div class="rating-stars"><%= '★' * item.carb_stars + '☆' * (5 - item.carb_stars) %></div>
+                        </div>
+                      </div>
+                      <div class="item-actions mt-3">
+                        <%= link_to edit_item_path(item), class: "btn btn-sm btn-outline-light me-2" do %>
+                          <i class="bi bi-pencil"></i> Modifier
+                        <% end %>
+                        <%= link_to item_path(item),
+                            data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce CarboDuct ?" },
+                            class: "btn btn-sm btn-outline-danger" do %>
+                          <i class="bi bi-trash"></i> Supprimer
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              <% end %>
-
-              <%= link_to items_path,
-                  data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer cette recette ?" },
-                  class: "d-block text-decoration-none" do %>
-                <div class="div-button-recipe delete-button-recipe rounded-5">
-                  <p>Supprimer</p>
-                </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      <% end %>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#items-carousel-<%= cat_index %>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#items-carousel-<%= cat_index %>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-indicators hub-carousel-indicators">
+            <% items.each_with_index do |_, index| %>
+              <button type="button" data-bs-target="#items-carousel-<%= cat_index %>" data-bs-slide-to="<%= index %>"
+                      class="<%= 'active' if index == 0 %>" <%= 'aria-current="true"' if index == 0 %>></button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card shadow-sm rounded-5 mt-4 p-4 text-center">
+      <p class="p-default mb-0">Vous n'avez pas encore de CarboDucts. Ajoutez-en un!</p>
     </div>
-  </div>
+  <% end %>
 </div>
 
 
@@ -106,16 +136,16 @@
                     as: :radio_buttons,
                     label: false,
                     collection: [
-                      "Légumes et fruits",
-                      "Féculents et légumes secs",
-                      "Lait et substituts",
-                      "Viandes et substituts",
-                      "Matières grasses",
-                      "Produits sucrées",
-                      "Eaux",
-                      "Alcools",
-                      "Boissons sucrées",
-                      "Vitamines et Minéraux"
+                      "Fruits & Vegetables",
+                      "Grains & Legumes",
+                      "Dairy & Substitutes",
+                      "Meat & Substitutes",
+                      "Fats & Oils",
+                      "Sweets & Sugars",
+                      "Water",
+                      "Alcohol",
+                      "Sugary Drinks",
+                      "Vitamins & Minerals"
                     ],
                     collection_wrapper_tag: 'div',
                     collection_wrapper_class: 'category-wrapper',

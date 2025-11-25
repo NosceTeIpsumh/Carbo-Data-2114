@@ -211,7 +211,7 @@ Item.create!([
   {
     name: "Whole Wheat Bread",
     brand: "Boulangerie Artisanale",
-    category: "Bakery",
+    category: "Grains & Legumes",
     indice_gly: 69,
     ratio_glucide: 45,
     user_id: user_one.id
@@ -219,7 +219,7 @@ Item.create!([
   {
     name: "Oats (Rolled)",
     brand: "Quaker",
-    category: "Cereal",
+    category: "Grains & Legumes",
     indice_gly: 55,
     ratio_glucide: 66,
     user_id: user_one.id
@@ -227,7 +227,7 @@ Item.create!([
   {
     name: "Apple",
     brand: "N/A",
-    category: "Fruit",
+    category: "Fruits & Vegetables",
     indice_gly: 36,
     ratio_glucide: 14,
     user_id: user_one.id
@@ -235,7 +235,7 @@ Item.create!([
   {
     name: "White Rice",
     brand: "Uncle Ben's",
-    category: "Grain",
+    category: "Grains & Legumes",
     indice_gly: 73,
     ratio_glucide: 28,
     user_id: user_two.id
@@ -243,7 +243,7 @@ Item.create!([
   {
     name: "Lentils (Brown)",
     brand: "Generic",
-    category: "Legume",
+    category: "Grains & Legumes",
     indice_gly: 32,
     ratio_glucide: 11,
     user_id: user_two.id
@@ -252,7 +252,7 @@ Item.create!([
   {
     name: "Brown Rice",
     brand: "Tilda",
-    category: "Grain",
+    category: "Grains & Legumes",
     indice_gly: 50,
     ratio_glucide: 25,
     user_id: user_three.id
@@ -260,7 +260,7 @@ Item.create!([
   {
     name: "Sweet Potato",
     brand: "N/A",
-    category: "Vegetable",
+    category: "Fruits & Vegetables",
     indice_gly: 63,
     ratio_glucide: 20,
     user_id: user_four.id
@@ -268,7 +268,7 @@ Item.create!([
   {
     name: "Whole Grain Pasta (Spaghetti)",
     brand: "Barilla",
-    category: "Pasta",
+    category: "Grains & Legumes",
     indice_gly: 45,
     ratio_glucide: 30,
     user_id: user_one.id
@@ -276,7 +276,7 @@ Item.create!([
   {
     name: "Yogurt (Plain Greek)",
     brand: "Fage",
-    category: "Dairy",
+    category: "Dairy & Substitutes",
     indice_gly: 18,
     ratio_glucide: 4,
     user_id: user_two.id
@@ -284,7 +284,7 @@ Item.create!([
   {
     name: "Quinoa",
     brand: "Generic",
-    category: "Grain",
+    category: "Grains & Legumes",
     indice_gly: 53,
     ratio_glucide: 21,
     user_id: user_three.id
@@ -292,7 +292,7 @@ Item.create!([
   {
     name: "Chickpeas (Canned)",
     brand: "Casbah",
-    category: "Legume",
+    category: "Grains & Legumes",
     indice_gly: 33,
     ratio_glucide: 19,
     user_id: user_four.id
@@ -300,7 +300,7 @@ Item.create!([
   {
     name: "Watermelon",
     brand: "N/A",
-    category: "Fruit",
+    category: "Fruits & Vegetables",
     indice_gly: 72, # High GI, but low GL
     ratio_glucide: 8,
     user_id: user_one.id
@@ -308,7 +308,7 @@ Item.create!([
   {
     name: "Rye Bread (Pumpernickel)",
     brand: "German Bakery",
-    category: "Bakery",
+    category: "Grains & Legumes",
     indice_gly: 55,
     ratio_glucide: 42,
     user_id: user_two.id
@@ -316,7 +316,7 @@ Item.create!([
   {
     name: "Carrots (Raw)",
     brand: "N/A",
-    category: "Vegetable",
+    category: "Fruits & Vegetables",
     indice_gly: 35,
     ratio_glucide: 7,
     user_id: user_three.id
@@ -324,7 +324,7 @@ Item.create!([
   {
     name: "Corn Flakes",
     brand: "Kellogg's",
-    category: "Cereal",
+    category: "Grains & Legumes",
     indice_gly: 81,
     ratio_glucide: 84,
     user_id: user_four.id
@@ -332,7 +332,7 @@ Item.create!([
   {
     name: "Milk (Skim)",
     brand: "Lactel",
-    category: "Dairy",
+    category: "Dairy & Substitutes",
     indice_gly: 32,
     ratio_glucide: 5,
     user_id: user_one.id
@@ -340,7 +340,7 @@ Item.create!([
   {
     name: "Table Sugar (Sucrose)",
     brand: "Generic",
-    category: "Sweetener",
+    category: "Sweets & Sugars",
     indice_gly: 65,
     ratio_glucide: 100,
     user_id: user_two.id
@@ -348,7 +348,7 @@ Item.create!([
   {
     name: "Puffed Rice Cakes",
     brand: "Nature Valley",
-    category: "Snack",
+    category: "Grains & Legumes",
     indice_gly: 82,
     ratio_glucide: 80,
     user_id: user_three.id
@@ -356,7 +356,7 @@ Item.create!([
   {
     name: "Orange",
     brand: "N/A",
-    category: "Fruit",
+    category: "Fruits & Vegetables",
     indice_gly: 43,
     ratio_glucide: 12,
     user_id: user_four.id
@@ -364,7 +364,7 @@ Item.create!([
   {
     name: "Popcorn (Air-Popped)",
     brand: "N/A",
-    category: "Snack",
+    category: "Grains & Legumes",
     indice_gly: 55,
     ratio_glucide: 78,
     user_id: user_one.id

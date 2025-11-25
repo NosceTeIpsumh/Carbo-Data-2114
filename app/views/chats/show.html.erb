@@ -9,7 +9,7 @@
     <h1 class="title-chat display-3 text-center mt-4 mb-5">SuperCarbo</h1>
 
     <h2 id="chat_title" class="title-recipe display-6 mb-4"><%= @chat.title %></h2>
-    
+
     <div id="messages">
       <% @chat.messages.each do |message| %>
         <%= render "messages/message", message: message, chat: @chat %>
