@@ -8,67 +8,48 @@
   </div>
 
   <%
-    # Define carousel data
     carousels = [
-      {
-        id: 'carousel1',
-        title: 'Low GI recipes',
-        recipes: [
-          { name: 'Quinoa Salad Bowl', image: 'photo-1512621776951-a57141f2eefd', gi: 35, carbs: '20g', gi_stars: 2, carbs_stars: 2, level: 'low' },
-          { name: 'Fresh Veggie Salad', image: 'photo-1546069901-ba9599a7e63c', gi: 40, carbs: '25g', gi_stars: 2, carbs_stars: 2, level: 'low' },
-          { name: 'Healthy Soup Bowl', image: 'photo-1540189549336-e6e99c3679fe', gi: 30, carbs: '18g', gi_stars: 2, carbs_stars: 1, level: 'low' }
-        ]
-      },
-      {
-        id: 'carousel2',
-        title: 'Med GI recipes',
-        recipes: [
-          { name: 'Balanced Bowl', image: 'photo-1482049016688-2d3e1b311543', gi: 65, carbs: '45g', gi_stars: 3, carbs_stars: 3, level: 'medium' },
-          { name: 'Mixed Food Plate', image: 'photo-1504674900247-0877df9cc836', gi: 60, carbs: '40g', gi_stars: 3, carbs_stars: 3, level: 'medium' },
-          { name: 'Fresh Salad Mix', image: 'photo-1498837167922-ddd27525d352', gi: 58, carbs: '38g', gi_stars: 3, carbs_stars: 3, level: 'medium' }
-        ]
-      },
-      {
-        id: 'carousel3',
-        title: 'High GI recipes',
-        recipes: [
-          { name: 'Burger & Fries', image: 'photo-1555939594-58d7cb561ad1', gi: 85, carbs: '70g', gi_stars: 5, carbs_stars: 5, level: 'high' },
-          { name: 'Sweet Pancakes', image: 'photo-1567620905732-2d1ec7ab7445', gi: 90, carbs: '75g', gi_stars: 5, carbs_stars: 5, level: 'high' },
-          { name: 'Burrito Bowl', image: 'photo-1529042410759-befb1204b468', gi: 80, carbs: '68g', gi_stars: 4, carbs_stars: 4, level: 'high' }
-        ]
-      }
+      { id: 'carousel1', title: 'Low GI recipes', recipes: @low_gi_recipes, level: 'low' },
+      { id: 'carousel2', title: 'Med GI recipes', recipes: @medium_gi_recipes, level: 'medium' },
+      { id: 'carousel3', title: 'High GI recipes', recipes: @high_gi_recipes, level: 'high' }
     ]
   %>
 
   <% carousels.each do |carousel| %>
     <div class="carousel-section mt-4">
-      <h2 class="h-default mb-3"><%= carousel[:title] %></h2>
+      <h2 class="h-default mb-3">
+        <span class="recipe-count recipe-count-<%= carousel[:level] %>">
+          <i class="bi bi-book-fill"></i>
+          <span class="count-number"><%= carousel[:recipes].count %></span>
+        </span>
+        <%= carousel[:title] %>
+      </h2>
       <div id="<%= carousel[:id] %>" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <% carousel[:recipes].each_with_index do |recipe, index| %>
             <div class="carousel-item <%= 'active' if index == 0 %>">
               <div class="recipe-card">
-                <div class="recipe-card-image" style="background-image: url('https://images.unsplash.com/<%= recipe[:image] %>?w=500&h=750&fit=crop');">
+                <div class="recipe-card-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=750&fit=crop');">
                   <div class="recipe-card-badges">
-                    <div class="gi-badge gi-<%= recipe[:level] %>">
+                    <div class="gi-badge gi-<%= recipe.gi_level %>">
                       <i class="bi bi-droplet-fill"></i>
-                      <span><%= recipe[:gi] %></span>
+                      <span><%= recipe.indice_gly %></span>
                     </div>
-                    <div class="carb-badge carb-<%= recipe[:level] %>">
+                    <div class="carb-badge carb-<%= recipe.gi_level %>">
                       <i class="bi bi-lightning-charge-fill"></i>
-                      <span><%= recipe[:carbs] %></span>
+                      <span><%= recipe.ratio_glucide %>g</span>
                     </div>
                   </div>
                   <div class="recipe-card-content">
-                    <h3><%= recipe[:name] %></h3>
+                    <h3><%= recipe.name %></h3>
                     <div class="recipe-ratings">
                       <div class="rating-item">
                         <span class="rating-label">GI:</span>
-                        <div class="rating-stars"><%= '★' * recipe[:gi_stars] + '☆' * (5 - recipe[:gi_stars]) %></div>
+                        <div class="rating-stars"><%= '★' * recipe.gi_stars + '☆' * (5 - recipe.gi_stars) %></div>
                       </div>
                       <div class="rating-item">
                         <span class="rating-label">Glucides:</span>
-                        <div class="rating-stars"><%= '★' * recipe[:carbs_stars] + '☆' * (5 - recipe[:carbs_stars]) %></div>
+                        <div class="rating-stars"><%= '★' * recipe.carb_stars + '☆' * (5 - recipe.carb_stars) %></div>
                       </div>
                     </div>
                   </div>

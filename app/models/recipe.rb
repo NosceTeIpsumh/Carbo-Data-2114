@@ -13,6 +13,28 @@ class Recipe < ApplicationRecord
     create(parsed_data.merge(user: user))
   end
 
+  def gi_level
+    return 'low' if indice_gly < 55
+    return 'medium' if indice_gly <= 70
+    'high'
+  end
+
+  def gi_stars
+    return 5 if indice_gly < 40
+    return 4 if indice_gly < 55
+    return 3 if indice_gly < 70
+    return 2 if indice_gly < 85
+    1
+  end
+
+  def carb_stars
+    return 5 if ratio_glucide < 20
+    return 4 if ratio_glucide < 35
+    return 3 if ratio_glucide < 50
+    return 2 if ratio_glucide < 65
+    1
+  end
+
   private
 
   # Parse the markdown text from LLM response

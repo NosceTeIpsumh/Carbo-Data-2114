@@ -1,6 +1,49 @@
 // Carousel styles
 .carousel-section {
   margin-bottom: 2rem;
+
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .recipe-count {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      font-size: 2rem;
+    }
+
+    .count-number {
+      position: absolute;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #000;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .recipe-count-low i {
+    color: #28a745;
+  }
+
+  .recipe-count-medium i {
+    color: #ffc107;
+  }
+
+  .recipe-count-high i {
+    color: #dc3545;
+  }
 }
 
 .recipe-card {

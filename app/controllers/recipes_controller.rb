@@ -5,6 +5,10 @@ class RecipesController < ApplicationController
   def index
     @recipes = current_user.recipes
     @recipe = Recipe.new
+    # Group recipes by GI level
+    @low_gi_recipes = current_user.recipes.where('indice_gly < ?', 55).order(created_at: :desc)
+    @medium_gi_recipes = current_user.recipes.where('indice_gly >= ? AND indice_gly <= ?', 55, 70).order(created_at: :desc)
+    @high_gi_recipes = current_user.recipes.where('indice_gly > ?', 70).order(created_at: :desc)
   end
 
   def show
