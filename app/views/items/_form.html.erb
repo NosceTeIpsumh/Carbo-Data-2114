@@ -1,9 +1,9 @@
 <%= simple_form_for @item do |f| %>
-  <%= f.input :name, placeholder: "Exemple: patate douce, entrecôte, banane...", input_html: { class: "placeholder-custom" } %>
-  <%= f.input :brand, placeholder: "Exemple: Panzani, Charal, Cassegrain...", input_html: { class: "placeholder-custom" } %>
+  <%= f.input :name, placeholder: "E.g.: sweet potato, steak, banana...", input_html: { class: "placeholder-custom" } %>
+  <%= f.input :brand, placeholder: "E.g.: Heinz, Kellogg's, Kraft...", input_html: { class: "placeholder-custom" } %>
   <%= f.input :category, collection: ["Fruits & Vegetables", "Grains & Legumes", "Dairy & Substitutes", "Meat & Substitutes", "Fats & Oils", "Sweets & Sugars", "Water", "Alcohol", "Sugary Drinks", "Vitamins & Minerals"], prompt: false, input_html: { class: "form-select custom-font" } %>
-  <%= f.input :indice_gly, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
-  <%= f.input :ratio_glucide, placeholder: "Pour 100g. Exemple: 27", input_html: { class: "placeholder-custom" } %>
+  <%= f.input :indice_gly, placeholder: "Between 1 and 100", input_html: { class: "placeholder-custom" } %>
+  <%= f.input :ratio_glucide, placeholder: "Per 100g. E.g.: 27", input_html: { class: "placeholder-custom" } %>
   <%= f.input :photo, as: :file %>
-  <%= f.submit "Enregistrer le CarboDuct", class: "btn button-default w-100" %>
+  <%= f.submit "Save CarboDuct", class: "btn button-default w-100" %>
 <% end %>

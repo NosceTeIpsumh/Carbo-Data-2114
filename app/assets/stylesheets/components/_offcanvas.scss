@@ -1,12 +1,11 @@
-// Custom offcanvas styling
 .offcanvas {
-  // Half screen height from bottom
-  &.offcanvas-end {
+  &.offcanvas-bottom {
     top: auto;
     bottom: 0;
-    height: 85vh;
+    height: auto;
     border-radius: 2rem 2rem 0 0;
     border: none;
+    overflow-y: auto;
   }
 }
 

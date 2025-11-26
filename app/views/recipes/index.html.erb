@@ -68,7 +68,7 @@
                         </div>
                       </div>
                       <div class="rating-item">
-                        <span class="rating-label">Glucides:</span>
+                        <span class="rating-label">Carbs:</span>
                         <div class="rating-icons rating-carb-<%= recipe.gi_level %>">
                           <% reversed_carb = [5 - recipe.carb_stars, 1].max %>
                           <% reversed_carb.times do %>
@@ -91,7 +91,7 @@
   <% end %>
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel" data-bs-backdrop="true" data-controller="wizard">
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel" data-bs-backdrop="true" data-controller="wizard">
   <div class="offcanvas-dialog offcanvas-dialog-centered">
     <div class="offcanvas-content">
       <div class="offcanvas-header">
@@ -104,14 +104,14 @@
           <div class="container py-1">
             <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
               <h6 class="h-default text-center fw-bold mb-4">
-                Comment voulez-vous créer votre CarboMeal?
+                How would you like to create your CarboMeal?
               </h6>
               <div class="d-grid gap-3">
                 <button type="button" class="btn button-default btn-lg rounded-5" data-action="wizard#goToNext" data-current-step="0" data-next-step="1">
-                  <i class="fa-solid fa-pencil me-2"></i>Ajouter moi-même
+                  <i class="fa-solid fa-pencil me-2"></i>Add manually
                 </button>
                 <button type="button" class="btn button-default btn-lg rounded-5" data-action="wizard#goToNext" data-current-step="0" data-next-step="4">
-                  <i class="fa-solid fa-robot me-2"></i>Demander à SuperCarbo
+                  <i class="fa-solid fa-robot me-2"></i>Ask SuperCarbo
                 </button>
               </div>
             </div>
@@ -123,16 +123,16 @@
             <div class="container py-1">
               <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
                 <h6 class="h-default text-center fw-bold mb-4">
-                  Étape 1: Nom et Description
+                  Step 1: Name and Description
                 </h6>
-                <%= f.input :name, placeholder: "Donne un nom à ta recette...", input_html: { class: "placeholder-custom" } %>
-                <%= f.input :description, placeholder: "Une description brève de ta recette", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :name, placeholder: "Give your recipe a name...", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :description, placeholder: "A brief description of your recipe", input_html: { class: "placeholder-custom" } %>
                 <div class="d-flex justify-content-between mt-3">
                   <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="1" data-previous-step="0">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                    <i class="fa-solid fa-arrow-left me-2"></i>Back
                   </button>
                   <button type="button" class="btn button-default rounded-5" data-action="wizard#goToNext" data-current-step="1" data-next-step="2">
-                    Suivant<i class="fa-solid fa-arrow-right ms-2"></i>
+                    Next<i class="fa-solid fa-arrow-right ms-2"></i>
                   </button>
                 </div>
               </div>
@@ -143,16 +143,16 @@
             <div class="container py-1">
               <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
                 <h6 class="h-default text-center fw-bold mb-4">
-                  Étape 2: Instructions et Difficulté
+                  Step 2: Instructions and Difficulty
                 </h6>
-                <%= f.input :steps, placeholder: "Une description pas à pas de ta recette", input_html: { class: "placeholder-custom", rows: 5 } %>
-                <%= f.input :difficulty, collection: [1,2,3,4,5], prompt: "1 pour très facile, 5 pour très difficile", input_html: { class: "form-select custom-font" } %>
+                <%= f.input :steps, placeholder: "Step by step instructions for your recipe", input_html: { class: "placeholder-custom", rows: 5 } %>
+                <%= f.input :difficulty, collection: [1,2,3,4,5], prompt: "1 for very easy, 5 for very difficult", input_html: { class: "form-select custom-font" } %>
                 <div class="d-flex justify-content-between mt-3">
                   <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="2" data-previous-step="1">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                    <i class="fa-solid fa-arrow-left me-2"></i>Back
                   </button>
                   <button type="button" class="btn button-default rounded-5" data-action="wizard#goToNext" data-current-step="2" data-next-step="3">
-                    Suivant<i class="fa-solid fa-arrow-right ms-2"></i>
+                    Next<i class="fa-solid fa-arrow-right ms-2"></i>
                   </button>
                 </div>
               </div>
@@ -163,15 +163,15 @@
             <div class="container py-1">
               <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
                 <h6 class="h-default text-center fw-bold mb-4">
-                  Étape 3: Données Nutritionnelles
+                  Step 3: Nutritional Data
                 </h6>
-                <%= f.input :indice_gly, placeholder: "Indice glycémique (1-100)", input_html: { class: "placeholder-custom" } %>
-                <%= f.input :ratio_glucide, placeholder: "Ratio glucidique (1-100)", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :indice_gly, placeholder: "Glycemic index (1-100)", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :ratio_glucide, placeholder: "Carb ratio (1-100)", input_html: { class: "placeholder-custom" } %>
                 <div class="d-flex justify-content-between mt-3">
                   <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="3" data-previous-step="2">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                    <i class="fa-solid fa-arrow-left me-2"></i>Back
                   </button>
-                  <%= f.submit "Enregistrer", class: "btn button-default rounded-5" %>
+                  <%= f.submit "Save", class: "btn button-default rounded-5" %>
                 </div>
               </div>
             </div>
@@ -182,7 +182,7 @@
           <div class="container py-1">
             <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
               <h6 class="h-default text-center fw-bold mb-4">
-                Choisissez quels CarboDucts vous voulez intégrer dans vos recettes! Si vous n'en choisissez aucun, notre SuperCarbo s'en occupera!
+                Choose which CarboDucts you want to include in your recipes! If you don't select any, our SuperCarbo will take care of it!
               </h6>
 
               <% if @items.any? %>
@@ -200,19 +200,19 @@
                   %>
                   <div class="d-flex justify-content-between mt-4">
                     <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="4" data-previous-step="0">
-                      <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                      <i class="fa-solid fa-arrow-left me-2"></i>Back
                     </button>
-                    <%= f.button :submit, "Démarrer le Chat", class: 'btn button-default rounded-5' %>
+                    <%= f.button :submit, "Start Chat", class: 'btn button-default rounded-5' %>
                   </div>
                 <% end %>
               <% else %>
-                <p class="text-center mb-4 p-default">Vous n'avez pas encore de CarboDucts. SuperCarbo créera une recette sans ingrédients spécifiques.</p>
+                <p class="text-center mb-4 p-default">You don't have any CarboDucts yet. SuperCarbo will create a recipe without specific ingredients.</p>
                 <%= simple_form_for @chat_item do |f| %>
                   <div class="d-flex justify-content-between mt-4">
                     <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="4" data-previous-step="0">
-                      <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                      <i class="fa-solid fa-arrow-left me-2"></i>Back
                     </button>
-                    <%= f.button :submit, "Démarrer le Chat", class: 'btn button-default rounded-5' %>
+                    <%= f.button :submit, "Start Chat", class: 'btn button-default rounded-5' %>
                   </div>
                 <% end %>
               <% end %>

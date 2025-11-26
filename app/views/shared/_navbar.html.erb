@@ -12,7 +12,7 @@
       <div class="ms-auto d-flex gap-2">
         <% if current_page?(profile_path) %>
           <%= link_to destroy_user_session_path,
-                  data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter?" },
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?" },
                   class: "navbar-brand" do %>
             <span class="bi bi-box-arrow-right"></span>
           <% end %>

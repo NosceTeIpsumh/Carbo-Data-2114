@@ -62,7 +62,7 @@
                         <i class="bi bi-pencil"></i>
                       <% end %>
                       <%= link_to item_path(item),
-                          data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce CarboDuct ?" },
+                          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this CarboDuct?" },
                           class: "item-icon-link item-icon-delete" do %>
                         <i class="bi bi-trash"></i>
                       <% end %>
@@ -85,7 +85,7 @@
                         </div>
                       </div>
                       <div class="rating-item">
-                        <span class="rating-label">Glucides:</span>
+                        <span class="rating-label">Carbs:</span>
                         <div class="rating-icons rating-carb-<%= item.gi_level %>">
                           <% reversed_carb = [5 - item.carb_stars, 1].max %>
                           <% reversed_carb.times do %>
@@ -107,13 +107,13 @@
     <% end %>
   <% else %>
     <div class="card shadow-sm rounded-5 mt-4 p-4 text-center">
-      <p class="p-default mb-0">Vous n'avez pas encore de CarboDucts. Ajoutez-en un!</p>
+      <p class="p-default mb-0">You don't have any CarboDucts yet. Add one!</p>
     </div>
   <% end %>
 </div>
 
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel" data-bs-backdrop="true" data-controller="wizard">
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel" data-bs-backdrop="true" data-controller="wizard">
   <div class="offcanvas-dialog offcanvas-dialog-centered">
     <div class="offcanvas-content">
       <div class="offcanvas-header">
@@ -127,13 +127,13 @@
             <div class="container py-1">
               <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
                 <h6 class="h-default text-center fw-bold mb-4">
-                  Étape 1: Informations Générales
+                  Step 1: General Information
                 </h6>
-                <%= f.input :name, placeholder: "Exemple: patate douce, entrecôte, banane...", input_html: { class: "placeholder-custom" } %>
-                <%= f.input :brand, placeholder: "Exemple: Panzani, Charal, Cassegrain...", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :name, placeholder: "E.g.: sweet potato, steak, banana...", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :brand, placeholder: "E.g.: Heinz, Kellogg's, Kraft...", input_html: { class: "placeholder-custom" } %>
                 <div class="d-flex justify-content-end mt-3">
                   <button type="button" class="btn button-default rounded-5" data-action="wizard#goToNext" data-current-step="0" data-next-step="1">
-                    Suivant<i class="fa-solid fa-arrow-right ms-2"></i>
+                    Next<i class="fa-solid fa-arrow-right ms-2"></i>
                   </button>
                 </div>
               </div>
@@ -144,7 +144,7 @@
             <div class="container py-1">
               <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
                 <h6 class="h-default text-center fw-bold mb-4">
-                  Étape 2: Catégorie
+                  Step 2: Category
                 </h6>
                 <%= f.input :category,
                     as: :radio_buttons,
@@ -170,10 +170,10 @@
                 %>
                 <div class="d-flex justify-content-between mt-3">
                   <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="1" data-previous-step="0">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                    <i class="fa-solid fa-arrow-left me-2"></i>Back
                   </button>
                   <button type="button" class="btn button-default rounded-5" data-action="wizard#goToNext" data-current-step="1" data-next-step="2">
-                    Suivant<i class="fa-solid fa-arrow-right ms-2"></i>
+                    Next<i class="fa-solid fa-arrow-right ms-2"></i>
                   </button>
                 </div>
               </div>
@@ -184,15 +184,15 @@
             <div class="container py-1">
               <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
                 <h6 class="h-default text-center fw-bold mb-4">
-                  Étape 3: Données Nutritionnelles
+                  Step 3: Nutritional Data
                 </h6>
-                <%= f.input :indice_gly, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
-                <%= f.input :ratio_glucide, placeholder: "Pour 100g. Exemple: 27", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :indice_gly, placeholder: "Between 1 and 100", input_html: { class: "placeholder-custom" } %>
+                <%= f.input :ratio_glucide, placeholder: "Per 100g. E.g.: 27", input_html: { class: "placeholder-custom" } %>
                 <div class="d-flex justify-content-between mt-3">
                   <button type="button" class="btn btn-outline-secondary rounded-5" data-action="wizard#goToPrevious" data-current-step="2" data-previous-step="1">
-                    <i class="fa-solid fa-arrow-left me-2"></i>Retour
+                    <i class="fa-solid fa-arrow-left me-2"></i>Back
                   </button>
-                  <%= f.submit "Enregistrer", class: "btn button-default rounded-5" %>
+                  <%= f.submit "Save", class: "btn button-default rounded-5" %>
                 </div>
               </div>
             </div>
