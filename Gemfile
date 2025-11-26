@@ -28,6 +28,8 @@ gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
+# solid_queue
+gem "solid_queue"
 #markdown handling
 gem "kramdown"
 gem "rouge"
