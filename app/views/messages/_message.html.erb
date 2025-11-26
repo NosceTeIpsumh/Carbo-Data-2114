@@ -22,11 +22,10 @@
           <% end %>
         </div>
         <% if message.content.present? %>
-          <%= button_to save_recipe_chat_message_path(chat, message),
-              method: :post,
+          <%= link_to save_recipe_chat_message_path(chat, message),
               class: "btn btn-sm mt-2 rounded-5 btn-save",
               style: "background-color: #d34e4e; color: white; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: bold; border: 1px solid #840101ff;",
-              data: { turbo_confirm: "Save this recipe to your CarboMeals?" } do %>
+              data: { turbo_method: :post, turbo_confirm: "Save this recipe to your CarboMeals?" } do %>
                 <i class="fa-regular fa-floppy-disk btn-icon"></i>
                 Save recipe
           <% end %>
