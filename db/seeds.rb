@@ -25,7 +25,7 @@ end
 user_three = User.find_or_create_by!(email: "test3@test.com") do |user|
     user.password = "test2027"
     user.password_confirmation = "test2027"
-    user.profile_name = "Thibault Dup"
+    user.profile_name = "Thibault Dupuis"
 end
 
 user_four = User.find_or_create_by!(email: "test4@test.com") do |user|
