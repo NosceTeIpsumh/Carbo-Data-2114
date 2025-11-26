@@ -2,11 +2,15 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
 
-      <% if content_for?(:navabr_text_label)%>
-        <%= link_to content_for(:navbar_text_path), class: "navbar-brand" do %>
-          <%=content_for(:navabr_text_label) %>
+      <div class="navbar-brand-container">
+        <% if content_for?(:navabr_text_label)%>
+          <%= link_to content_for(:navbar_text_path), class: "navbar-brand" do %>
+            <%=content_for(:navabr_text_label) %>
+          <% end %>
         <% end %>
-      <% end %>
+        <span class="navbar-separator">|</span>
+        <span class="navbar-brand-secondary">Carbodata</span>
+      </div>
 
 
       <div class="ms-auto d-flex gap-2">

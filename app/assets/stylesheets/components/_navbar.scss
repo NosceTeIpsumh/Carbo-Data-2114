@@ -1,5 +1,51 @@
+/* --- NAVBAR LOGO CONTAINER --- */
+.navbar-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+  }
+}
+
 /* --- NAVBAR LOGO --- */
 .navbar-brand {
+  font-family: $navbar-font;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #000;
+  text-shadow: $navbartext-shadow;
+  margin-bottom: 0;
+  margin-right: 0.3rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.1rem;
+  }
+}
+
+/* --- NAVBAR SEPARATOR --- */
+.navbar-separator {
+  font-family: $navbar-font;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #000;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.1rem;
+  }
+}
+
+/* --- NAVBAR SECONDARY BRAND (CarboData) --- */
+.navbar-brand-secondary {
   font-family: $navbar-font;
   font-size: 2.2rem;
   font-weight: 500;
@@ -8,14 +54,14 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: $navbartext-shadow;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+  margin-left: 0.3rem;
 
   @media (max-width: 768px) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.1rem;
   }
 }
 
