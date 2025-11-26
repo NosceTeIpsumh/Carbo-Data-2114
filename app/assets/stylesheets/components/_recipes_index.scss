@@ -1,4 +1,3 @@
-// Carousel styles
 .carousel-section {
   margin-bottom: 2rem;
 
@@ -9,7 +8,7 @@
     color: #1a1a1a;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
 
   .recipe-count {
@@ -17,17 +16,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    top: -6px;
 
     i {
-      font-size: 2rem;
+      font-size: 3rem;
     }
 
     .count-number {
       position: absolute;
-      font-size: 0.75rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      color: #000;
-      top: 50%;
+      color: white;
+      top: 58%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
@@ -37,8 +37,14 @@
     color: #28a745;
   }
 
-  .recipe-count-medium i {
-    color: #ffc107;
+  .recipe-count-medium {
+    i {
+      color: #ffc107;
+    }
+
+    .count-number {
+      color: #000;
+    }
   }
 
   .recipe-count-high i {
@@ -46,9 +52,56 @@
   }
 }
 
+.horizontal-scroll-wrapper {
+  overflow: hidden;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @media (min-width: 768px) {
+    gap: 1.5rem;
+  }
+}
+
+.recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
 .recipe-card {
-  max-width: 500px;
-  margin: 0 auto;
+  width: 280px;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 350px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 400px;
+  }
 }
 
 .recipe-card-image {
@@ -76,7 +129,6 @@
   }
 }
 
-// Top badges
 .recipe-card-badges {
   position: absolute;
   top: 15px;
@@ -135,7 +187,6 @@
   color: #dc3545;
 }
 
-// Bottom content
 .recipe-card-content {
   position: absolute;
   bottom: 0;
@@ -170,13 +221,51 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-.rating-stars {
-  color: #ffc107;
+.rating-icons {
+  display: flex;
+  gap: 2px;
   font-size: 1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+
+  i {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+
+    &.bi-droplet,
+    &.bi-lightning-charge {
+      opacity: 0.3;
+    }
+  }
+
+  &.rating-gi-low,
+  &.rating-carb-low {
+    i.bi-droplet-fill,
+    i.bi-droplet,
+    i.bi-lightning-charge-fill,
+    i.bi-lightning-charge {
+      color: #28a745;
+    }
+  }
+
+  &.rating-gi-medium,
+  &.rating-carb-medium {
+    i.bi-droplet-fill,
+    i.bi-droplet,
+    i.bi-lightning-charge-fill,
+    i.bi-lightning-charge {
+      color: #ffc107;
+    }
+  }
+
+  &.rating-gi-high,
+  &.rating-carb-high {
+    i.bi-droplet-fill,
+    i.bi-droplet,
+    i.bi-lightning-charge-fill,
+    i.bi-lightning-charge {
+      color: #dc3545;
+    }
+  }
 }
 
-// Item card styles (smaller cards, no images)
 .item-card-gradient {
   height: 280px;
 

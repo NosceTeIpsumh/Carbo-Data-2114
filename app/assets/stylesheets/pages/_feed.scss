@@ -77,11 +77,11 @@
 }
 
 .feed-author-name {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: bold;
   color: $headers-color;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   display: block;
   margin-bottom: 0.125rem;
   transition: color 0.3s ease;
@@ -92,7 +92,7 @@
 }
 
 .feed-author-name-inline {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: bold;
   color: $headers-color;
   text-decoration: none;
@@ -239,7 +239,7 @@
 // Post Content
 .feed-card-content {
   padding: 0 1rem 0.5rem 1rem;
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: $text-color-paragraph;
   line-height: 1.5;
   font-size: 0.9375rem;
@@ -328,7 +328,7 @@
   background: none;
   border: none;
   color: $button-color;
-  font-family: $button-font;
+  font-family: "Bruno Ace SC", sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
   cursor: pointer;
@@ -485,11 +485,11 @@
 }
 
 .sidebar-username {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: bold;
   color: $headers-color;
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   display: block;
   margin-bottom: 0.125rem;
   transition: color 0.3s ease;
@@ -559,7 +559,7 @@
 }
 
 .suggestion-name {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   color: $headers-color;
   text-decoration: none;
@@ -608,7 +608,7 @@
 }
 
 .footer-links {
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.75rem;
   color: #999;
   margin-bottom: 0.75rem;
@@ -625,7 +625,7 @@
 }
 
 .footer-copyright {
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.6875rem;
   color: #ccc;
 }
