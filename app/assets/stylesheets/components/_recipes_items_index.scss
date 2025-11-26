@@ -1,3 +1,4 @@
+// Carousel styles
 .carousel-section {
   margin-bottom: 2rem;
 
@@ -8,7 +9,7 @@
     color: #1a1a1a;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
   }
 
   .recipe-count {
@@ -16,18 +17,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    top: -6px;
 
     i {
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     .count-number {
       position: absolute;
-      font-size: 1.25rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      color: white;
-      top: 58%;
+      color: #000;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
@@ -37,14 +37,8 @@
     color: #28a745;
   }
 
-  .recipe-count-medium {
-    i {
-      color: #ffc107;
-    }
-
-    .count-number {
-      color: #000;
-    }
+  .recipe-count-medium i {
+    color: #ffc107;
   }
 
   .recipe-count-high i {
@@ -52,56 +46,9 @@
   }
 }
 
-.horizontal-scroll-wrapper {
-  overflow: hidden;
-  margin: 0 -1rem;
-  padding: 0 1rem;
-}
-
-.horizontal-scroll-container {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 1rem;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  @media (min-width: 768px) {
-    gap: 1.5rem;
-  }
-}
-
-.recipe-card-link {
-  text-decoration: none;
-  color: inherit;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
-}
-
 .recipe-card {
-  width: 280px;
-  flex-shrink: 0;
-
-  @media (min-width: 768px) {
-    width: 350px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 400px;
-  }
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .recipe-card-image {
@@ -129,6 +76,7 @@
   }
 }
 
+// Top badges
 .recipe-card-badges {
   position: absolute;
   top: 15px;
@@ -187,6 +135,7 @@
   color: #dc3545;
 }
 
+// Bottom content
 .recipe-card-content {
   position: absolute;
   bottom: 0;
@@ -221,14 +170,18 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
+.rating-stars {
+  color: #ffc107;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
 .rating-icons {
   display: flex;
   gap: 2px;
-  font-size: 1rem;
+  font-size: 0.85rem;
 
   i {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-
     &.bi-droplet,
     &.bi-lightning-charge {
       opacity: 0.3;
@@ -266,3 +219,147 @@
   }
 }
 
+// Item card specific styles
+.item-card {
+  width: 200px;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 220px;
+  }
+}
+
+.item-card-gradient {
+  height: 130px;
+  background: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  &::before {
+    display: none;
+  }
+
+  &.item-gi-low {
+    border-color: #28a745;
+  }
+
+  &.item-gi-medium {
+    border-color: #ffc107;
+  }
+
+  &.item-gi-high {
+    border-color: #dc3545;
+  }
+}
+
+.item-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.item-card-badges {
+  display: flex;
+  gap: 6px;
+}
+
+.item-card-gradient .gi-badge,
+.item-card-gradient .carb-badge {
+  padding: 3px 6px;
+  font-size: 0.7rem;
+  border-radius: 10px;
+  gap: 3px;
+
+  i {
+    font-size: 0.7rem;
+  }
+}
+
+.item-actions-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.item-icon-link {
+  color: #888;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #d34e4e;
+  }
+}
+
+.item-icon-delete:hover {
+  color: #dc3545;
+}
+
+.item-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    font-size: 0.85rem;
+    margin: 0 0 2px 0;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.item-brand {
+  font-size: 0.7rem;
+  color: #777;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-card-gradient .recipe-ratings {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.item-card-gradient .rating-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.item-card-gradient .rating-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #666;
+  text-shadow: none;
+}
+
+.item-card-gradient .rating-icons {
+  display: flex;
+  gap: 1px;
+  font-size: 0.6rem;
+
+  i {
+    text-shadow: none;
+  }
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-icon {
+  font-size: 1.4rem;
+  color: #d34e4e;
+}
