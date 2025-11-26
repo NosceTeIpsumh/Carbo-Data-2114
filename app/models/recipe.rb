@@ -13,7 +13,7 @@ class Recipe < ApplicationRecord
     }
   }
   multisearchable against: [:name, :description, :ratio_glucide, :indice_gly, :difficulty]
-  after_create :set_default_photo
+  # after_create :set_default_photo
   # Class method to parse markdown response from LLM and create a recipe
   def self.create_from_markdown(markdown_text, user)
     parsed_data = parse_markdown(markdown_text)
@@ -42,6 +42,14 @@ class Recipe < ApplicationRecord
     return 3 if ratio_glucide < 50
     return 2 if ratio_glucide < 65
     1
+  end
+
+  def photo_url
+    if photo.attached?
+      photo
+    else
+      ENV['DEFAULT_RECIPE_IMAGE_URL']
+    end
   end
 
   private
