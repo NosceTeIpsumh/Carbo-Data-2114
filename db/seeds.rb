@@ -207,7 +207,48 @@ puts "Created #{Recipe.count} Recipes."
 puts "Creating Items"
 
 Item.create!([
-  # Original 5
+  # Fruits & Vegetables
+  {
+    name: "Apple",
+    brand: "N/A",
+    category: "Fruits & Vegetables",
+    indice_gly: 36,
+    ratio_glucide: 14,
+    user_id: user_one.id
+  },
+  {
+    name: "Orange",
+    brand: "N/A",
+    category: "Fruits & Vegetables",
+    indice_gly: 43,
+    ratio_glucide: 12,
+    user_id: user_one.id
+  },
+  {
+    name: "Carrots (Raw)",
+    brand: "N/A",
+    category: "Fruits & Vegetables",
+    indice_gly: 35,
+    ratio_glucide: 7,
+    user_id: user_one.id
+  },
+  {
+    name: "Sweet Potato",
+    brand: "N/A",
+    category: "Fruits & Vegetables",
+    indice_gly: 63,
+    ratio_glucide: 20,
+    user_id: user_one.id
+  },
+  {
+    name: "Watermelon",
+    brand: "N/A",
+    category: "Fruits & Vegetables",
+    indice_gly: 72,
+    ratio_glucide: 8,
+    user_id: user_one.id
+  },
+  # Grains & Legumes
   {
     name: "Whole Wheat Bread",
     brand: "Boulangerie Artisanale",
@@ -225,20 +266,12 @@ Item.create!([
     user_id: user_one.id
   },
   {
-    name: "Apple",
-    brand: "N/A",
-    category: "Fruits & Vegetables",
-    indice_gly: 36,
-    ratio_glucide: 14,
-    user_id: user_one.id
-  },
-  {
     name: "White Rice",
     brand: "Uncle Ben's",
     category: "Grains & Legumes",
     indice_gly: 73,
     ratio_glucide: 28,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   {
     name: "Lentils (Brown)",
@@ -246,40 +279,7 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 32,
     ratio_glucide: 11,
-    user_id: user_two.id
-  },
-  # 15 Additional Items
-  {
-    name: "Brown Rice",
-    brand: "Tilda",
-    category: "Grains & Legumes",
-    indice_gly: 50,
-    ratio_glucide: 25,
-    user_id: user_three.id
-  },
-  {
-    name: "Sweet Potato",
-    brand: "N/A",
-    category: "Fruits & Vegetables",
-    indice_gly: 63,
-    ratio_glucide: 20,
-    user_id: user_four.id
-  },
-  {
-    name: "Whole Grain Pasta (Spaghetti)",
-    brand: "Barilla",
-    category: "Grains & Legumes",
-    indice_gly: 45,
-    ratio_glucide: 30,
     user_id: user_one.id
-  },
-  {
-    name: "Yogurt (Plain Greek)",
-    brand: "Fage",
-    category: "Dairy & Substitutes",
-    indice_gly: 18,
-    ratio_glucide: 4,
-    user_id: user_two.id
   },
   {
     name: "Quinoa",
@@ -287,47 +287,16 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 53,
     ratio_glucide: 21,
-    user_id: user_three.id
-  },
-  {
-    name: "Chickpeas (Canned)",
-    brand: "Casbah",
-    category: "Grains & Legumes",
-    indice_gly: 33,
-    ratio_glucide: 19,
-    user_id: user_four.id
-  },
-  {
-    name: "Watermelon",
-    brand: "N/A",
-    category: "Fruits & Vegetables",
-    indice_gly: 72, # High GI, but low GL
-    ratio_glucide: 8,
     user_id: user_one.id
   },
+  # Dairy & Substitutes
   {
-    name: "Rye Bread (Pumpernickel)",
-    brand: "German Bakery",
-    category: "Grains & Legumes",
-    indice_gly: 55,
-    ratio_glucide: 42,
-    user_id: user_two.id
-  },
-  {
-    name: "Carrots (Raw)",
-    brand: "N/A",
-    category: "Fruits & Vegetables",
-    indice_gly: 35,
-    ratio_glucide: 7,
-    user_id: user_three.id
-  },
-  {
-    name: "Corn Flakes",
-    brand: "Kellogg's",
-    category: "Grains & Legumes",
-    indice_gly: 81,
-    ratio_glucide: 84,
-    user_id: user_four.id
+    name: "Yogurt (Plain Greek)",
+    brand: "Fage",
+    category: "Dairy & Substitutes",
+    indice_gly: 18,
+    ratio_glucide: 4,
+    user_id: user_one.id
   },
   {
     name: "Milk (Skim)",
@@ -338,35 +307,146 @@ Item.create!([
     user_id: user_one.id
   },
   {
+    name: "Cheddar Cheese",
+    brand: "Cathedral City",
+    category: "Dairy & Substitutes",
+    indice_gly: 0,
+    ratio_glucide: 1,
+    user_id: user_one.id
+  },
+  # Meat & Substitutes
+  {
+    name: "Chicken Breast",
+    brand: "N/A",
+    category: "Meat & Substitutes",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  {
+    name: "Tofu (Firm)",
+    brand: "Sojasun",
+    category: "Meat & Substitutes",
+    indice_gly: 15,
+    ratio_glucide: 2,
+    user_id: user_one.id
+  },
+  {
+    name: "Salmon Fillet",
+    brand: "N/A",
+    category: "Meat & Substitutes",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  # Fats & Oils
+  {
+    name: "Olive Oil",
+    brand: "Puget",
+    category: "Fats & Oils",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  {
+    name: "Butter",
+    brand: "Président",
+    category: "Fats & Oils",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  # Sweets & Sugars
+  {
     name: "Table Sugar (Sucrose)",
     brand: "Generic",
     category: "Sweets & Sugars",
     indice_gly: 65,
     ratio_glucide: 100,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   {
-    name: "Puffed Rice Cakes",
-    brand: "Nature Valley",
-    category: "Grains & Legumes",
-    indice_gly: 82,
-    ratio_glucide: 80,
-    user_id: user_three.id
+    name: "Honey",
+    brand: "Lune de Miel",
+    category: "Sweets & Sugars",
+    indice_gly: 58,
+    ratio_glucide: 82,
+    user_id: user_one.id
   },
   {
-    name: "Orange",
-    brand: "N/A",
-    category: "Fruits & Vegetables",
-    indice_gly: 43,
-    ratio_glucide: 12,
-    user_id: user_four.id
+    name: "Dark Chocolate (70%)",
+    brand: "Lindt",
+    category: "Sweets & Sugars",
+    indice_gly: 25,
+    ratio_glucide: 33,
+    user_id: user_one.id
+  },
+  # Water
+  {
+    name: "Mineral Water",
+    brand: "Evian",
+    category: "Water",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
   },
   {
-    name: "Popcorn (Air-Popped)",
-    brand: "N/A",
-    category: "Grains & Legumes",
-    indice_gly: 55,
-    ratio_glucide: 78,
+    name: "Sparkling Water",
+    brand: "Perrier",
+    category: "Water",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  # Alcohol
+  {
+    name: "Red Wine",
+    brand: "Bordeaux",
+    category: "Alcohol",
+    indice_gly: 0,
+    ratio_glucide: 2,
+    user_id: user_one.id
+  },
+  {
+    name: "Beer (Lager)",
+    brand: "Heineken",
+    category: "Alcohol",
+    indice_gly: 66,
+    ratio_glucide: 4,
+    user_id: user_one.id
+  },
+  # Sugary Drinks
+  {
+    name: "Cola",
+    brand: "Coca-Cola",
+    category: "Sugary Drinks",
+    indice_gly: 63,
+    ratio_glucide: 11,
+    user_id: user_one.id
+  },
+  {
+    name: "Orange Juice",
+    brand: "Tropicana",
+    category: "Sugary Drinks",
+    indice_gly: 50,
+    ratio_glucide: 10,
+    user_id: user_one.id
+  },
+  # Vitamins & Minerals
+  {
+    name: "Multivitamin Tablet",
+    brand: "Centrum",
+    category: "Vitamins & Minerals",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  {
+    name: "Vitamin D Supplement",
+    brand: "Solgar",
+    category: "Vitamins & Minerals",
+    indice_gly: 0,
+    ratio_glucide: 0,
     user_id: user_one.id
   }
 ])

@@ -19,33 +19,57 @@
     <% end %>
   </div>
 
+  <%
+    category_icons = {
+      "Fruits & Vegetables" => "bi-tree",
+      "Grains & Legumes" => "bi-basket2",
+      "Dairy & Substitutes" => "bi-cup-straw",
+      "Meat & Substitutes" => "bi-egg-fried",
+      "Fats & Oils" => "bi-droplet-half",
+      "Sweets & Sugars" => "bi-cake2",
+      "Water" => "bi-water",
+      "Alcohol" => "bi-wine",
+      "Sugary Drinks" => "bi-cup-straw",
+      "Vitamins & Minerals" => "bi-capsule"
+    }
+  %>
+
   <% if @items_by_category.any? %>
     <% @items_by_category.each_with_index do |(category, items), cat_index| %>
       <div class="carousel-section mt-4">
-        <h2 class="h-default mb-3">
-          <span class="recipe-count recipe-count-medium">
-            <i class="bi bi-box-seam-fill"></i>
-            <span class="count-number"><%= items.count %></span>
-          </span>
-          <%= category || "Sans catégorie" %>
+        <h2 class="h-default mb-3 category-header">
+          <i class="bi <%= category_icons[category] || 'bi-box-seam' %> category-icon"></i>
+          <%= category || "No category" %>
         </h2>
         <div id="items-carousel-<%= cat_index %>" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <% items.each_with_index do |item, index| %>
               <div class="carousel-item <%= 'active' if index == 0 %>">
                 <div class="recipe-card">
-                  <div class="recipe-card-image item-card-gradient gi-gradient-<%= item.gi_level %>">
-                    <div class="recipe-card-badges">
-                      <div class="gi-badge gi-<%= item.gi_level %>">
-                        <i class="bi bi-droplet-fill"></i>
-                        <span><%= item.indice_gly %></span>
+                  <div class="recipe-card-image item-card-gradient">
+                    <div class="item-card-header">
+                      <div class="recipe-card-badges">
+                        <div class="gi-badge gi-<%= item.gi_level %>">
+                          <i class="bi bi-droplet-fill"></i>
+                          <span><%= item.indice_gly %></span>
+                        </div>
+                        <div class="carb-badge carb-<%= item.gi_level %>">
+                          <i class="bi bi-lightning-charge-fill"></i>
+                          <span><%= item.ratio_glucide %>g</span>
+                        </div>
                       </div>
-                      <div class="carb-badge carb-<%= item.gi_level %>">
-                        <i class="bi bi-lightning-charge-fill"></i>
-                        <span><%= item.ratio_glucide %>g</span>
+                      <div class="item-actions-icons">
+                        <%= link_to edit_item_path(item), class: "item-icon-link" do %>
+                          <i class="bi bi-pencil"></i>
+                        <% end %>
+                        <%= link_to item_path(item),
+                            data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce CarboDuct ?" },
+                            class: "item-icon-link item-icon-delete" do %>
+                          <i class="bi bi-trash"></i>
+                        <% end %>
                       </div>
                     </div>
-                    <div class="recipe-card-content">
+                    <div class="item-card-body">
                       <h3><%= item.name %></h3>
                       <p class="item-brand"><%= item.brand %></p>
                       <div class="recipe-ratings">
@@ -57,16 +81,6 @@
                           <span class="rating-label">Glucides:</span>
                           <div class="rating-stars"><%= '★' * item.carb_stars + '☆' * (5 - item.carb_stars) %></div>
                         </div>
-                      </div>
-                      <div class="item-actions mt-3">
-                        <%= link_to edit_item_path(item), class: "btn btn-sm btn-outline-light me-2" do %>
-                          <i class="bi bi-pencil"></i> Modifier
-                        <% end %>
-                        <%= link_to item_path(item),
-                            data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce CarboDuct ?" },
-                            class: "btn btn-sm btn-outline-danger" do %>
-                          <i class="bi bi-trash"></i> Supprimer
-                        <% end %>
                       </div>
                     </div>
                   </div>
