@@ -368,6 +368,117 @@ Item.create!([
     indice_gly: 55,
     ratio_glucide: 78,
     user_id: user_one.id
+  },
+  # Sweets & Sugars (need 1 more)
+  {
+    name: "Dark Chocolate (70%)",
+    brand: "Lindt",
+    category: "Sweets & Sugars",
+    indice_gly: 23,
+    ratio_glucide: 33,
+    user_id: user_three.id
+  },
+  # Meat & Substitutes
+  {
+    name: "Chicken Breast",
+    brand: "N/A",
+    category: "Meat & Substitutes",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  {
+    name: "Tofu (Firm)",
+    brand: "Sojasun",
+    category: "Meat & Substitutes",
+    indice_gly: 15,
+    ratio_glucide: 2,
+    user_id: user_two.id
+  },
+  # Fats & Oils
+  {
+    name: "Olive Oil (Extra Virgin)",
+    brand: "Puget",
+    category: "Fats & Oils",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_three.id
+  },
+  {
+    name: "Almonds (Raw)",
+    brand: "N/A",
+    category: "Fats & Oils",
+    indice_gly: 15,
+    ratio_glucide: 9,
+    user_id: user_four.id
+  },
+  # Water
+  {
+    name: "Mineral Water",
+    brand: "Evian",
+    category: "Water",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_one.id
+  },
+  {
+    name: "Sparkling Water",
+    brand: "Perrier",
+    category: "Water",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_two.id
+  },
+  # Alcohol
+  {
+    name: "Red Wine",
+    brand: "Bordeaux",
+    category: "Alcohol",
+    indice_gly: 0,
+    ratio_glucide: 2,
+    user_id: user_three.id
+  },
+  {
+    name: "Beer (Lager)",
+    brand: "Kronenbourg",
+    category: "Alcohol",
+    indice_gly: 66,
+    ratio_glucide: 3,
+    user_id: user_four.id
+  },
+  # Sugary Drinks
+  {
+    name: "Orange Juice",
+    brand: "Tropicana",
+    category: "Sugary Drinks",
+    indice_gly: 50,
+    ratio_glucide: 10,
+    user_id: user_one.id
+  },
+  {
+    name: "Cola",
+    brand: "Coca-Cola",
+    category: "Sugary Drinks",
+    indice_gly: 63,
+    ratio_glucide: 11,
+    user_id: user_two.id
+  },
+  # Vitamins & Minerals
+  {
+    name: "Multivitamin Tablets",
+    brand: "Centrum",
+    category: "Vitamins & Minerals",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_three.id
+  },
+  {
+    name: "Vitamin D Supplement",
+    brand: "Nature Made",
+    category: "Vitamins & Minerals",
+    indice_gly: 0,
+    ratio_glucide: 0,
+    user_id: user_four.id
   }
 ])
 
