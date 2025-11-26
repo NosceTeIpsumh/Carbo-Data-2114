@@ -1,39 +1,43 @@
 class GenerateLlmResponseJob < ApplicationJob
   queue_as :default
 
+  retry_on StandardError, wait: 5.seconds, attempts: 2, except: [Timeout::Error]
+
   SYSTEM_PROMPT = MessagesController::SYSTEM_PROMPT
 
   def perform(chat_id:, user_message_content: nil, generate_title: true)
     @chat = Chat.find(chat_id)
     @message = @chat.messages.create!(role: "assistant", content: "")
 
-    # Broadcast the empty message with typing indicator
     broadcast_typing_indicator
 
     full_content = ""
 
-    ruby_llm_chat = RubyLLM.chat
-    build_conversation_history(ruby_llm_chat)
+    Timeout.timeout(30) do
+      ruby_llm_chat = RubyLLM.chat
+      build_conversation_history(ruby_llm_chat)
 
-    prompt = user_message_content || "Give an idea of recipe"
+      prompt = user_message_content || "Give an idea of recipe"
 
-    ruby_llm_chat.with_instructions(instructions).ask(prompt) do |chunk|
-      next if chunk.content.nil?
+      ruby_llm_chat.with_instructions(instructions).ask(prompt) do |chunk|
+        next if chunk.content.nil?
 
-      full_content += chunk.content
-
-      # Broadcast each chunk to update the UI in real-time
-      broadcast_chunk(chunk.content, full_content)
+        full_content += chunk.content
+        broadcast_chunk(chunk.content, full_content)
+      end
     end
 
-    # Save the complete message
     @message.update!(content: full_content)
-
-    # Generate title BEFORE broadcasting (so the title is ready)
     @chat.generate_title_from_first_message if generate_title
-
-    # Broadcast the final message with the save button and updated title
     broadcast_complete
+
+  rescue Timeout::Error
+    Rails.logger.error("LLM Job timed out for chat #{chat_id}")
+    handle_error("La réponse a pris trop de temps. Veuillez réessayer.")
+  rescue StandardError => e
+    Rails.logger.error("LLM Job failed for chat #{chat_id}: #{e.class} - #{e.message}")
+    handle_error("Une erreur s'est produite. Veuillez réessayer.")
+    raise
   end
 
   private
@@ -56,6 +60,11 @@ class GenerateLlmResponseJob < ApplicationJob
 
   def instructions
     [SYSTEM_PROMPT, my_items].compact.join("\n\n")
+  end
+
+  def handle_error(error_message)
+    @message.update!(content: error_message) if @message&.persisted?
+    broadcast_complete
   end
 
   def broadcast_chunk(chunk_content, full_content)

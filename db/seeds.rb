@@ -1,4 +1,9 @@
-puts "Destroying Users..."
+require "open-uri"
+
+puts "Destroying all data..."
+Post.destroy_all
+Recipe.destroy_all
+Item.destroy_all
 User.destroy_all
 
 puts "Creating Users..."
@@ -44,6 +49,7 @@ Recipe.create!([
     indice_gly: 35,
     ratio_glucide: 18,
     user_id: user_one.id
+
   },
   {
     name: "Homemade Chicken Curry",
@@ -61,7 +67,7 @@ Recipe.create!([
     difficulty: 3,
     indice_gly: 59,
     ratio_glucide: 40,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   # 15 Additional Recipes
   {
@@ -198,10 +204,103 @@ Recipe.create!([
     indice_gly: 18,
     ratio_glucide: 5,
     user_id: user_one.id
+  },
+  # High GI Recipes (IG > 70)
+  {
+    name: "Classic French Baguette",
+    description: "Traditional crusty French bread with a high glycemic index - best enjoyed in moderation.",
+    steps: "1. Mix flour, water, yeast, and salt. 2. Knead for 10 minutes. 3. Let rise for 2 hours. 4. Shape into baguettes. 5. Score the top and bake at 230°C for 25 minutes.",
+    difficulty: 3,
+    indice_gly: 95,
+    ratio_glucide: 56,
+    user_id: user_one.id
+  },
+  {
+    name: "Creamy Mashed Potatoes",
+    description: "Rich and buttery mashed potatoes - a comfort food classic with high GI.",
+    steps: "1. Peel and cube potatoes. 2. Boil until tender. 3. Drain and mash with butter. 4. Add warm milk and cream. 5. Season with salt and pepper.",
+    difficulty: 1,
+    indice_gly: 83,
+    ratio_glucide: 17,
+    user_id: user_one.id
+  },
+  {
+    name: "Jasmine Rice Bowl",
+    description: "Fragrant jasmine rice served with stir-fried vegetables - delicious but high on the glycemic scale.",
+    steps: "1. Rinse jasmine rice. 2. Cook with water in rice cooker. 3. Stir-fry vegetables with soy sauce. 4. Serve vegetables over fluffy rice. 5. Garnish with sesame seeds.",
+    difficulty: 1,
+    indice_gly: 89,
+    ratio_glucide: 28,
+    user_id: user_one.id
+  },
+  {
+    name: "Crispy Rice Krispies Treats",
+    description: "Sweet and crunchy marshmallow treats - a nostalgic dessert with very high GI.",
+    steps: "1. Melt butter in a large pot. 2. Add marshmallows and stir until melted. 3. Remove from heat and add Rice Krispies. 4. Press into a greased pan. 5. Let cool and cut into squares.",
+    difficulty: 1,
+    indice_gly: 82,
+    ratio_glucide: 78,
+    user_id: user_one.id
+  },
+  {
+    name: "Watermelon Sorbet",
+    description: "Refreshing summer dessert made with fresh watermelon - naturally high GI fruit.",
+    steps: "1. Cube seedless watermelon. 2. Freeze for 2 hours. 3. Blend frozen watermelon with lime juice and honey. 4. Freeze for another hour. 5. Serve with fresh mint.",
+    difficulty: 2,
+    indice_gly: 72,
+    ratio_glucide: 8,
+    user_id: user_one.id
   }
 ])
 
 puts "Created #{Recipe.count} Recipes."
+
+# --- ATTACH PHOTOS TO RECIPES ---
+puts "Attaching photos to Recipes..."
+
+# Helper method to attach photo from URL
+def attach_photo(record, url)
+  return if url.blank?
+  file = URI.open(url)
+  record.photo.attach(io: file, filename: "#{record.name.parameterize}.jpg", content_type: "image/jpeg")
+  puts "  ✓ Attached photo to: #{record.name}"
+rescue => e
+  puts "  ✗ Failed to attach photo to #{record.name}: #{e.message}"
+end
+
+# Recipe photos - Fill in your Cloudinary URLs below
+recipe_photos = {
+  "Quinoa & Black Bean Salad" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163199/quinoa_vhkens.jpg",
+  "Homemade Chicken Curry" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163189/chicken_curry_fciwrl.jpg",
+  "Whole Wheat Banana Bread" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163189/banana_bread_gkyfjq.jpg",
+  "Low-GI Berry Smoothie" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163190/berry_smoothie_z2cabb.jpg",
+  "Lentil Shepherd's Pie (Cauliflower Topping)" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163188/lentil_pie_dmq61i.jpg",
+  "Oatmeal with Nuts and Seeds" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163194/oatmeal_zyjqnk.jpg",
+  "Zucchini Noodles with Pesto & Shrimp" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163203/zucchini_noodles_amcqql.jpg",
+  "Buckwheat Pancakes" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163209/pancackes_jkiea3.jpg",
+  "Chicken and Vegetable Stir-fry" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163209/Chicken_and_Vegetable_Stir-fry_msxppz.jpg",
+  "Spelt Flour Pizza Base" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163208/Spelt_Flour_Pizza_Base_kr22lp.jpg",
+  "Avocado & Egg Toast (Rye Bread)" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163208/Avocado_Egg_Toast_Rye_Bread_y2m30e.jpg",
+  "Black Bean Burgers" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163198/Black_Bean_Burgers_melb9t.jpg",
+  "Tuna Salad Lettuce Wraps" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163202/Tuna_Salad_Lettuce_Wraps_pci64i.jpg",
+  "Homemade Hummus" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163200/homemade_hummus_apzjfk.jpg",
+  "Brown Rice Pudding (Stevia)" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163195/Brown_Rice_Pudding_Stevia_k2z7a2.jpg",
+  "Whole Grain Pasta with Marinara" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163195/Whole_Grain_Pasta_with_Marinara_h7bum4.jpg",
+  "Roasted Chickpeas" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163197/Roasted_Chickpeas_rkxngs.jpg",
+  "Turkey Meatballs with Spinach" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764163199/Turkey_Meatballs_with_Spinach_uwdcew.jpg",
+  "Classic French Baguette" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764165839/franck-tourneret-q-_KXOY9JG8-unsplash_k3f6zt.jpg",
+  "Creamy Mashed Potatoes" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764165677/puree_wydkkw.jpg",
+  "Jasmine Rice Bowl" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764165678/rizjasmin_vduzai.jpg",
+  "Crispy Rice Krispies Treats" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764165679/Crispy_Rice_Krispies_Treats_jap4w3.jpg",
+  "Watermelon Sorbet" => "https://res.cloudinary.com/dvoeovqth/image/upload/v1764165679/Watermelon_Sorbet_xhlka6.jpg"
+}
+
+recipe_photos.each do |name, url|
+  recipe = Recipe.find_by(name: name)
+  attach_photo(recipe, url) if recipe && url.present?
+end
+
+puts "Done attaching recipe photos."
 
 # --- ITEMS (15 additional) ---
 puts "Creating Items"
@@ -238,7 +337,7 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 73,
     ratio_glucide: 28,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   {
     name: "Lentils (Brown)",
@@ -246,7 +345,7 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 32,
     ratio_glucide: 11,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   # 15 Additional Items
   {
@@ -255,7 +354,7 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 50,
     ratio_glucide: 25,
-    user_id: user_three.id
+    user_id: user_one.id
   },
   {
     name: "Sweet Potato",
@@ -263,7 +362,7 @@ Item.create!([
     category: "Fruits & Vegetables",
     indice_gly: 63,
     ratio_glucide: 20,
-    user_id: user_four.id
+    user_id: user_one.id
   },
   {
     name: "Whole Grain Pasta (Spaghetti)",
@@ -279,7 +378,7 @@ Item.create!([
     category: "Dairy & Substitutes",
     indice_gly: 18,
     ratio_glucide: 4,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   {
     name: "Quinoa",
@@ -287,7 +386,7 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 53,
     ratio_glucide: 21,
-    user_id: user_three.id
+    user_id: user_one.id
   },
   {
     name: "Chickpeas (Canned)",
@@ -295,7 +394,7 @@ Item.create!([
     category: "Grains & Legumes",
     indice_gly: 33,
     ratio_glucide: 19,
-    user_id: user_four.id
+    user_id: user_one.id
   },
   {
     name: "Watermelon",
@@ -376,7 +475,7 @@ Item.create!([
     category: "Sweets & Sugars",
     indice_gly: 23,
     ratio_glucide: 33,
-    user_id: user_three.id
+    user_id: user_one.id
   },
   # Meat & Substitutes
   {
@@ -393,7 +492,7 @@ Item.create!([
     category: "Meat & Substitutes",
     indice_gly: 15,
     ratio_glucide: 2,
-    user_id: user_two.id
+    user_id: user_one.id
   },
   # Fats & Oils
   {
@@ -402,7 +501,7 @@ Item.create!([
     category: "Fats & Oils",
     indice_gly: 0,
     ratio_glucide: 0,
-    user_id: user_three.id
+    user_id: user_one.id
   },
   {
     name: "Almonds (Raw)",
@@ -485,11 +584,11 @@ Item.create!([
 puts "Created #{Item.count} items."
 
 # --- POSTS (15 additional) ---
-puts "Création des posts..."
+puts "Creating posts..."
 
 # The original 4 posts are created using the existing code style
 Post.create!(
-    content: "Ceci est un post de test standard!",
+    content: "Does someone has a CarboDuct with low glycemic index to share?! I'm desesperate",
     up: 45,
     down: 5,
     user: user_one,
@@ -497,7 +596,7 @@ Post.create!(
 )
 
 Post.create!(
-    content: "J'ai découvert une recette géniale, je la partage avec vous!",
+    content: "I discovered an amazing recipe, sharing it with you all! Check out my Turkey Meatballs with Spinach in the recipes section!",
     up: 120,
     down: 3,
     user: user_one,
@@ -505,7 +604,7 @@ Post.create!(
 )
 
 Post.create!(
-    content: "Le sucre caché dans les aliments. Discutons-en.",
+    content: "Hidden sugar in foods. Let's discuss.",
     up: 15,
     down: 25,
     user: user_two,
@@ -513,7 +612,7 @@ Post.create!(
 )
 
 Post.create!(
-    content: "Nouveau produit Carrefour disponible, qui l'a déjà testé ?",
+    content: "New Carrefour product available, has anyone tried it yet?",
     up: 8,
     down: 0,
     user: user_two,
@@ -523,105 +622,105 @@ Post.create!(
 # 15 Additional Posts
 Post.create!([
     {
-        content: "Quelqu'un a-t-il une bonne alternative au riz blanc pour le dîner ? Je cherche quelque chose de GI faible.",
+        content: "Does anyone have a good alternative to white rice for dinner? Looking for something with a low GI.",
         up: 35,
         down: 2,
         user: user_three,
         created_at: 3.hours.ago
     },
     {
-        content: "Avis aux diabétiques : attention aux jus de fruits 'sans sucre ajouté', l'IG reste élevé !",
+        content: "Heads up for diabetics: be careful with 'no added sugar' fruit juices, the GI is still high!",
         up: 50,
         down: 1,
         user: user_four,
         created_at: 2.hours.ago
     },
     {
-        content: "Je teste le pain de seigle aujourd'hui. L'IG est meilleur que le pain complet standard. Je vous tiens au courant !",
+        content: "Testing rye bread today. The GI is better than standard whole wheat bread. Will keep you posted!",
         up: 22,
         down: 0,
         user: user_one,
         created_at: 1.hour.ago
     },
     {
-        content: "Recette du jour : Salade de pois chiches et féta. Simple, rapide, et IG au top. Je la poste bientôt.",
+        content: "Recipe of the day: Chickpea and feta salad. Simple, quick, and great GI. Posting it soon.",
         up: 78,
         down: 4,
         user: user_two,
         created_at: 45.minutes.ago
     },
     {
-        content: "Mon taux de glycémie monte toujours après le petit-déjeuner. Des idées de collations matinales à faible IG ?",
+        content: "My blood sugar always spikes after breakfast. Any ideas for low GI morning snacks?",
         up: 10,
         down: 5,
         user: user_three,
         created_at: 30.minutes.ago
     },
     {
-        content: "Le sport après le repas, ça aide vraiment à réguler la glycémie. Qui pratique ?",
+        content: "Exercise after meals really helps regulate blood sugar. Who else does this?",
         up: 60,
         down: 0,
         user: user_four,
         created_at: 20.minutes.ago
     },
     {
-        content: "Déçu par les pâtes sans gluten. Le goût n'y est pas. Des marques à recommander ?",
+        content: "Disappointed by gluten-free pasta. The taste isn't there. Any brands to recommend?",
         up: 5,
         down: 15,
         user: user_one,
         created_at: 15.minutes.ago
     },
     {
-        content: "Les légumes racines (carottes, betteraves) crus ont un IG bien plus bas que cuits. Info importante à savoir !",
+        content: "Root vegetables (carrots, beets) raw have a much lower GI than cooked. Important info to know!",
         up: 90,
         down: 1,
         user: user_two,
         created_at: 10.minutes.ago
     },
     {
-        content: "Je cherche des recettes de desserts avec des édulcorants naturels (stévia, erythritol). Partagez vos meilleures astuces !",
+        content: "Looking for dessert recipes with natural sweeteners (stevia, erythritol). Share your best tips!",
         up: 18,
         down: 0,
         user: user_three,
         created_at: 8.minutes.ago
     },
     {
-        content: "Le mythe du 'cheat meal'. Est-ce vraiment bénéfique ou est-ce juste une excuse pour craquer ?",
+        content: "The 'cheat meal' myth. Is it really beneficial or just an excuse to indulge?",
         up: 40,
         down: 30,
         user: user_four,
         created_at: 5.minutes.ago
     },
     {
-        content: "Tendance du jeûne intermittent (IF). Quels sont vos résultats sur la sensibilité à l'insuline ?",
+        content: "Intermittent fasting (IF) trend. What are your results on insulin sensitivity?",
         up: 150,
         down: 10,
         user: user_one,
         created_at: 4.minutes.ago
     },
     {
-        content: "Attention à l'indice glycémique du maïs soufflé. Ça monte vite !",
+        content: "Watch out for the glycemic index of popcorn. It spikes fast!",
         up: 5,
         down: 2,
         user: user_two,
         created_at: 3.minutes.ago
     },
     {
-        content: "C'est la saison des courges ! La courge butternut est une excellente alternative à la pomme de terre. GI faible.",
+        content: "It's squash season! Butternut squash is an excellent alternative to potatoes. Low GI.",
         up: 105,
         down: 1,
         user: user_three,
         created_at: 2.minutes.ago
     },
     {
-        content: "Les légumineuses sont vos amies : lentilles, haricots, pois chiches... Riches en fibres et GI bas.",
+        content: "Legumes are your friends: lentils, beans, chickpeas... High in fiber and low GI.",
         up: 70,
         down: 0,
         user: user_four,
         created_at: 1.minute.ago
     },
     {
-        content: "Petit rappel : 'sans sucre' ne veut pas dire 'sans glucides'. Toujours vérifier l'étiquette nutritionnelle.",
+        content: "Quick reminder: 'sugar-free' doesn't mean 'carb-free'. Always check the nutrition label.",
         up: 110,
         down: 5,
         user: user_one,
@@ -629,4 +728,4 @@ Post.create!([
     }
 ])
 
-puts "Created #{Post.count} posts au total."
+puts "Created #{Post.count} posts in total."

@@ -1,0 +1,140 @@
+// Recipe Show Page Styles
+
+.recipe-show-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  @media (min-width: 768px) {
+    height: 300px;
+  }
+
+  .recipe-card-badges {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.recipe-show-ratings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    gap: 5rem;
+  }
+
+  .rating-item {
+    text-align: center;
+
+    .rating-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      text-shadow: none;
+    }
+
+    .rating-icons {
+      display: flex;
+      gap: 4px;
+      font-size: 1.1rem;
+      justify-content: center;
+
+      @media (min-width: 576px) {
+        font-size: 1.3rem;
+      }
+
+      i {
+        text-shadow: none;
+
+        &.bi-droplet,
+        &.bi-lightning-charge,
+        &.bi-star {
+          opacity: 0.3;
+        }
+      }
+
+      &.rating-gi-low,
+      &.rating-carb-low {
+        i {
+          color: #28a745;
+        }
+      }
+
+      &.rating-gi-medium,
+      &.rating-carb-medium {
+        i {
+          color: #ffc107;
+        }
+      }
+
+      &.rating-gi-high,
+      &.rating-carb-high {
+        i {
+          color: #dc3545;
+        }
+      }
+
+      &.rating-difficulty {
+        i {
+          color: #ffc107;
+        }
+      }
+    }
+  }
+}
+
+.recipe-show-steps {
+
+  .step-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+
+    .step-number {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(90deg, #d34e4e, #ce7e5a);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .step-content {
+      flex: 1;
+      padding-top: 4px;
+    }
+  }
+}
+
+.recipe-show-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .btn {
+    min-width: 140px;
+  }
+
+  .btn-outline-danger {
+    font-family: "Bruno Ace SC", sans-serif;
+  }
+}
