@@ -95,106 +95,156 @@
       </div>
     </div>
 
-    <!-- Latest Items Carousel -->
-    <div class="hub-carousel-section">
-      <div class="carousel-header">
-        <h3 class="carousel-title">
-          <i class="fas fa-star me-2"></i>Latest Activity
+    <!-- Latest Recipes Section -->
+    <div class="hub-profile-header mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="h-default">
+          <i class="fas fa-fire me-2" style="color: #d34e4e;"></i>Latest Recipes
         </h3>
+        <%= link_to "View All", recipes_path, class: "slide-link" %>
       </div>
 
-      <div id="hubCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-        <div class="carousel-inner">
-          <!-- Slide 1: Latest Recipes -->
-          <div class="carousel-item active">
-            <div class="carousel-slide-content">
-              <div class="carousel-slide-header">
-                <h4 class="slide-title">
-                  <i class="fas fa-fire me-2"></i>Latest Recipes
-                </h4>
-                <%= link_to "View All", recipes_path, class: "slide-link", data: { bs_toggle: "tab" } %>
-              </div>
-
-              <% if current_user.recipes.any? %>
-                <div class="carousel-cards-wrapper">
-                  <% @last_recipes.limit(3).each do |recipe| %>
-                    <%= link_to recipe_path(recipe), class: "hub-carousel-card text-decoration-none" do %>
-                      <div class="recipe-card-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=750&fit=crop');">
-                        <div class="recipe-card-content">
-                          <h5 class="carousel-card-title"><%= recipe.name %></h5>
-                          <p class="carousel-card-meta">
-                            <i class="fas fa-clock me-1"></i>
-                            <%= time_ago_in_words(recipe.created_at) %> ago
-                          </p>
+      <% if current_user.recipes.any? %>
+        <div class="horizontal-scroll-wrapper">
+          <div class="horizontal-scroll-container">
+            <% @last_recipes.limit(3).each do |recipe| %>
+              <%= link_to recipe_path(recipe), class: "recipe-card-link" do %>
+                <div class="recipe-card">
+                  <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : ENV['DEFAULT_RECIPE_IMAGE_URL'] %>');">
+                    <div class="recipe-card-badges">
+                      <div class="gi-badge gi-<%= recipe.gi_level %>">
+                        <i class="bi bi-droplet-fill"></i>
+                        <span><%= recipe.indice_gly %></span>
+                      </div>
+                      <div class="carb-badge carb-<%= recipe.gi_level %>">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <span><%= recipe.ratio_glucide %>g</span>
+                      </div>
+                    </div>
+                    <div class="recipe-card-content">
+                      <h3><%= recipe.name %></h3>
+                      <div class="recipe-ratings">
+                        <div class="rating-item">
+                          <span class="rating-label">GI:</span>
+                          <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
+                            <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
+                            <% reversed_gi.times do %>
+                              <i class="bi bi-droplet-fill"></i>
+                            <% end %>
+                            <% (5 - reversed_gi).times do %>
+                              <i class="bi bi-droplet"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="rating-item">
+                          <span class="rating-label">Carbs:</span>
+                          <div class="rating-icons rating-carb-<%= recipe.gi_level %>">
+                            <% reversed_carb = [5 - recipe.carb_stars, 1].max %>
+                            <% reversed_carb.times do %>
+                              <i class="bi bi-lightning-charge-fill"></i>
+                            <% end %>
+                            <% (5 - reversed_carb).times do %>
+                              <i class="bi bi-lightning-charge"></i>
+                            <% end %>
+                          </div>
                         </div>
                       </div>
-                    <% end %>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="empty-state-mini">
-                  <i class="fas fa-utensils mb-2"></i>
-                  <p>No recipes yet</p>
-                  <%= link_to "Create your first recipe", new_recipe_path, class: "btn btn-sm btn-hub-primary" %>
+                    </div>
+                  </div>
                 </div>
               <% end %>
-            </div>
-          </div>
-
-          <!-- Slide 2: Latest Products -->
-          <div class="carousel-item">
-            <div class="carousel-slide-content">
-              <div class="carousel-slide-header">
-                <h4 class="slide-title">
-                  <i class="fas fa-box-open me-2"></i>Latest Products
-                </h4>
-                <%= link_to "View All", "#products", class: "slide-link", data: { bs_toggle: "tab" } %>
-              </div>
-
-              <% if current_user.items.any? %>
-                <div class="carousel-cards-wrapper">
-                  <% @last_items.limit(3).each do |item| %>
-                    <%= link_to item_path(item), class: "hub-carousel-card" do %>
-                      <div class="carousel-card-placeholder">
-                        <i class="fas fa-box"></i>
-                      </div>
-                      <div class="carousel-card-content">
-                        <h5 class="carousel-card-title"><%= item.name %></h5>
-                        <p class="carousel-card-meta">
-                          <i class="fas fa-clock me-1"></i>
-                          <%= time_ago_in_words(item.created_at) %> ago
-                        </p>
-                      </div>
-                    <% end %>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="empty-state-mini">
-                  <i class="fas fa-box mb-2"></i>
-                  <p>No products yet</p>
-                  <%= link_to "Add your first product", items_path, class: "btn btn-sm btn-hub-primary" %>
-                </div>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
-
-        <!-- Carousel Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#hubCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#hubCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
-        <!-- Carousel Indicators -->
-        <div class="carousel-indicators hub-carousel-indicators">
-          <button type="button" data-bs-target="#hubCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Latest Recipes"></button>
-          <button type="button" data-bs-target="#hubCarousel" data-bs-slide-to="1" aria-label="Latest Products"></button>
+      <% else %>
+        <div class="empty-state-mini">
+          <i class="fas fa-utensils mb-2"></i>
+          <p>No recipes yet</p>
+          <%= link_to "Create your first recipe", new_recipe_path, class: "btn btn-sm btn-hub-primary" %>
         </div>
+      <% end %>
+    </div>
+
+    <!-- Latest Products Section -->
+    <div class="hub-profile-header mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="h-default">
+          <i class="fas fa-box-open me-2" style="color: #d34e4e;"></i>Latest Products
+        </h3>
+        <%= link_to "View All", items_path, class: "slide-link" %>
       </div>
+
+      <% if current_user.items.any? %>
+        <%
+          items_by_level = {
+            'low' => current_user.items.select { |i| i.gi_level == 'low' }.last(3),
+            'medium' => current_user.items.select { |i| i.gi_level == 'medium' }.last(3),
+            'high' => current_user.items.select { |i| i.gi_level == 'high' }.last(3)
+          }
+        %>
+        <% items_by_level.each do |level, items| %>
+          <% if items.any? %>
+            <div class="horizontal-scroll-wrapper mb-3">
+              <div class="horizontal-scroll-container">
+                <% items.each do |item| %>
+                  <div class="item-card">
+                    <div class="item-card-gradient item-gi-<%= item.gi_level %>">
+                      <div class="item-card-header">
+                        <div class="item-card-badges">
+                          <div class="gi-badge gi-<%= item.gi_level %>">
+                            <i class="bi bi-droplet-fill"></i>
+                            <span><%= item.indice_gly %></span>
+                          </div>
+                          <div class="carb-badge carb-<%= item.gi_level %>">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                            <span><%= item.ratio_glucide %>g</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item-card-body">
+                        <h3><%= item.name %></h3>
+                        <p class="item-brand"><%= item.brand %></p>
+                        <div class="recipe-ratings">
+                          <div class="rating-item">
+                            <span class="rating-label">GI:</span>
+                            <div class="rating-icons rating-gi-<%= item.gi_level %>">
+                              <% reversed_gi = [5 - item.gi_stars, 1].max %>
+                              <% reversed_gi.times do %>
+                                <i class="bi bi-droplet-fill"></i>
+                              <% end %>
+                              <% (5 - reversed_gi).times do %>
+                                <i class="bi bi-droplet"></i>
+                              <% end %>
+                            </div>
+                          </div>
+                          <div class="rating-item">
+                            <span class="rating-label">Carbs:</span>
+                            <div class="rating-icons rating-carb-<%= item.gi_level %>">
+                              <% reversed_carb = [5 - item.carb_stars, 1].max %>
+                              <% reversed_carb.times do %>
+                                <i class="bi bi-lightning-charge-fill"></i>
+                              <% end %>
+                              <% (5 - reversed_carb).times do %>
+                                <i class="bi bi-lightning-charge"></i>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="empty-state-mini">
+          <i class="fas fa-box mb-2"></i>
+          <p>No products yet</p>
+          <%= link_to "Add your first product", items_path, class: "btn btn-sm btn-hub-primary" %>
+        </div>
+      <% end %>
     </div>
 
     <!-- Full Collection Tabs -->
@@ -215,37 +265,103 @@
       <!-- Tab Content -->
       <div class="tab-content hub-tab-content" id="hubTabsContent">
 
-        <!-- All Recipes Tab -->
+        <!-- All Posts Tab -->
         <div class="tab-pane fade show active" id="recipes" role="tabpanel" aria-labelledby="recipes-tab">
-          <div class="row g-4 mt-2">
+          <div class="feed-posts mt-3">
             <% if current_user.posts.any? %>
               <% current_user.posts.each do |post| %>
-                <div class="col-6 col-md-4 col-lg-3">
-                  <%= link_to post_path(post), class: "hub-card-link" do %>
-                    <div class="hub-card">
-                      <div class="hub-card-placeholder">
-                        <i class="fas fa-utensils"></i>
+                <article class="feed-card rounded-4 mb-4 shadow-sm" style="background-color: #fafafa; border: 1px solid #eee;">
+
+                  <!-- Post Header -->
+                  <div class="feed-card-header">
+                    <div class="d-flex align-items-center">
+                      <div class="feed-author-avatar">
+                        <% if current_user.photo.attached? %>
+                          <%= image_tag current_user.photo, alt: current_user.profile_name, class: "avatar-img" %>
+                        <% else %>
+                          <div class="avatar-placeholder">
+                            <%= (current_user.profile_name || current_user.email.split('@').first).first.upcase %>
+                          </div>
+                        <% end %>
                       </div>
-                      <div class="hub-card-overlay">
-                        <div class="hub-card-stats">
-                          <span><i class="fas fa-heart"></i> 30</span>
-                          <span><i class="fas fa-comment"></i> 12</span>
+                      <div class="flex-grow-1 ms-3">
+                        <span class="feed-author-name">
+                          <%= current_user.profile_name || current_user.email.split('@').first %>
+                        </span>
+                        <div class="feed-post-time">
+                          <%= time_ago_in_words(post.created_at) %> ago
                         </div>
                       </div>
-                      <div class="hub-card-title">
-                        <%= post.title %>
+                      <div class="dropdown">
+                        <button class="btn btn-link text-dark p-1" type="button" data-bs-toggle="dropdown">
+                          <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><%= link_to "Edit", edit_post_path(post), class: "dropdown-item" %></li>
+                          <li><%= link_to "Delete", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %></li>
+                        </ul>
                       </div>
                     </div>
+                  </div>
+
+                  <!-- Post Image (if available) -->
+                  <% if post.respond_to?(:photo) && post.photo.attached? %>
+                    <div class="feed-card-image">
+                      <%= image_tag post.photo, alt: post.title, class: "post-image" %>
+                    </div>
                   <% end %>
-                </div>
+
+                  <!-- Post Actions -->
+                  <div class="feed-card-actions">
+                    <div class="d-flex gap-3 align-items-center">
+                      <!-- Reddit-style voting -->
+                      <div class="vote-buttons">
+                        <button class="btn-vote upvote-btn" data-post-id="<%= post.id %>">
+                          <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <span class="vote-count" data-post-id="<%= post.id %>">
+                          <%= (post.up || 0) - (post.down || 0) %>
+                        </span>
+                        <button class="btn-vote downvote-btn" data-post-id="<%= post.id %>">
+                          <i class="fas fa-arrow-down"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Post Content -->
+                  <div class="feed-card-content">
+                    <p class="mb-1">
+                      <span class="feed-author-name-inline">
+                        <%= current_user.profile_name || current_user.email.split('@').first %>
+                      </span>
+                      <% if post.title.present? %>
+                        <strong class="post-title-inline"><%= post.title %></strong>
+                      <% end %>
+                      <% if post.content.present? %>
+                        <span class="post-content-text"><%= post.content %></span>
+                      <% end %>
+                    </p>
+                  </div>
+
+                  <!-- Comments Section -->
+                  <div class="feed-card-comments">
+                    <% if post.comments.any? %>
+                      <% if post.comments.count > 2 %>
+                        <%= link_to "View all #{post.comments.count} comments", post_path(post), class: "view-all-comments" %>
+                      <% end %>
+                      <%= render 'shared/comments', comments: post.comments.order(created_at: :desc).limit(2), post: post %>
+                    <% end %>
+                  </div>
+
+                </article>
               <% end %>
             <% else %>
-              <div class="col-12">
-                <div class="empty-state">
-                  <i class="fas fa-utensils mb-3"></i>
-                  <p>No posts in your collection</p>
-                  <%= link_to "Share your first post", posts_path, class: "btn btn-hub-primary" %>
-                </div>
+              <div class="feed-empty-state">
+                <i class="fas fa-utensils"></i>
+                <h3>No posts yet</h3>
+                <p>Share your first post with the community!</p>
+                <%= link_to "Create a post", new_post_path, class: "btn btn-hub-primary" %>
               </div>
             <% end %>
           </div>
@@ -270,7 +386,7 @@
   </div>
 </div>
 
-<div class="offcanvas offcanvas-end", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
+<div class="offcanvas *offcanvas-bottom", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
   <div class="offcanvas-dialog offcanvas-dialog-centered">
     <div class="offcanvas-content">
       <div class="offcanvas-header">

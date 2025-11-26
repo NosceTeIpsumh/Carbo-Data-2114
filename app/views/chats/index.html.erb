@@ -5,7 +5,7 @@
   <div class="card shadow-sm rounded-5 my-3 p-3">
     <div class="text-center pt-1 pb-1">
       <h1 class="display-5 fw-bold h-default mb-2 mt-2">
-        Historique des chats
+        Chat History
       </h1>
     </div>
 
@@ -25,9 +25,9 @@
             <% end %>
 
             <%= link_to chat_path(chat),
-              data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) de vouloir supprimer ce chat ?" },
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this chat?" },
               class: "d-block text-decoration-none" do %>
-              <div class="div-button delete-button rounded-5">
+              <div class="div-button button-default rounded-5">
                 <p>Delete</p>
               </div>
             <% end %>
@@ -36,6 +36,52 @@
       <% else %>
         <h1 class="text-center">Please chat with our SuperCarbo BOT first! 🤖</h1>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel" data-bs-backdrop="true">
+  <div class="offcanvas-dialog offcanvas-dialog-centered">
+    <div class="offcanvas-content">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Start a New Chat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="container py-1">
+          <div class="card shadow-sm rounded-5 p-4 border-0 modal-carbo-card">
+            <h6 class="h-default text-center fw-bold mb-4">
+              Choose which CarboDucts you want to include in your recipes! If you don't select any, our SuperCarbo will take care of it!
+            </h6>
+
+            <% if @items.any? %>
+              <%= simple_form_for @chat_item do |f| %>
+                <%= f.association :item,
+                    as: :check_boxes,
+                    label: "",
+                    label_method: :show_name_and_brand,
+                    collection_wrapper_tag: 'div',
+                    collection_wrapper_class: 'category-wrapper',
+                    item_wrapper_tag: 'div',
+                    item_wrapper_class: 'category-item',
+                    input_html: { class: 'category-selector' },
+                    collection: current_user.items
+                %>
+                <div class="d-flex justify-content-center mt-4">
+                  <%= f.button :submit, "Start Chat", class: 'btn button-default rounded-5' %>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="text-center mb-4 p-default">You don't have any CarboDucts yet. SuperCarbo will create a recipe without specific ingredients.</p>
+              <%= simple_form_for @chat_item do |f| %>
+                <div class="d-flex justify-content-center mt-4">
+                  <%= f.button :submit, "Start Chat", class: 'btn button-default rounded-5' %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

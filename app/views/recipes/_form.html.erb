@@ -1,15 +1,15 @@
 <div class= "container ">
   <div class= "text-center">
-    <h1 class="header-home display-5 fw-bold h-default" >Nouvelle Carbomeal</h1>
+    <h1 class="header-home display-5 fw-bold h-default" >New CarboMeal</h1>
       <%= simple_form_for @recipe do |f| %>
-        <%= f.input :name, placeholder: "Donne un nom à ta recette...", input_html: { class: "placeholder-custom" } %>
-        <%= f.input :description, placeholder: "Une description brève de ta recette", input_html: { class: "placeholder-custom" } %>
-        <%= f.input :steps, placeholder: "Une description pas à pas de ta recette", input_html: { class: "placeholder-custom" } %>
-        <%= f.input :difficulty, collection: [1,2,3,4,5], prompt: "1 pour très facile, 5 pour très difficile", input_html: { class: "form-select custom-font" } %>
-        <%= f.input :indice_gly, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
-        <%= f.input :ratio_glucide, placeholder: "Compris entre 1 et 100", input_html: { class: "placeholder-custom" } %>
+        <%= f.input :name, placeholder: "Give your recipe a name...", input_html: { class: "placeholder-custom" } %>
+        <%= f.input :description, placeholder: "A brief description of your recipe", input_html: { class: "placeholder-custom" } %>
+        <%= f.input :steps, placeholder: "Step by step instructions for your recipe", input_html: { class: "placeholder-custom" } %>
+        <%= f.input :difficulty, collection: [1,2,3,4,5], prompt: "1 for very easy, 5 for very difficult", input_html: { class: "form-select custom-font" } %>
+        <%= f.input :indice_gly, placeholder: "Between 1 and 100", input_html: { class: "placeholder-custom" } %>
+        <%= f.input :ratio_glucide, placeholder: "Between 1 and 100", input_html: { class: "placeholder-custom" } %>
         <%= f.input :photo, as: :file %>
-        <%= f.submit "Enregistre la recette", class: "btn button-default w-100 rounded-5 mb-2" %>
+        <%= f.submit "Save Recipe", class: "btn button-default w-100 rounded-5 mb-2" %>
       <% end %>
       <div class="d-grid gap-3">
         <%= link_to "BACK", recipes_path, class: "btn button-default w-100 rounded-5" %>

@@ -223,6 +223,15 @@
 .item-card {
   width: 200px;
   flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
 
   @media (min-width: 768px) {
     width: 220px;
@@ -360,6 +369,6 @@
 }
 
 .category-icon {
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: #d34e4e;
 }
