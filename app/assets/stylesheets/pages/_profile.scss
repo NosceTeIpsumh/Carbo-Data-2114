@@ -30,7 +30,7 @@
 }
 
 .welcome-title {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.75rem;
   color: white;
   font-weight: 700;
@@ -43,7 +43,7 @@
 }
 
 .welcome-subtitle {
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0;
@@ -166,7 +166,7 @@
 }
 
 .hub-username {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.875rem;
   color: $headers-color;
   font-weight: 700;
@@ -179,7 +179,7 @@
 }
 
 .hub-member-since {
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.875rem;
   color: $text-color-paragraph;
   opacity: 0.7;
@@ -194,7 +194,7 @@
   background-color: white;
   border: 2px solid $button-color;
   color: $button-color;
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   padding: 0.625rem 1.5rem;
   border-radius: 8px;
   font-size: 0.875rem;
@@ -295,7 +295,7 @@
   }
 
   .stat-number {
-    font-family: $headers-font;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1.75rem;
     font-weight: bold;
     color: $headers-color;
@@ -303,7 +303,7 @@
   }
 
   .stat-label {
-    font-family: $paragraph-font;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 0.8rem;
     color: $text-color-paragraph;
     text-transform: uppercase;
@@ -379,7 +379,7 @@
 }
 
 .carousel-title {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.25rem;
   color: $headers-color;
   font-weight: 700;
@@ -413,7 +413,7 @@
 }
 
 .slide-title {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.125rem;
   color: $headers-color;
   font-weight: 700;
@@ -431,7 +431,7 @@
 }
 
 .slide-link {
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.875rem;
   color: $button-color;
   text-decoration: none;
@@ -504,7 +504,7 @@
 }
 
 .carousel-card-title {
-  font-family: $headers-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -515,7 +515,7 @@
 }
 
 .carousel-card-meta {
-  font-family: $paragraph-font;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.75rem;
   margin-bottom: 0;
   opacity: 0.9;
@@ -680,7 +680,7 @@
   }
 
   .nav-link {
-    font-family: $headers-font;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 0.95rem;
     color: $text-color-paragraph;
     border: none;

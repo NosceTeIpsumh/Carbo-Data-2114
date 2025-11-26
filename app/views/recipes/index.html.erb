@@ -21,9 +21,9 @@
 
   <%
     carousels = [
-      { id: 'carousel1', title: 'Low GI recipes', recipes: @low_gi_recipes, level: 'low' },
-      { id: 'carousel2', title: 'Med GI recipes', recipes: @medium_gi_recipes, level: 'medium' },
-      { id: 'carousel3', title: 'High GI recipes', recipes: @high_gi_recipes, level: 'high' }
+      { id: 'carousel1', title: 'Low GI Recipes', recipes: @low_gi_recipes, level: 'low' },
+      { id: 'carousel2', title: 'Medium GI Recipes', recipes: @medium_gi_recipes, level: 'medium' },
+      { id: 'carousel3', title: 'High GI Recipes', recipes: @high_gi_recipes, level: 'high' }
     ]
   %>
 
@@ -31,15 +31,15 @@
     <div class="carousel-section mt-4">
       <h2 class="h-default mb-3">
         <span class="recipe-count recipe-count-<%= carousel[:level] %>">
-          <i class="bi bi-book-fill"></i>
+          <i class="bi bi-droplet-fill"></i>
           <span class="count-number"><%= carousel[:recipes].count %></span>
         </span>
         <%= carousel[:title] %>
       </h2>
-      <div id="<%= carousel[:id] %>" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <% carousel[:recipes].each_with_index do |recipe, index| %>
-            <div class="carousel-item <%= 'active' if index == 0 %>">
+      <div class="horizontal-scroll-wrapper">
+        <div class="horizontal-scroll-container">
+          <% carousel[:recipes].each do |recipe| %>
+            <%= link_to recipe_path(recipe), class: "recipe-card-link" do %>
               <div class="recipe-card">
                 <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : ENV['DEFAULT_RECIPE_IMAGE_URL'] %>');">
                   <div class="recipe-card-badges">
@@ -57,31 +57,33 @@
                     <div class="recipe-ratings">
                       <div class="rating-item">
                         <span class="rating-label">GI:</span>
-                        <div class="rating-stars"><%= '★' * recipe.gi_stars + '☆' * (5 - recipe.gi_stars) %></div>
+                        <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
+                          <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
+                          <% reversed_gi.times do %>
+                            <i class="bi bi-droplet-fill"></i>
+                          <% end %>
+                          <% (5 - reversed_gi).times do %>
+                            <i class="bi bi-droplet"></i>
+                          <% end %>
+                        </div>
                       </div>
                       <div class="rating-item">
                         <span class="rating-label">Glucides:</span>
-                        <div class="rating-stars"><%= '★' * recipe.carb_stars + '☆' * (5 - recipe.carb_stars) %></div>
+                        <div class="rating-icons rating-carb-<%= recipe.gi_level %>">
+                          <% reversed_carb = [5 - recipe.carb_stars, 1].max %>
+                          <% reversed_carb.times do %>
+                            <i class="bi bi-lightning-charge-fill"></i>
+                          <% end %>
+                          <% (5 - reversed_carb).times do %>
+                            <i class="bi bi-lightning-charge"></i>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#<%= carousel[:id] %>" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#<%= carousel[:id] %>" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
-
-        <div class="carousel-indicators hub-carousel-indicators">
-          <% carousel[:recipes].each_with_index do |_, index| %>
-            <button type="button" data-bs-target="#<%= carousel[:id] %>" data-bs-slide-to="<%= index %>"
-                    class="<%= 'active' if index == 0 %>" <%= 'aria-current="true"' if index == 0 %>></button>
+            <% end %>
           <% end %>
         </div>
       </div>
