@@ -1,11 +1,14 @@
 .button-default {
-  background-color: $button-color;
+  background: $navbartext-gradient;
   font-family: $button-font;
   color: white;
   font-weight: bold;
+  border-radius: 6px;
+  border: none;
   &:hover {
-    background-color: #d30606;
-    transition: all ease 0.3;
+    background: $navbartext-gradient;
+    filter: brightness(1.1);
+    transition: all ease 0.3s;
     color: white;
   }
 }

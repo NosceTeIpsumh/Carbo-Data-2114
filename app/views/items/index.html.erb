@@ -3,8 +3,8 @@
 
 <div class="container">
   <div class="shadow-sm rounded-5 mt-4 p-4 segment-control-bar">
-    <%= link_to 'Carbomeals', recipes_path, class: "segment-button #{'active' if current_page?(recipes_path)}" %>
-    <%= link_to 'Carboducts', items_path, class: "segment-button #{'active' if current_page?(items_path)}" %>
+    <%= link_to 'Carbomeals', recipes_path, class: "btn segment-button #{'active' if current_page?(recipes_path)}" %>
+    <%= link_to 'Carboducts', items_path, class: "btn segment-button #{'active' if current_page?(items_path)}" %>
   </div>
 
   <div class="card shadow-sm rounded-5 mt-4 p-4">
@@ -15,7 +15,7 @@
             class: "form-control me-2",
             placeholder: "Type a keyword"
         %>
-      <%= submit_tag "Search", name: "", class: "button-default" %>
+      <%= submit_tag "Search", name: "", class: "btn button-default" %>
     <% end %>
   </div>
 
