@@ -101,7 +101,7 @@ class MessagesController < ApplicationController
 
     if @message.save!
       # Launch async job for streaming LLM response
-      GenerateLlmResponseJob.perform_later(
+      GenerateLlmResponseJob.perform_now(
         chat_id: @chat.id,
         user_message_content: @message.content,
         generate_title: false

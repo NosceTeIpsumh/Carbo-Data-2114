@@ -1,5 +1,5 @@
-<%# Ajoute le message user au conteneur #messages %>
-<%# La réponse assistant sera ajoutée en temps réel via le job async %>
+<%# Ajoute le message user au container %>
+<%# La réponse assistant sera ajoutée en temps réel via le job %>
 
 <%= turbo_stream.append "messages" do %>
   <%= render "messages/message", message: @message, chat: @chat %>
