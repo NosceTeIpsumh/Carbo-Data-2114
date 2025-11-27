@@ -41,7 +41,7 @@
           <% carousel[:recipes].each do |recipe| %>
             <%= link_to "#", class: "recipe-card-link", data: { bs_toggle: "offcanvas", bs_target: "#offcanvasRecipe#{recipe.id}" } do %>
               <div class="recipe-card">
-                <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : ENV['DEFAULT_RECIPE_IMAGE_URL'] %>');">
+                <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : Recipe::DEFAULT_IMAGE_URL %>');">
                   <div class="recipe-card-badges">
                     <div class="gi-badge gi-<%= recipe.gi_level %>">
                       <i class="bi bi-droplet-fill"></i>
@@ -101,7 +101,7 @@
           <div class="offcanvas-body">
             <div class="card shadow-sm rounded-5 p-4 border-0">
               <!-- Recipe Image -->
-              <div class="recipe-show-image rounded-4 mb-4" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : ENV['DEFAULT_RECIPE_IMAGE_URL'] %>');">
+              <div class="recipe-show-image rounded-4 mb-4" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : Recipe::DEFAULT_IMAGE_URL %>');">
                 <div class="recipe-card-badges">
                   <div class="gi-badge gi-<%= recipe.gi_level %>">
                     <i class="bi bi-droplet-fill"></i>
