@@ -12,26 +12,26 @@ puts "Creating Users..."
 user_one = User.find_or_create_by!(email: "martin@gmail.com") do |user|
     user.password = "test2025"
     user.password_confirmation = "test2025"
-    user.profile_name = "Martin"
+    user.profile_name = "Martin Abdelkader"
 end
 
 user_two = User.find_or_create_by!(email: "DJ.amil@hotmail.com") do |user|
     user.password = "test2026"
     user.password_confirmation = "test2026"
-    user.profile_name = "Djamil"
+    user.profile_name = "Wassim de Richelieu"
 end
 
 # 2 New Users (Total now 4)
 user_three = User.find_or_create_by!(email: "thib@gmail.com") do |user|
     user.password = "test2027"
     user.password_confirmation = "test2027"
-    user.profile_name = "Thibault Dupuis"
+    user.profile_name = "Thibault De Grand-Rien"
 end
 
 user_four = User.find_or_create_by!(email: "tim@gmail.com") do |user|
     user.password = "test2028"
     user.password_confirmation = "test2028"
-    user.profile_name = "Tim Boods"
+    user.profile_name = "Tim Régis de Villette"
 end
 
 puts "Created #{User.count} Users."
@@ -600,7 +600,7 @@ Post.create!(
     up: 120,
     down: 3,
     user: user_one,
-    created_at: 12.hours.ago
+    created_at: 1.hour.ago
 )
 
 Post.create!(
@@ -616,7 +616,7 @@ Post.create!(
     up: 8,
     down: 0,
     user: user_four,
-    created_at: Time.now
+    created_at: 10.hours.ago
 )
 
 # 15 Additional Posts
@@ -639,7 +639,7 @@ Post.create!([
         content: "Testing rye bread today. The GI is better than standard whole wheat bread. Will keep you posted!",
         up: 22,
         down: 0,
-        user: user_one,
+        user: user_four,
         created_at: 1.hour.ago
     },
     {
@@ -661,21 +661,21 @@ Post.create!([
         up: 60,
         down: 0,
         user: user_four,
-        created_at: 20.minutes.ago
+        created_at: 20.hours.ago
     },
     {
         content: "Disappointed by gluten-free pasta. The taste isn't there. Any brands to recommend?",
         up: 5,
         down: 15,
         user: user_one,
-        created_at: 15.minutes.ago
+        created_at: 10.hour.ago
     },
     {
         content: "Root vegetables (carrots, beets) raw have a much lower GI than cooked. Important info to know!",
         up: 90,
         down: 1,
         user: user_two,
-        created_at: 10.minutes.ago
+        created_at: 10.hours.ago
     },
     {
         content: "Looking for dessert recipes with natural sweeteners (stevia, erythritol). Share your best tips!",
@@ -689,41 +689,41 @@ Post.create!([
         up: 40,
         down: 30,
         user: user_four,
-        created_at: 5.minutes.ago
+        created_at: 5.hours.ago
     },
     {
         content: "Intermittent fasting (IF) trend. What are your results on insulin sensitivity?",
         up: 150,
         down: 10,
         user: user_one,
-        created_at: 4.minutes.ago
+        created_at: 2.hours.ago
     },
     {
         content: "Watch out for the glycemic index of popcorn. It spikes fast!",
         up: 5,
         down: 2,
         user: user_two,
-        created_at: 3.minutes.ago
+        created_at: 59.hours.ago
     },
     {
         content: "It's squash season! Butternut squash is an excellent alternative to potatoes. Low GI.",
         up: 105,
         down: 1,
         user: user_three,
-        created_at: 2.minutes.ago
+        created_at: 20.hours.ago
     },
     {
         content: "Legumes are your friends: lentils, beans, chickpeas... High in fiber and low GI.",
         up: 70,
         down: 0,
         user: user_four,
-        created_at: 1.minute.ago
+        created_at: 2.hours.ago
     },
     {
         content: "Quick reminder: 'sugar-free' doesn't mean 'carb-free'. Always check the nutrition label.",
         up: 110,
         down: 5,
-        user: user_one,
+        user: user_four,
         created_at: Time.now
     }
 ])
