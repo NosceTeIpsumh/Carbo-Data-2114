@@ -4,7 +4,7 @@
 <div class="container">
   <div class="card shadow-sm rounded-5 my-4 p-4">
     <!-- Recipe Image -->
-    <div class="recipe-show-image rounded-4 mb-4" style="background-image: url('<%= @recipe.photo.attached? ? url_for(@recipe.photo) : ENV['DEFAULT_RECIPE_IMAGE_URL'] %>');">
+    <div class="recipe-show-image rounded-4 mb-4" style="background-image: url('<%= @recipe.photo.attached? ? url_for(@recipe.photo) : Recipe::DEFAULT_IMAGE_URL %>');">
       <div class="recipe-card-badges">
         <div class="gi-badge gi-<%= @recipe.gi_level %>">
           <i class="bi bi-droplet-fill"></i>
