@@ -6,9 +6,7 @@
 
 <div class="container">
   <div class="card shadow-sm rounded-5 my-4 p-4">
-    <h1 class="title-chat display-3 text-center mt-4 mb-5">SuperCarbo</h1>
-
-    <h2 id="chat_title" class="title-recipe display-6 mb-4"><%= @chat.title %></h2>
+    <h1 class="title-chat display-3 text-center mt-4 mb-5">Supercarbo</h1>
 
     <div id="messages">
       <% @chat.messages.each do |message| %>
@@ -18,7 +16,7 @@
     <div id="new_message_container">
       <%= simple_form_for [@chat, @message] do |f| %>
         <%= f.input :content, label: false, required: true, placeholder: "How can I help you?", input_html: { class: "placeholder-italic" } %>
-        <%= f.button :submit, 'Ask SuperCarbo', class: 'btn button-default mb-2 rounded-5' %>
+        <%= f.button :submit, 'Ask Supercarbo', class: 'btn button-default mb-2 rounded-5' %>
       <% end %>
     </div>
   </div>
