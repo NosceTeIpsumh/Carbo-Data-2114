@@ -1,4 +1,5 @@
 class GenerateLlmResponseJob < ApplicationJob
+  include ActionView::RecordIdentifier
   queue_as :default
 
   SYSTEM_PROMPT = MessagesController::SYSTEM_PROMPT
@@ -74,11 +75,10 @@ class GenerateLlmResponseJob < ApplicationJob
       locals: { message: @message, chat: @chat }
     )
   end
-
   def broadcast_complete
-    Turbo::StreamsChannel.broadcast_replace_to(
+    Turbo::StreamsChannel.broadcast_append_to(
       "chat_#{@chat.id}",
-      target: "message_#{@message.id}",
+      target: "messages",
       partial: "messages/message",
       locals: { message: @message, chat: @chat }
     )

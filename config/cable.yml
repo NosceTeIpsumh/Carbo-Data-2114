@@ -1,8 +1,15 @@
 development:
-  adapter: async
+  adapter: solid_cable
+  silence_polling: true
+
+production:
+  adapter: solid_cable
 
 test:
   adapter: test
 
-production:
-  adapter: async
+
+
+
+
+

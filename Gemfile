@@ -38,6 +38,7 @@ gem "kramdown-parser-gfm"
 gem "ruby_llm", "~> 1.6.4"
 #devise
 gem "devise"
+gem "solid_cable"
 #cloudinary
 gem "cloudinary"
 # pg_search for full-text search
