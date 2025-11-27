@@ -386,23 +386,21 @@
   </div>
 </div>
 
-<div class="offcanvas *offcanvas-bottom", tabindex="-1", id="offcanvasAction", aria-labelledby="offcanvasActionLabel">
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasAction" aria-labelledby="offcanvasActionLabel">
   <div class="offcanvas-dialog offcanvas-dialog-centered">
     <div class="offcanvas-content">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Browse!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h6 class="h-default fw-bold w-100 text-center mb-0">Search</h6>
+        <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <div class="container-fluid px-3 py-4">
           <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-              <h1 class="text-center h-default mb-4">Search</h1>
-
               <!-- Search Form -->
               <div class="card shadow-sm mb-4">
                 <div class="card-body p-3 search-form-wrapper">
-                  <%= form_with url: browse_path, method: :get, local: true do |f| %>
+                  <%= form_with url: profile_path, method: :get, data: { turbo_frame: "search_results" } do |f| %>
                     <div class="search-input-group">
                       <div class="search-input-container">
                         <%= f.text_field :query,
@@ -420,66 +418,68 @@
               </div>
 
               <!-- Search Results -->
-              <% if params[:query].present? %>
-                <div class="results-section">
-                  <h5 class="mb-3">
-                    <%= @results.any? ? "#{@results.count} result#{'s' if @results.count != 1}" : "No results" %>
-                  </h5>
+              <%= turbo_frame_tag "search_results" do %>
+                <% if params[:query].present? %>
+                  <div class="results-section">
+                    <h5 class="mb-3">
+                      <%= @results.any? ? "#{@results.count} result#{'s' if @results.count != 1}" : "No results" %>
+                    </h5>
 
-                  <% if @results.any? %>
-                    <div class="d-flex flex-column gap-2">
-                      <% @results.each do |result| %>
-                        <% searchable = result.searchable %>
-                        <% if searchable %>
-                          <%= link_to polymorphic_path(searchable), class: "card text-decoration-none shadow-sm" do %>
-                            <div class="card-body p-3">
-                              <div class="d-flex justify-content-between align-items-start">
-                                <div class="flex-grow-1 pe-2">
-                                  <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                                    <span class="badge bg-primary text-nowrap"><%= searchable.class.name %></span>
-                                    <h6 class="mb-0 fw-bold">
-                                      <% if searchable.is_a?(Item) %>
-                                        <%= searchable.name %>
-                                      <% elsif searchable.is_a?(Post) %>
-                                        <%= searchable.title %>
-                                      <% elsif searchable.is_a?(Recipe) %>
-                                        <%= searchable.name %>
-                                      <% end %>
-                                    </h6>
+                    <% if @results.any? %>
+                      <div class="d-flex flex-column gap-2">
+                        <% @results.each do |result| %>
+                          <% searchable = result.searchable %>
+                          <% if searchable %>
+                            <%= link_to polymorphic_path(searchable), class: "card text-decoration-none shadow-sm", data: { turbo_frame: "_top" } do %>
+                              <div class="card-body p-3">
+                                <div class="d-flex justify-content-between align-items-start">
+                                  <div class="flex-grow-1 pe-2">
+                                    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                      <span class="badge bg-primary text-nowrap"><%= searchable.class.name %></span>
+                                      <h6 class="mb-0 fw-bold">
+                                        <% if searchable.is_a?(Item) %>
+                                          <%= searchable.name %>
+                                        <% elsif searchable.is_a?(Post) %>
+                                          <%= searchable.title %>
+                                        <% elsif searchable.is_a?(Recipe) %>
+                                          <%= searchable.name %>
+                                        <% end %>
+                                      </h6>
+                                    </div>
+
+                                    <% if searchable.is_a?(Item) %>
+                                      <p class="mb-1 small text-muted"><%= searchable.brand %></p>
+                                      <p class="mb-0 small">
+                                        <span class="badge bg-light text-dark"><%= searchable.category %></span>
+                                        <span class="badge bg-light text-dark">IG: <%= searchable.indice_gly %></span>
+                                      </p>
+                                    <% elsif searchable.is_a?(Post) %>
+                                      <p class="mb-1 small text-muted"><%= truncate(searchable.content, length: 100) %></p>
+                                    <% elsif searchable.is_a?(Recipe) %>
+                                      <p class="mb-1 small text-muted"><%= truncate(searchable.description, length: 100) %></p>
+                                    <% end %>
+
+                                    <% if searchable.respond_to?(:user) && searchable.user %>
+                                      <small class="text-muted d-block mt-1">
+                                        By <%= searchable.user.profile_name || searchable.user.email.split('@').first %>
+                                      </small>
+                                    <% end %>
                                   </div>
-
-                                  <% if searchable.is_a?(Item) %>
-                                    <p class="mb-1 small text-muted"><%= searchable.brand %></p>
-                                    <p class="mb-0 small">
-                                      <span class="badge bg-light text-dark"><%= searchable.category %></span>
-                                      <span class="badge bg-light text-dark">IG: <%= searchable.indice_gly %></span>
-                                    </p>
-                                  <% elsif searchable.is_a?(Post) %>
-                                    <p class="mb-1 small text-muted"><%= truncate(searchable.content, length: 100) %></p>
-                                  <% elsif searchable.is_a?(Recipe) %>
-                                    <p class="mb-1 small text-muted"><%= truncate(searchable.description, length: 100) %></p>
-                                  <% end %>
-
-                                  <% if searchable.respond_to?(:user) && searchable.user %>
-                                    <small class="text-muted d-block mt-1">
-                                      By <%= searchable.user.profile_name || searchable.user.email.split('@').first %>
-                                    </small>
-                                  <% end %>
+                                  <i class="fas fa-chevron-right text-muted align-self-center"></i>
                                 </div>
-                                <i class="fas fa-chevron-right text-muted align-self-center"></i>
                               </div>
-                            </div>
+                            <% end %>
                           <% end %>
                         <% end %>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="text-center text-muted py-5">
-                  <i class="fas fa-search fa-3x mb-3 d-block"></i>
-                  <p class="px-3">Enter a search query to find items, posts, and recipes.</p>
-                </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="text-center text-muted py-5">
+                    <i class="fas fa-search fa-3x mb-3 d-block"></i>
+                    <p class="px-3">Enter a search query to find items, posts, and recipes.</p>
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>
