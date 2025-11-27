@@ -69,7 +69,6 @@
 }
 
 .hero-slogan {
-  font-family: "Playfair Display", serif;
   font-size: 1.125rem;
   color: white;
   margin-bottom: 2rem;
@@ -177,6 +176,9 @@
   background: transparent;
   color: white;
   border-color: white;
+  font-family: $button-font;
+  border-radius: 12px;
+  font-weight: bold;
 
   &:hover {
     background: white;

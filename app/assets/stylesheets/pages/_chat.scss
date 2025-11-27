@@ -79,15 +79,15 @@ opacity: 0.8;
   border: 1px solid #840101ff;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;            // espace entre icône et texte
+  gap: 0.5rem;
   padding: 0.4rem 0.8rem;
   transition: background-color 0.3s, transform 0.2s, color 0.3s;
 
   &:hover {
-    background-color: #ce3d3d;  // rouge plus foncé
-    transform: scale(1.05);      // léger agrandissement
+    background-color: #ce3d3d;
+    transform: scale(1.05);
     cursor: pointer;
-    color: #fff;                 // assure que le texte reste blanc
+    color: #fff;
   }
 
   .btn-icon {
@@ -95,8 +95,8 @@ opacity: 0.8;
   }
 
   &:hover .btn-icon {
-    transform: rotate(-20deg);   // petite rotation de l’icône au hover
-    color: #edad94;              // icône dorée au hover pour effet fun
+    transform: rotate(-20deg);
+    color: #edad94;
   }
 }
 

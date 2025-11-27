@@ -4,6 +4,9 @@ class PagesController < ApplicationController
   def home
   end
 
+  def root
+  end
+  
   def profile
     @last_recipes = current_user.recipes.order(created_at: :desc)
     @last_items = current_user.items.order(created_at: :desc)
