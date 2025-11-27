@@ -43,7 +43,7 @@
               <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-3">
                 <div>
                   <h2 class="hub-username mb-1"><%= current_user.profile_name || current_user.email.split('@').first %></h2>
-                  <p class="hub-member-since mb-0">Member since <%= current_user.created_at.strftime("%B %Y") %></p>
+                  <p class="hub-member-since mb-0">Member since January 2025</p>
                 </div>
                 <%= link_to edit_user_registration_path, class: "btn btn-hub-edit" do %>
                   <i class="fas fa-user-edit me-2"></i>Edit Profile
@@ -125,7 +125,7 @@
                       <h3><%= recipe.name %></h3>
                       <div class="recipe-ratings">
                         <div class="rating-item">
-                          <span class="rating-label">GI:</span>
+                          <span class="rating-label">Glycemic Index:</span>
                           <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
                             <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
                             <% reversed_gi.times do %>
@@ -206,7 +206,7 @@
                         <p class="item-brand"><%= item.brand %></p>
                         <div class="recipe-ratings">
                           <div class="rating-item">
-                            <span class="rating-label">GI:</span>
+                            <span class="rating-label">Glycemic Index:</span>
                             <div class="rating-icons rating-gi-<%= item.gi_level %>">
                               <% reversed_gi = [5 - item.gi_stars, 1].max %>
                               <% reversed_gi.times do %>
@@ -269,7 +269,7 @@
         <div class="tab-pane fade show active" id="recipes" role="tabpanel" aria-labelledby="recipes-tab">
           <div class="feed-posts mt-3">
             <% if current_user.posts.any? %>
-              <% current_user.posts.each do |post| %>
+              <% current_user.posts.order(created_at: :desc).each do |post| %>
                 <article class="feed-card rounded-4 mb-4 shadow-sm" style="background-color: #fafafa; border: 1px solid #eee;">
 
                   <!-- Post Header -->

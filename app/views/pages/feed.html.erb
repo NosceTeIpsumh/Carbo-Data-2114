@@ -87,9 +87,6 @@
                 <!-- Post Content -->
                 <div class="feed-card-content">
                   <p class="mb-1">
-                    <%= link_to profile_path, class: "feed-author-name-inline" do %>
-                      <%= post.user.profile_name || post.user.email.split('@').first %>
-                    <% end %>
                     <% if post.title.present? %>
                       <strong class="post-title-inline"><%= post.title %></strong>
                     <% end %>
