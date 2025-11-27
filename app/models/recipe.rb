@@ -6,6 +6,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_items
 
   has_one_attached :photo
+
+  DEFAULT_IMAGE_URL = "https://res.cloudinary.com/dvoeovqth/image/upload/recette_default_rwy5jj.jpg".freeze
   pg_search_scope :search_by_name_description_difficulty_indice_gly, {
     against: {name: 'A', description: 'B', difficulty: 'B', indice_gly: 'B'},
     using: {
@@ -48,7 +50,7 @@ class Recipe < ApplicationRecord
     if photo.attached?
       photo
     else
-      ENV['DEFAULT_RECIPE_IMAGE_URL']
+      DEFAULT_IMAGE_URL
     end
   end
 
@@ -56,11 +58,8 @@ class Recipe < ApplicationRecord
 
   def set_default_photo
     unless photo.attached?
-      # Replace with your Cloudinary URL for the default recipe image
-      default_image_url = ENV['DEFAULT_RECIPE_IMAGE_URL']
-
       begin
-        downloaded_image = URI.open(default_image_url)
+        downloaded_image = URI.open(DEFAULT_IMAGE_URL)
         photo.attach(
           io: downloaded_image,
           filename: 'default-recipe.jpg',
