@@ -110,7 +110,7 @@
             <% @last_recipes.limit(3).each do |recipe| %>
               <%= link_to recipe_path(recipe), class: "recipe-card-link" do %>
                 <div class="recipe-card">
-                  <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : ENV['DEFAULT_RECIPE_IMAGE_URL'] %>');">
+                  <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : Recipe::DEFAULT_IMAGE_URL %>');">
                     <div class="recipe-card-badges">
                       <div class="gi-badge gi-<%= recipe.gi_level %>">
                         <i class="bi bi-droplet-fill"></i>
