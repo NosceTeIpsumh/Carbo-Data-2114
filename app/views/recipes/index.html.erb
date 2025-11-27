@@ -56,7 +56,7 @@
                     <h3><%= recipe.name %></h3>
                     <div class="recipe-ratings">
                       <div class="rating-item">
-                        <span class="rating-label">GI:</span>
+                        <span class="rating-label">Glycemic Index:</span>
                         <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
                           <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
                           <% reversed_gi.times do %>
@@ -95,7 +95,6 @@
   <div class="offcanvas-dialog offcanvas-dialog-centered">
     <div class="offcanvas-content">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title p-default" id="offcanvasActionLabel">Add a New CarboMeal</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-action="wizard#reset"></button>
       </div>
       <div class="offcanvas-body">
