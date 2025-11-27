@@ -9,26 +9,26 @@ User.destroy_all
 puts "Creating Users..."
 
 # Existing Users (4 Total)
-user_one = User.find_or_create_by!(email: "test@test.com") do |user|
+user_one = User.find_or_create_by!(email: "martin@gmail.com") do |user|
     user.password = "test2025"
     user.password_confirmation = "test2025"
-    user.profile_name = "Nosce Te Ipsum"
+    user.profile_name = "Martin"
 end
 
-user_two = User.find_or_create_by!(email: "test2@test.com") do |user|
+user_two = User.find_or_create_by!(email: "DJ.amil@hotmail.com") do |user|
     user.password = "test2026"
     user.password_confirmation = "test2026"
-    user.profile_name = "Martduss"
+    user.profile_name = "Djamil"
 end
 
 # 2 New Users (Total now 4)
-user_three = User.find_or_create_by!(email: "test3@test.com") do |user|
+user_three = User.find_or_create_by!(email: "thib@gmail.com") do |user|
     user.password = "test2027"
     user.password_confirmation = "test2027"
     user.profile_name = "Thibault Dupuis"
 end
 
-user_four = User.find_or_create_by!(email: "test4@test.com") do |user|
+user_four = User.find_or_create_by!(email: "tim@gmail.com") do |user|
     user.password = "test2028"
     user.password_confirmation = "test2028"
     user.profile_name = "Tim Boods"
@@ -591,12 +591,12 @@ Post.create!(
     content: "Does someone has a CarboDuct with low glycemic index to share?! I'm desesperate",
     up: 45,
     down: 5,
-    user: user_one,
+    user: user_two,
     created_at: 1.day.ago
 )
 
 Post.create!(
-    content: "I discovered an amazing recipe, sharing it with you all! Check out my Turkey Meatballs with Spinach in the recipes section!",
+    content: "I discovered an amazing recipe, sharing it with you all! Check out my Turkey Meatballs with Spinach in my profile!",
     up: 120,
     down: 3,
     user: user_one,
@@ -607,7 +607,7 @@ Post.create!(
     content: "Hidden sugar in foods. Let's discuss.",
     up: 15,
     down: 25,
-    user: user_two,
+    user: user_three,
     created_at: 5.hours.ago
 )
 
@@ -615,7 +615,7 @@ Post.create!(
     content: "New Carrefour product available, has anyone tried it yet?",
     up: 8,
     down: 0,
-    user: user_two,
+    user: user_four,
     created_at: Time.now
 )
 
