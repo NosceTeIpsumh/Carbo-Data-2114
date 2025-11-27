@@ -56,7 +56,7 @@
                     <h3><%= recipe.name %></h3>
                     <div class="recipe-ratings">
                       <div class="rating-item">
-                        <span class="rating-label">GI:</span>
+                        <span class="rating-label">Glycemic Index:</span>
                         <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
                           <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
                           <% reversed_gi.times do %>
@@ -208,7 +208,7 @@
       <div class="offcanvas-header">
          <h6 class="h-default text-center fw-bold">
                 How would you like to create your CarboMeal?
-          </h6>
+         </h6>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-action="wizard#reset"></button>
       </div>
       <div class="offcanvas-body">

@@ -290,6 +290,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 
   h3 {
     font-size: 0.85rem;
@@ -320,7 +322,7 @@
 
 .item-card-gradient .rating-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 4px;
 }
 
