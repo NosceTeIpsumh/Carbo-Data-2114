@@ -47,7 +47,7 @@
 
 .hero-logo {
   font-family: "Bruno Ace SC", sans-serif;
-  font-size: 2.5rem;
+  font-size: $font-size-4xl;
   color: white;
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -56,20 +56,20 @@
   animation: fadeInDown 1s ease forwards;
 
   @media (min-width: 576px) {
-    font-size: 3rem;
+    font-size: $font-size-5xl;
   }
 
   @media (min-width: 768px) {
-    font-size: 4.5rem;
+    font-size: $font-size-5xl;
   }
 
   @media (min-width: 992px) {
-    font-size: 5rem;
+    font-size: $font-size-5xl;
   }
 }
 
 .hero-slogan {
-  font-size: 1.125rem;
+  font-size: $font-size-lg;
   color: white;
   margin-bottom: 2rem;
   font-weight: 400;
@@ -79,13 +79,13 @@
   animation: fadeInUp 1s ease forwards 0.3s;
 
   @media (min-width: 576px) {
-    font-size: 1.25rem;
+    font-size: $font-size-xl;
     margin-bottom: 2.5rem;
     line-height: 1.6;
   }
 
   @media (min-width: 768px) {
-    font-size: 1.5rem;
+    font-size: $font-size-2xl;
     padding: 0;
   }
 }
@@ -130,7 +130,7 @@
 
 .btn-hero {
   font-family: $headers-font;
-  font-size: 1rem;
+  font-size: $font-size-base;
   font-weight: 600;
   padding: 0.875rem 2rem;
   border-radius: 50px;
@@ -142,7 +142,7 @@
   @media (max-width: 575px) {
     width: 100%;
     padding: 1rem 2rem;
-    font-size: 1.0625rem;
+    font-size: $font-size-base;
   }
 
   @media (min-width: 576px) {
@@ -190,14 +190,14 @@
 // Floating food icons
 .floating-icon {
   position: absolute;
-  font-size: 2rem;
+  font-size: $font-size-3xl;
   color: white;
   opacity: 0.2;
   pointer-events: none;
   z-index: 0;
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: $font-size-xl;
     opacity: 0.12;
   }
 }

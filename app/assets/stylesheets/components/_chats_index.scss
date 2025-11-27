@@ -10,7 +10,7 @@ $border-color: #dee2e6;
   position: relative;
   border-radius: 0.25rem;
   h6 {
-    font-size: 1rem;
+    font-size: $font-size-base;
     text-align: center;
     line-height: 1.4;
     min-height: 45px;
@@ -71,13 +71,13 @@ $border-color: #dee2e6;
 }
 
 .card-product-bis h2 {
-  font-size: 16px;
+  font-size: $font-size-base;
   font-weight: bold;
   margin: 0;
 }
 
 .card-product-bis p {
-  font-size: 12px;
+  font-size: $font-size-xs;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
