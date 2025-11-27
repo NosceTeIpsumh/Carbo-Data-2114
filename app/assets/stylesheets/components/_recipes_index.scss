@@ -4,7 +4,7 @@
   h2 {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: $font-size-xl;
     color: #1a1a1a;
     display: flex;
     align-items: center;
@@ -19,12 +19,12 @@
     top: -6px;
 
     i {
-      font-size: 3rem;
+      font-size: $font-size-5xl;
     }
 
     .count-number {
       position: absolute;
-      font-size: 1.25rem;
+      font-size: $font-size-xl;
       font-weight: 700;
       color: white;
       top: 58%;
@@ -147,13 +147,13 @@
   align-items: center;
   gap: 5px;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: $font-size-sm;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .gi-badge {
   i {
-    font-size: 1rem;
+    font-size: $font-size-base;
   }
 }
 
@@ -171,7 +171,7 @@
 
 .carb-badge {
   i {
-    font-size: 0.9rem;
+    font-size: $font-size-sm;
   }
 }
 
@@ -198,7 +198,7 @@
 
   h3 {
     margin: 0 0 1rem 0;
-    font-size: 1.5rem;
+    font-size: $font-size-2xl;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   }
@@ -206,8 +206,19 @@
 
 .recipe-ratings {
   display: flex;
-  gap: 1.5rem;
-  font-size: 0.85rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: $font-size-sm;
+
+  .rating-labels-row {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .rating-icons-row {
+    display: flex;
+    gap: 1.5rem;
+  }
 }
 
 .rating-item {
@@ -219,12 +230,14 @@
 .rating-label {
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  min-width: 110px;
 }
 
 .rating-icons {
   display: flex;
   gap: 2px;
-  font-size: 1rem;
+  font-size: $font-size-base;
+  min-width: 110px;
 
   i {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);

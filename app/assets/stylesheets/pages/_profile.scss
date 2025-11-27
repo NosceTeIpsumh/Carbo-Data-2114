@@ -31,25 +31,25 @@
 
 .welcome-title {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.75rem;
+  font-size: $font-size-3xl;
   color: white;
   font-weight: 700;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 767px) {
-    font-size: 1.5rem;
+    font-size: $font-size-2xl;
   }
 }
 
 .welcome-subtitle {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1rem;
+  font-size: $font-size-base;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0;
 
   @media (max-width: 767px) {
-    font-size: 0.875rem;
+    font-size: $font-size-sm;
   }
 }
 
@@ -106,7 +106,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 3.5rem;
+  font-size: $font-size-5xl;
   font-family: $headers-font;
   font-weight: bold;
   border: 4px solid $headers-color;
@@ -120,7 +120,7 @@
   @media (max-width: 767px) {
     width: 100px;
     height: 100px;
-    font-size: 2.5rem;
+    font-size: $font-size-4xl;
   }
 }
 
@@ -167,20 +167,20 @@
 
 .hub-username {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.875rem;
+  font-size: $font-size-3xl;
   color: $headers-color;
   font-weight: 700;
   letter-spacing: -0.5px;
 
   @media (max-width: 767px) {
-    font-size: 1.5rem;
+    font-size: $font-size-2xl;
     text-align: left;
   }
 }
 
 .hub-member-since {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   color: $text-color-paragraph;
   opacity: 0.7;
 
@@ -197,7 +197,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   padding: 0.625rem 1.5rem;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   font-weight: 600;
   transition: all 0.3s ease;
   display: inline-flex;
@@ -232,7 +232,7 @@
   transition: all 0.3s ease;
 
   i {
-    font-size: 0.875rem;
+    font-size: $font-size-sm;
   }
 
   &:hover {
@@ -284,7 +284,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.25rem;
+    font-size: $font-size-xl;
     flex-shrink: 0;
   }
 
@@ -296,7 +296,7 @@
 
   .stat-number {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 1.75rem;
+    font-size: $font-size-3xl;
     font-weight: bold;
     color: $headers-color;
     line-height: 1;
@@ -304,7 +304,7 @@
 
   .stat-label {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.8rem;
+    font-size: $font-size-xs;
     color: $text-color-paragraph;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -317,15 +317,15 @@
     .stat-icon {
       width: 50px;
       height: 50px;
-      font-size: 1.25rem;
+      font-size: $font-size-xl;
     }
 
     .stat-number {
-      font-size: 1.75rem;
+      font-size: $font-size-3xl;
     }
 
     .stat-label {
-      font-size: 0.8rem;
+      font-size: $font-size-xs;
     }
   }
 }
@@ -342,7 +342,7 @@
     font-family: $paragraph-font;
     color: $text-color-paragraph;
     line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: $font-size-base;
     font-style: italic;
   }
 
@@ -380,7 +380,7 @@
 
 .carousel-title {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.25rem;
+  font-size: $font-size-xl;
   color: $headers-color;
   font-weight: 700;
   margin-bottom: 0;
@@ -392,7 +392,7 @@
   }
 
   @media (max-width: 767px) {
-    font-size: 1.125rem;
+    font-size: $font-size-lg;
   }
 }
 
@@ -414,7 +414,7 @@
 
 .slide-title {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.125rem;
+  font-size: $font-size-lg;
   color: $headers-color;
   font-weight: 700;
   margin-bottom: 0;
@@ -426,13 +426,13 @@
   }
 
   @media (max-width: 767px) {
-    font-size: 1rem;
+    font-size: $font-size-base;
   }
 }
 
 .slide-link {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   color: $button-color;
   text-decoration: none;
   font-weight: 600;
@@ -444,7 +444,7 @@
   }
 
   @media (max-width: 767px) {
-    font-size: 0.8rem;
+    font-size: $font-size-xs;
   }
 }
 
@@ -505,18 +505,18 @@
 
 .carousel-card-title {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.95rem;
+  font-size: $font-size-base;
   font-weight: 600;
   margin-bottom: 0.5rem;
 
   @media (max-width: 767px) {
-    font-size: 0.875rem;
+    font-size: $font-size-sm;
   }
 }
 
 .carousel-card-meta {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.75rem;
+  font-size: $font-size-xs;
   margin-bottom: 0;
   opacity: 0.9;
 
@@ -645,7 +645,7 @@
 
   p {
     font-family: $paragraph-font;
-    font-size: 0.95rem;
+    font-size: $font-size-base;
     margin-bottom: 1rem;
     opacity: 0.7;
   }
@@ -681,7 +681,7 @@
 
   .nav-link {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.95rem;
+    font-size: $font-size-base;
     color: $text-color-paragraph;
     border: none;
     padding: 1.25rem 1.75rem;
@@ -717,7 +717,7 @@
 
     @media (max-width: 767px) {
       padding: 1.125rem 1.25rem;
-      font-size: 0.875rem;
+      font-size: $font-size-sm;
       min-height: 56px;
       display: flex;
       align-items: center;
@@ -804,7 +804,7 @@
   color: white;
   font-family: $headers-font;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: $font-size-base;
 
   span {
     display: flex;
@@ -813,15 +813,15 @@
   }
 
   i {
-    font-size: 1.2rem;
+    font-size: $font-size-xl;
   }
 
   @media (max-width: 767px) {
-    font-size: 0.875rem;
+    font-size: $font-size-sm;
     gap: 1rem;
 
     i {
-      font-size: 1rem;
+      font-size: $font-size-base;
     }
   }
 }
@@ -831,7 +831,7 @@
   background: white;
   font-family: $paragraph-font;
   color: $text-color-paragraph;
-  font-size: 0.9rem;
+  font-size: $font-size-sm;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -841,7 +841,7 @@
 
   @media (max-width: 767px) {
     padding: 0.75rem;
-    font-size: 0.8rem;
+    font-size: $font-size-xs;
   }
 }
 
@@ -853,7 +853,7 @@
   font-family: $headers-font;
   padding: 0.75rem 2rem;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: $font-size-base;
   font-weight: 600;
   transition: all 0.3s ease;
 
@@ -872,7 +872,7 @@
   color: $text-color-paragraph;
 
   i {
-    font-size: 4.5rem;
+    font-size: $font-size-5xl;
     color: $headers-color;
     opacity: 0.25;
     display: block;
@@ -880,7 +880,7 @@
 
   p {
     font-family: $paragraph-font;
-    font-size: 1.125rem;
+    font-size: $font-size-lg;
     margin-bottom: 1.5rem;
     opacity: 0.7;
   }
@@ -895,11 +895,11 @@
     padding: 3rem 1.5rem;
 
     i {
-      font-size: 3.5rem;
+      font-size: $font-size-5xl;
     }
 
     p {
-      font-size: 1rem;
+      font-size: $font-size-base;
     }
   }
 }

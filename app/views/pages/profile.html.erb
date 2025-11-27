@@ -124,8 +124,11 @@
                     <div class="recipe-card-content">
                       <h3><%= recipe.name %></h3>
                       <div class="recipe-ratings">
-                        <div class="rating-item">
+                        <div class="rating-labels-row">
                           <span class="rating-label">Glycemic Index:</span>
+                          <span class="rating-label">Carbs:</span>
+                        </div>
+                        <div class="rating-icons-row">
                           <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
                             <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
                             <% reversed_gi.times do %>
@@ -135,9 +138,6 @@
                               <i class="bi bi-droplet"></i>
                             <% end %>
                           </div>
-                        </div>
-                        <div class="rating-item">
-                          <span class="rating-label">Carbs:</span>
                           <div class="rating-icons rating-carb-<%= recipe.gi_level %>">
                             <% reversed_carb = [5 - recipe.carb_stars, 1].max %>
                             <% reversed_carb.times do %>
@@ -205,8 +205,11 @@
                         <h3><%= item.name %></h3>
                         <p class="item-brand"><%= item.brand %></p>
                         <div class="recipe-ratings">
-                          <div class="rating-item">
+                          <div class="rating-labels-row">
                             <span class="rating-label">Glycemic Index:</span>
+                            <span class="rating-label">Carbs:</span>
+                          </div>
+                          <div class="rating-icons-row">
                             <div class="rating-icons rating-gi-<%= item.gi_level %>">
                               <% reversed_gi = [5 - item.gi_stars, 1].max %>
                               <% reversed_gi.times do %>
@@ -216,9 +219,6 @@
                                 <i class="bi bi-droplet"></i>
                               <% end %>
                             </div>
-                          </div>
-                          <div class="rating-item">
-                            <span class="rating-label">Carbs:</span>
                             <div class="rating-icons rating-carb-<%= item.gi_level %>">
                               <% reversed_carb = [5 - item.carb_stars, 1].max %>
                               <% reversed_carb.times do %>
@@ -332,9 +332,6 @@
                   <!-- Post Content -->
                   <div class="feed-card-content">
                     <p class="mb-1">
-                      <span class="feed-author-name-inline">
-                        <%= current_user.profile_name || current_user.email.split('@').first %>
-                      </span>
                       <% if post.title.present? %>
                         <strong class="post-title-inline"><%= post.title %></strong>
                       <% end %>

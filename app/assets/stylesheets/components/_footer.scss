@@ -23,7 +23,7 @@ $fab-elevation: 5px;
 }
 
 .footer i {
-  font-size: 2rem !important;
+  font-size: $font-size-3xl !important;
 }
 
 .footer .btn {
@@ -64,5 +64,9 @@ $fab-elevation: 5px;
 }
 
 .fab-button .bi {
-  font-size: 1.75rem !important;
+  font-size: $font-size-3xl !important;
+
+  &.bi-search {
+    font-size: $font-size-2xl !important;
+  }
 }

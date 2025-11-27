@@ -12,7 +12,7 @@
 /* --- NAVBAR LOGO --- */
 .navbar-brand {
   font-family: $navbar-font;
-  font-size: 2.2rem;
+  font-size: $font-size-4xl;
   font-weight: 500;
   color: #000;
   text-shadow: $navbartext-shadow;
@@ -20,34 +20,34 @@
   margin-right: 0.3rem;
 
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: $font-size-xl;
   }
 
   @media (max-width: 400px) {
-    font-size: 1.1rem;
+    font-size: $font-size-lg;
   }
 }
 
 /* --- NAVBAR SEPARATOR --- */
 .navbar-separator {
   font-family: $navbar-font;
-  font-size: 2.2rem;
+  font-size: $font-size-4xl;
   font-weight: 300;
   color: #000;
 
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: $font-size-xl;
   }
 
   @media (max-width: 400px) {
-    font-size: 1.1rem;
+    font-size: $font-size-lg;
   }
 }
 
 /* --- NAVBAR SECONDARY BRAND (CarboData) --- */
 .navbar-brand-secondary {
   font-family: $navbar-font;
-  font-size: 2.2rem;
+  font-size: $font-size-4xl;
   font-weight: 500;
   background: $navbartext-gradient;
   -webkit-background-clip: text;
@@ -57,11 +57,11 @@
   margin-left: 0.3rem;
 
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: $font-size-xl;
   }
 
   @media (max-width: 400px) {
-    font-size: 1.1rem;
+    font-size: $font-size-lg;
   }
 }
 
@@ -73,7 +73,7 @@
 
   .gradient-text {
     font-family: $navbar-font;
-    font-size: 1rem;
+    font-size: $font-size-base;
     font-weight: 200;
     background: $navbartext-gradient;
     -webkit-background-clip: text;
@@ -83,7 +83,7 @@
     transition: transform 0.3s ease;
 
     @media (max-width: 768px) {
-      font-size: 0.9rem;
+      font-size: $font-size-sm;
     }
   }
 }

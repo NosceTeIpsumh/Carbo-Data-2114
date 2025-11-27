@@ -71,7 +71,7 @@
     color: white;
     font-family: $headers-font;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: $font-size-base;
     border: 2px solid $headers-color;
   }
 }
@@ -81,7 +81,7 @@
   font-weight: bold;
   color: $headers-color;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: $font-size-base;
   display: block;
   margin-bottom: 0.125rem;
   transition: color 0.3s ease;
@@ -106,7 +106,7 @@
 
 .feed-post-time {
   font-family: $paragraph-font;
-  font-size: 0.75rem;
+  font-size: $font-size-xs;
   color: #999;
 }
 
@@ -186,7 +186,7 @@
 .vote-count {
   font-family: $headers-font;
   font-weight: bold;
-  font-size: 0.9375rem;
+  font-size: $font-size-sm;
   color: $text-color-paragraph;
   min-width: 24px;
   text-align: center;
@@ -242,7 +242,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: $text-color-paragraph;
   line-height: 1.5;
-  font-size: 0.9375rem;
+  font-size: $font-size-sm;
 
   .post-title-inline {
     color: $headers-color;
@@ -261,7 +261,7 @@
 
 .view-all-comments {
   font-family: $paragraph-font;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   color: #999;
   text-decoration: none;
   display: block;
@@ -276,7 +276,7 @@
 .comment-item {
   margin-bottom: 0.75rem;
   font-family: $paragraph-font;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   line-height: 1.5;
 
   .comment-author {
@@ -291,7 +291,7 @@
   }
 
   .comment-time {
-    font-size: 0.75rem;
+    font-size: $font-size-xs;
     color: #999;
     margin-left: 0.5rem;
   }
@@ -315,7 +315,7 @@
   border: none;
   outline: none;
   font-family: $paragraph-font;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   color: $text-color-paragraph;
   padding: 0.5rem 0;
 
@@ -330,7 +330,7 @@
   color: $button-color;
   font-family: "Bruno Ace SC", sans-serif;
   font-weight: bold;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   cursor: pointer;
   padding: 0.5rem 0.75rem;
   transition: all 0.3s ease;
@@ -419,7 +419,7 @@
         border-radius: 6px;
         padding: 0.5rem 0.875rem;
         transition: all 0.3s ease;
-        font-size: 0.875rem;
+        font-size: $font-size-sm;
 
         &:hover {
           background-color: $button-color;
@@ -479,7 +479,7 @@
     color: white;
     font-family: $headers-font;
     font-weight: bold;
-    font-size: 1.375rem;
+    font-size: $font-size-xl;
     border: 2px solid $headers-color;
   }
 }
@@ -489,7 +489,7 @@
   font-weight: bold;
   color: $headers-color;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: $font-size-base;
   display: block;
   margin-bottom: 0.125rem;
   transition: color 0.3s ease;
@@ -501,7 +501,7 @@
 
 .sidebar-user-email {
   font-family: $paragraph-font;
-  font-size: 0.8125rem;
+  font-size: $font-size-xs;
   color: #999;
 }
 
@@ -513,7 +513,7 @@
 .suggestions-title {
   font-family: $headers-font;
   color: #999;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -550,10 +550,10 @@
     color: white;
     font-family: $headers-font;
     font-weight: bold;
-    font-size: 0.75rem;
+    font-size: $font-size-xs;
 
     &.small {
-      font-size: 0.7rem;
+      font-size: $font-size-2xs;
     }
   }
 }
@@ -563,7 +563,7 @@
   font-weight: 600;
   color: $headers-color;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: $font-size-sm;
   display: block;
   margin-bottom: 0.125rem;
   transition: color 0.3s ease;
@@ -575,7 +575,7 @@
 
 .suggestion-info {
   font-family: $paragraph-font;
-  font-size: 0.75rem;
+  font-size: $font-size-xs;
   color: #999;
 }
 
@@ -585,7 +585,7 @@
   color: $button-color;
   font-family: $button-font;
   font-weight: bold;
-  font-size: 0.75rem;
+  font-size: $font-size-xs;
   cursor: pointer;
   padding: 0;
   text-transform: uppercase;
@@ -609,7 +609,7 @@
 
 .footer-links {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.75rem;
+  font-size: $font-size-xs;
   color: #999;
   margin-bottom: 0.75rem;
 
@@ -626,7 +626,7 @@
 
 .footer-copyright {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.6875rem;
+  font-size: $font-size-2xs;
   color: #ccc;
 }
 
@@ -654,7 +654,7 @@
   }
 
   .vote-count {
-    font-size: 0.875rem;
+    font-size: $font-size-sm;
     min-width: 20px;
   }
 
@@ -665,7 +665,7 @@
     height: 56px;
 
     i {
-      font-size: 1.25rem;
+      font-size: $font-size-xl;
     }
   }
 }
