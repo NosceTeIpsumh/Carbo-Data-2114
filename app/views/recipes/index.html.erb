@@ -39,7 +39,7 @@
       <div class="horizontal-scroll-wrapper">
         <div class="horizontal-scroll-container">
           <% carousel[:recipes].each do |recipe| %>
-            <%= link_to recipe_path(recipe), class: "recipe-card-link" do %>
+            <%= link_to "#", class: "recipe-card-link", data: { bs_toggle: "offcanvas", bs_target: "#offcanvasRecipe#{recipe.id}" } do %>
               <div class="recipe-card">
                 <div class="recipe-card-image" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : Recipe::DEFAULT_IMAGE_URL %>');">
                   <div class="recipe-card-badges">
@@ -85,6 +85,117 @@
               </div>
             <% end %>
           <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% [@low_gi_recipes, @medium_gi_recipes, @high_gi_recipes].flatten.each do |recipe| %>
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasRecipe<%= recipe.id %>" aria-labelledby="offcanvasRecipeLabel<%= recipe.id %>" data-bs-backdrop="true">
+      <div class="offcanvas-dialog offcanvas-dialog-centered">
+        <div class="offcanvas-content">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title p-default" id="offcanvasRecipeLabel<%= recipe.id %>"><%= recipe.name %></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="card shadow-sm rounded-5 p-4 border-0">
+              <!-- Recipe Image -->
+              <div class="recipe-show-image rounded-4 mb-4" style="background-image: url('<%= recipe.photo.attached? ? url_for(recipe.photo) : Recipe::DEFAULT_IMAGE_URL %>');">
+                <div class="recipe-card-badges">
+                  <div class="gi-badge gi-<%= recipe.gi_level %>">
+                    <i class="bi bi-droplet-fill"></i>
+                    <span><%= recipe.indice_gly %></span>
+                  </div>
+                  <div class="carb-badge carb-<%= recipe.gi_level %>">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    <span><%= recipe.ratio_glucide %>g</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <% if recipe.description.present? %>
+                <div class="mb-4 text-center">
+                  <p class="p-default text-muted"><%= recipe.description %></p>
+                </div>
+              <% end %>
+
+              <!-- Ratings Section -->
+              <div class="recipe-show-ratings mb-4">
+                <div class="rating-item">
+                  <span class="rating-label p-default">GI</span>
+                  <div class="rating-icons rating-gi-<%= recipe.gi_level %>">
+                    <% reversed_gi = [5 - recipe.gi_stars, 1].max %>
+                    <% reversed_gi.times do %>
+                      <i class="bi bi-droplet-fill"></i>
+                    <% end %>
+                    <% (5 - reversed_gi).times do %>
+                      <i class="bi bi-droplet"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="rating-item">
+                  <span class="rating-label p-default">Glucides</span>
+                  <div class="rating-icons rating-carb-<%= recipe.gi_level %>">
+                    <% reversed_carb = [5 - recipe.carb_stars, 1].max %>
+                    <% reversed_carb.times do %>
+                      <i class="bi bi-lightning-charge-fill"></i>
+                    <% end %>
+                    <% (5 - reversed_carb).times do %>
+                      <i class="bi bi-lightning-charge"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="rating-item">
+                  <span class="rating-label p-default">Difficulty</span>
+                  <div class="rating-icons rating-difficulty">
+                    <% recipe.difficulty.to_i.times do %>
+                      <i class="bi bi-star-fill"></i>
+                    <% end %>
+                    <% (5 - recipe.difficulty.to_i).times do %>
+                      <i class="bi bi-star"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <% if recipe.steps.present? %>
+                <div class="mb-4">
+                  <h3 class="h-default mb-3">Steps</h3>
+                  <div class="recipe-show-steps p-default">
+                    <% recipe.steps.split(/(?=\d+\.)/).reject(&:blank?).each do |step| %>
+                      <% match = step.strip.match(/^(\d+)\.\s*(.*)/) %>
+                      <% if match %>
+                        <div class="step-item">
+                          <div class="step-number"><%= match[1] %></div>
+                          <div class="step-content"><%= match[2] %></div>
+                        </div>
+                      <% else %>
+                        <div class="step-item">
+                          <div class="step-content"><%= step.strip %></div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="recipe-show-actions mt-4">
+                <%= link_to edit_recipe_path(recipe), class: "btn button-default rounded-5" do %>
+                  <i class="bi bi-pencil me-2"></i>Edit
+                <% end %>
+
+                <%= link_to recipe_path(recipe),
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this recipe?" },
+                    class: "btn btn-outline-danger rounded-5" do %>
+                  <i class="bi bi-trash me-2"></i>Delete
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
