@@ -5,7 +5,7 @@
   h2 {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: $font-size-xl;
     color: #1a1a1a;
     display: flex;
     align-items: center;
@@ -74,13 +74,13 @@
   align-items: center;
   gap: 5px;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: $font-size-sm;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .gi-badge {
   i {
-    font-size: 1rem;
+    font-size: $font-size-base;
   }
 }
 
@@ -98,7 +98,7 @@
 
 .carb-badge {
   i {
-    font-size: 0.9rem;
+    font-size: $font-size-sm;
   }
 }
 
@@ -126,7 +126,7 @@
 
   h3 {
     margin: 0 0 1rem 0;
-    font-size: 1.5rem;
+    font-size: $font-size-2xl;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   }
@@ -134,8 +134,19 @@
 
 .recipe-ratings {
   display: flex;
-  gap: 1.5rem;
-  font-size: 0.85rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: $font-size-sm;
+
+  .rating-labels-row {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .rating-icons-row {
+    display: flex;
+    gap: 1.5rem;
+  }
 }
 
 .rating-item {
@@ -147,18 +158,20 @@
 .rating-label {
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  min-width: 110px;
 }
 
 .rating-stars {
   color: #ffc107;
-  font-size: 1rem;
+  font-size: $font-size-base;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .rating-icons {
   display: flex;
   gap: 2px;
-  font-size: 0.85rem;
+  font-size: $font-size-sm;
+  min-width: 110px;
 
   i {
     &.bi-droplet,
@@ -200,31 +213,30 @@
 
 // Item card specific styles
 .item-card {
-  width: 200px;
+  min-width: 180px;
+  max-width: 300px;
+  width: auto;
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
+  transition: box-shadow 0.3s ease;
 
   @media (min-width: 768px) {
-    width: 220px;
+    min-width: 200px;
+    max-width: 350px;
   }
 }
 
 .item-card-gradient {
-  height: 130px;
+  height: auto;
   background: #ffffff;
   border: 2px solid #ccc;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   &::before {
     display: none;
@@ -232,14 +244,29 @@
 
   &.item-gi-low {
     border-color: #28a745;
+
+    &:hover {
+      background-color: rgba(40, 167, 69, 0.06);
+      box-shadow: 0 0 12px rgba(40, 167, 69, 0.3);
+    }
   }
 
   &.item-gi-medium {
     border-color: #ffc107;
+
+    &:hover {
+      background-color: rgba(255, 193, 7, 0.06);
+      box-shadow: 0 0 12px rgba(255, 193, 7, 0.3);
+    }
   }
 
   &.item-gi-high {
     border-color: #dc3545;
+
+    &:hover {
+      background-color: rgba(220, 53, 69, 0.06);
+      box-shadow: 0 0 12px rgba(220, 53, 69, 0.3);
+    }
   }
 }
 
@@ -258,12 +285,12 @@
 .item-card-gradient .gi-badge,
 .item-card-gradient .carb-badge {
   padding: 3px 6px;
-  font-size: 0.7rem;
+  font-size: $font-size-2xs;
   border-radius: 10px;
   gap: 3px;
 
   i {
-    font-size: 0.7rem;
+    font-size: $font-size-2xs;
   }
 }
 
@@ -274,7 +301,7 @@
 
 .item-icon-link {
   color: #888;
-  font-size: 0.85rem;
+  font-size: $font-size-sm;
   transition: color 0.2s;
 
   &:hover {
@@ -294,19 +321,16 @@
   text-align: left;
 
   h3 {
-    font-size: 0.85rem;
+    font-size: $font-size-sm;
     margin: 0 0 2px 0;
     font-weight: 600;
     color: #1a1a1a;
     line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
 
 .item-brand {
-  font-size: 0.7rem;
+  font-size: $font-size-2xs;
   color: #777;
   margin-bottom: 6px;
   overflow: hidden;
@@ -316,8 +340,17 @@
 
 .item-card-gradient .recipe-ratings {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 2px;
   margin-top: auto;
+
+  .rating-labels-row {
+    display: flex;
+  }
+
+  .rating-icons-row {
+    display: flex;
+  }
 }
 
 .item-card-gradient .rating-item {
@@ -327,16 +360,18 @@
 }
 
 .item-card-gradient .rating-label {
-  font-size: 0.65rem;
+  font-size: $font-size-2xs;
   font-weight: 600;
   color: #666;
   text-shadow: none;
+  flex: 1;
 }
 
 .item-card-gradient .rating-icons {
   display: flex;
   gap: 1px;
-  font-size: 0.6rem;
+  font-size: $font-size-2xs;
+  flex: 1;
 
   i {
     text-shadow: none;
@@ -350,6 +385,6 @@
 }
 
 .category-icon {
-  font-size: 2rem;
+  font-size: $font-size-3xl;
   color: #d34e4e;
 }

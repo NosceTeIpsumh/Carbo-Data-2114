@@ -15,7 +15,7 @@
     }
 
     .btn {
-      font-size: 0.875rem;
+      font-size: $font-size-sm;
       padding: 0.5rem 0.25rem;
       white-space: nowrap;
     }
@@ -65,7 +65,7 @@
       }
 
       .btn {
-        font-size: 1rem;
+        font-size: $font-size-base;
         padding: 0.5rem 1rem;
       }
     }
@@ -94,16 +94,16 @@
     .card {
       .card-body {
         h6 {
-          font-size: 0.95rem;
+          font-size: $font-size-base;
         }
 
         .badge {
-          font-size: 0.7rem;
+          font-size: $font-size-2xs;
           padding: 0.25rem 0.5rem;
         }
 
         small, .small {
-          font-size: 0.8rem;
+          font-size: $font-size-xs;
         }
       }
     }

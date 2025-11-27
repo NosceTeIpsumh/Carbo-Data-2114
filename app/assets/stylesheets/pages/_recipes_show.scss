@@ -48,11 +48,11 @@
     .rating-icons {
       display: flex;
       gap: 4px;
-      font-size: 1.1rem;
+      font-size: $font-size-lg;
       justify-content: center;
 
       @media (min-width: 576px) {
-        font-size: 1.3rem;
+        font-size: $font-size-xl;
       }
 
       i {
@@ -114,7 +114,7 @@
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: 0.9rem;
+      font-size: $font-size-sm;
     }
 
     .step-content {
