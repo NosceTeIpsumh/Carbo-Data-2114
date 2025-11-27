@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
     @recipe.update(recipe_params)
     @user = current_user
     if @recipe.save!
-      redirect_to recipes_path
+      redirect_to recipes_path, notice: "Recipe has been updated"
     else
       render :new, unprocessable_entity
     end
@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
 
   def destroy
     if @recipe.destroy
-      redirect_to recipes_path, status: :see_other, alert: "Recipe has been deleted"
+      redirect_to recipes_path, status: :see_other, notice: "Recipe has been deleted"
     else
       redirect_to recipe_path(@recipe), alert: "Impossible to delete the recipe"
     end

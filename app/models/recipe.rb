@@ -25,12 +25,14 @@ class Recipe < ApplicationRecord
   end
 
   def gi_level
+    return nil if indice_gly.nil?
     return 'low' if indice_gly < 55
     return 'medium' if indice_gly <= 70
     'high'
   end
 
   def gi_stars
+    return nil if indice_gly.nil?
     return 5 if indice_gly < 40
     return 4 if indice_gly < 55
     return 3 if indice_gly < 70
@@ -39,6 +41,7 @@ class Recipe < ApplicationRecord
   end
 
   def carb_stars
+    return nil if indice_gly.nil?
     return 5 if ratio_glucide < 20
     return 4 if ratio_glucide < 35
     return 3 if ratio_glucide < 50

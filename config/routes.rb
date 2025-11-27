@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root to: "pages#feed", as: "feed"
+  root to: "pages#root"
   get "home", to: "pages#home"
+  get "feed", to: "pages#feed"
   get "profile", to: "pages#profile"
 
   resources :posts do

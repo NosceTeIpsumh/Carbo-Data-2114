@@ -1,4 +1,4 @@
-<% unless current_page?(home_path) %>
+<% unless current_page?(home_path) || current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(new_user_password_path) || current_page?(user_password_path) %>
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
 

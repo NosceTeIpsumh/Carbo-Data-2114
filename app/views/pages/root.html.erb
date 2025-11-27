@@ -31,9 +31,16 @@
       <h1 class="hero-logo">Carbodata</h1>
       <p class="hero-slogan p-default">Smart eating for healthier living</p>
     </div>
-    <div class="hero-buttons">
-      <%= link_to "Carbodata Community", feed_path, class: "btn button-default btn-signup p-3" %>
-      <%= link_to "My profile", profile_path, class: "btn btn-login p-3" %>
-    </div>
+    <% unless user_signed_in? %>
+      <div class="hero-buttons">
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn button-default btn-signup p-3" %>
+        <%= link_to "Log In", new_user_session_path, class: "btn btn-login p-3" %>
+      </div>
+    <% else %>
+      <div class="hero-buttons">
+        <%= link_to "Sign Up", feed_path, class: "btn button-default btn-signup p-3" %>
+        <%= link_to "Log In", feed_path, class: "btn btn-login p-3" %>
+      </div>
+    <% end %>
   </div>
 </section>

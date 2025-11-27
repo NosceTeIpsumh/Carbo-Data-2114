@@ -125,7 +125,7 @@ class MessagesController < ApplicationController
       @recipe = Recipe.create_from_markdown(@message.content, current_user)
 
       if @recipe
-        redirect_to recipes_path, alert: "Recipe '#{@recipe.name}' has been saved successfully!"
+        redirect_to recipes_path, notice: "Recipe '#{@recipe.name}' has been saved!"
       else
         redirect_to chat_path(@chat), alert: "Unable to parse recipe from this message."
       end
