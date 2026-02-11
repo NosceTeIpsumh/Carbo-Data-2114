@@ -1,4 +1,4 @@
-<% content_for :navabr_text_label, "For you" %>
+<% content_for :navbar_text_label, "For you" %>
 <% content_for :navbar_text_path, feed_path %>
 
 <div class="feed-page">
@@ -57,18 +57,37 @@
                   </div>
                 <% end %>
 
+                <!-- Post Content -->
+                <%= link_to post_path(post), class: "feed-card-content-link" do %>
+                  <div class="feed-card-content">
+                    <p class="mb-1">
+                      <% if post.title.present? %>
+                        <strong class="post-title-inline"><%= post.title %></strong>
+                      <% end %>
+                      <% if post.content.present? %>
+                        <span class="post-content-text"><%= truncate(post.content, length: 200) %></span>
+                      <% end %>
+                    </p>
+                  </div>
+                <% end %>
+
                 <!-- Post Actions -->
                 <div class="feed-card-actions">
                   <div class="d-flex gap-3 align-items-center">
-                    <!-- Reddit-style voting -->
-                    <div class="vote-buttons">
-                      <button class="btn-vote upvote-btn" data-post-id="<%= post.id %>">
+                    <div class="vote-buttons"
+                         data-controller="vote"
+                         data-vote-url-value="<%= post_vote_path(post) %>">
+                      <button class="btn-vote upvote-btn"
+                              data-action="vote#vote"
+                              data-value="1">
                         <i class="fas fa-arrow-up"></i>
                       </button>
-                      <span class="vote-count" data-post-id="<%= post.id %>">
-                        <%= (post.up || 0) - (post.down || 0) %>
+                      <span class="vote-count" data-vote-target="count">
+                        <%= post.score %>
                       </span>
-                      <button class="btn-vote downvote-btn" data-post-id="<%= post.id %>">
+                      <button class="btn-vote downvote-btn"
+                              data-action="vote#vote"
+                              data-value="-1">
                         <i class="fas fa-arrow-down"></i>
                       </button>
                     </div>
@@ -84,25 +103,13 @@
                   </button>
                 </div>
 
-                <!-- Post Content -->
-                <div class="feed-card-content">
-                  <p class="mb-1">
-                    <% if post.title.present? %>
-                      <strong class="post-title-inline"><%= post.title %></strong>
-                    <% end %>
-                    <% if post.content.present? %>
-                      <span class="post-content-text"><%= post.content %></span>
-                    <% end %>
-                  </p>
-                </div>
-
                 <!-- Comments Section -->
                 <div class="feed-card-comments">
                   <% if post.comments.any? %>
                     <% if post.comments.count > 2 %>
                       <%= link_to "View all #{post.comments.count} comments", post_path(post), class: "view-all-comments" %>
                     <% end %>
-                    <%= render 'shared/comments', comments: post.comments.order(created_at: :desc).limit(2), post: post %>
+                    <%= render 'shared/comments', comments: post.comments.by_score.limit(2), post: post %>
                   <% end %>
 
                   <%= render 'shared/comment_form', post: post %>

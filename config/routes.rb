@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get "profile", to: "pages#profile"
 
   resources :posts do
-    resources :comments, except: [:show, :index]
+    resources :comments, except: [:show, :index] do
+      resource :vote, only: [:create]
+    end
+    resource :vote, only: [:create]
   end
 
   resources :recipes

@@ -1,0 +1,30 @@
+<% content_for :navbar_text_label, "New Post" %>
+<% content_for :navbar_text_path, feed_path %>
+
+<div class="container py-4">
+  <div class="card shadow-sm rounded-5 p-4">
+    <h2 class="h-default mb-4">Create a New Post</h2>
+
+    <%= form_with model: @post, class: "d-flex flex-column gap-3" do |f| %>
+      <div>
+        <%= f.label :title, "Title (optional)", class: "form-label" %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Give your post a title..." %>
+      </div>
+
+      <div>
+        <%= f.label :content, "Content", class: "form-label" %>
+        <%= f.text_area :content, rows: 6, class: "form-control", placeholder: "What's on your mind?", required: true %>
+      </div>
+
+      <div>
+        <%= f.label :photo, "Image (optional)", class: "form-label" %>
+        <%= f.file_field :photo, class: "form-control", accept: "image/*" %>
+      </div>
+
+      <div class="d-flex gap-2 mt-3">
+        <%= f.submit "Publish", class: "btn button-default rounded-5" %>
+        <%= link_to "Cancel", feed_path, class: "btn btn-outline-secondary rounded-5" %>
+      </div>
+    <% end %>
+  </div>
+</div>

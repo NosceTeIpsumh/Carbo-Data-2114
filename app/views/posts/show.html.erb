@@ -1,1 +1,187 @@
-<h1> <%= @item.name %></h1>
+<% content_for :navbar_text_label, "Post" %>
+<% content_for :navbar_text_path, feed_path %>
+
+<div class="post-show-page">
+  <div class="container-fluid px-0 px-lg-3">
+    <div class="row g-0 g-lg-4 justify-content-center">
+
+      <!-- Main Post Column -->
+      <div class="col-12 col-lg-7 col-xl-6">
+        <article class="post-show-card">
+
+          <!-- Post Header -->
+          <div class="feed-card-header">
+            <div class="d-flex align-items-center">
+              <div class="feed-author-avatar">
+                <% if @post.user.photo.attached? %>
+                  <%= image_tag @post.user.photo, alt: @post.user.profile_name, class: "avatar-img" %>
+                <% else %>
+                  <div class="avatar-placeholder">
+                    <%= (@post.user.profile_name || @post.user.email.split('@').first).first.upcase %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <span class="feed-author-name">
+                  <%= @post.user.profile_name || @post.user.email.split('@').first %>
+                </span>
+                <div class="feed-post-time">
+                  <%= time_ago_in_words(@post.created_at) %> ago
+                </div>
+              </div>
+              <% if user_signed_in? && current_user == @post.user %>
+                <div class="dropdown">
+                  <button class="btn btn-link text-dark p-1" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><%= link_to "Edit", edit_post_path(@post), class: "dropdown-item" %></li>
+                    <li><%= link_to "Delete", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %></li>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Post Image -->
+          <% if @post.photo.attached? %>
+            <div class="feed-card-image">
+              <%= image_tag @post.photo, alt: @post.title, class: "post-image" %>
+            </div>
+          <% end %>
+
+          <!-- Post Content (full) -->
+          <div class="post-show-content">
+            <% if @post.title.present? %>
+              <h1 class="post-show-title"><%= @post.title %></h1>
+            <% end %>
+            <% if @post.content.present? %>
+              <div class="post-show-body"><%= simple_format(@post.content) %></div>
+            <% end %>
+          </div>
+
+          <!-- Post Actions (Vote + Comment count) -->
+          <div class="feed-card-actions">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="vote-buttons"
+                   data-controller="vote"
+                   data-vote-url-value="<%= post_vote_path(@post) %>">
+                <button class="btn-vote upvote-btn"
+                        data-action="vote#vote"
+                        data-value="1">
+                  <i class="fas fa-arrow-up"></i>
+                </button>
+                <span class="vote-count" data-vote-target="count">
+                  <%= @post.score %>
+                </span>
+                <button class="btn-vote downvote-btn"
+                        data-action="vote#vote"
+                        data-value="-1">
+                  <i class="fas fa-arrow-down"></i>
+                </button>
+              </div>
+              <span class="btn-action">
+                <i class="far fa-comment"></i>
+                <span class="ms-1 post-show-comment-count"><%= @comments.size %></span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Comments Section -->
+          <div class="post-show-comments">
+            <h3 class="post-show-comments-header">
+              Comments (<%= @comments.size %>)
+            </h3>
+
+            <!-- Comment Form -->
+            <%= form_with(model: [@post, Comment.new], local: true, class: "comment-form mb-4") do |f| %>
+              <div class="comment-input-wrapper">
+                <%= f.text_field :content,
+                    class: "comment-input",
+                    placeholder: "Add a comment...",
+                    required: true,
+                    autocomplete: "off" %>
+                <%= f.submit "Post", class: "btn-submit-comment" %>
+              </div>
+            <% end %>
+
+            <!-- Comments ordered by score -->
+            <% if @comments.any? %>
+              <div data-controller="show-more" data-show-more-limit-value="5">
+                <% @comments.each do |comment| %>
+                  <div class="comment-card" data-show-more-target="item">
+                    <!-- Comment header (avatar + name + time) -->
+                    <div class="d-flex align-items-center mb-1">
+                      <div class="comment-author-avatar">
+                        <% if comment.user.photo.attached? %>
+                          <%= image_tag comment.user.photo, alt: comment.user.profile_name, class: "avatar-img" %>
+                        <% else %>
+                          <div class="avatar-placeholder">
+                            <%= (comment.user.profile_name || comment.user.email.split('@').first).first.upcase %>
+                          </div>
+                        <% end %>
+                      </div>
+                      <div class="ms-2">
+                        <span class="feed-author-name comment-author-name">
+                          <%= comment.user.profile_name || comment.user.email.split('@').first %>
+                        </span>
+                        <div class="feed-post-time">
+                          <%= time_ago_in_words(comment.created_at) %> ago
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Comment text -->
+                    <div class="comment-text-block">
+                      <%= comment.content %>
+                    </div>
+
+                    <!-- Comment actions (under text, horizontal) -->
+                    <div class="comment-actions">
+                      <div class="comment-vote-buttons"
+                           data-controller="vote"
+                           data-vote-url-value="<%= post_comment_vote_path(@post, comment) %>">
+                        <button class="btn-comment-vote"
+                                data-action="vote#vote"
+                                data-value="1">
+                          <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <span class="comment-vote-count" data-vote-target="count">
+                          <%= comment.score %>
+                        </span>
+                        <button class="btn-comment-vote"
+                                data-action="vote#vote"
+                                data-value="-1">
+                          <i class="fas fa-arrow-down"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+
+                <% if @comments.size > 5 %>
+                  <button class="btn-show-more"
+                          data-show-more-target="button"
+                          data-action="show-more#toggle">
+                    Show <%= @comments.size - 5 %> more comments
+                  </button>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-muted small">No comments yet. Be the first to comment!</p>
+            <% end %>
+          </div>
+
+        </article>
+
+        <!-- Back link -->
+        <div class="post-show-back">
+          <%= link_to feed_path, class: "btn btn-outline-secondary rounded-5" do %>
+            <i class="fas fa-arrow-left me-2"></i>Back to feed
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
