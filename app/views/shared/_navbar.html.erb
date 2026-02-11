@@ -3,9 +3,9 @@
     <div class="container">
 
       <div class="navbar-brand-container">
-        <% if content_for?(:navabr_text_label)%>
+        <% if content_for?(:navbar_text_label)%>
           <%= link_to content_for(:navbar_text_path), class: "navbar-brand" do %>
-            <%=content_for(:navabr_text_label) %>
+            <%=content_for(:navbar_text_label) %>
           <% end %>
         <% end %>
         <span class="navbar-separator">|</span>

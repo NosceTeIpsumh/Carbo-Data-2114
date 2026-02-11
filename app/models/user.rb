@@ -8,5 +8,6 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_one_attached :photo
 end

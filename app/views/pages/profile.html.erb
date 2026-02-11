@@ -1,4 +1,4 @@
-<% content_for :navabr_text_label, "Dashboard" %>
+<% content_for :navbar_text_label, "Dashboard" %>
 <% content_for :navbar_text_path, profile_path %>
 
 <div class="user-hub-page">
@@ -315,14 +315,20 @@
                   <div class="feed-card-actions">
                     <div class="d-flex gap-3 align-items-center">
                       <!-- Reddit-style voting -->
-                      <div class="vote-buttons">
-                        <button class="btn-vote upvote-btn" data-post-id="<%= post.id %>">
+                      <div class="vote-buttons"
+                           data-controller="vote"
+                           data-vote-post-id-value="<%= post.id %>">
+                        <button class="btn-vote upvote-btn"
+                                data-action="vote#vote"
+                                data-value="1">
                           <i class="fas fa-arrow-up"></i>
                         </button>
-                        <span class="vote-count" data-post-id="<%= post.id %>">
-                          <%= (post.up || 0) - (post.down || 0) %>
+                        <span class="vote-count" data-vote-target="count">
+                          <%= post.score %>
                         </span>
-                        <button class="btn-vote downvote-btn" data-post-id="<%= post.id %>">
+                        <button class="btn-vote downvote-btn"
+                                data-action="vote#vote"
+                                data-value="-1">
                           <i class="fas fa-arrow-down"></i>
                         </button>
                       </div>
